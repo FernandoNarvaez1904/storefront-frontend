@@ -1,14 +1,8 @@
-import { AppShell } from '@mantine/core';
-import React from 'react';
-import Sidebar from './components/Sidebar';
 import './global.css';
+import PointOfSale from './apps/pointOfSale';
 
 function App() {
-  return (
-    <AppShell padding="md" navbar={<Sidebar />}>
-      Hello
-    </AppShell>
-  );
+  return <PointOfSale />;
 }
 
 export default App;
