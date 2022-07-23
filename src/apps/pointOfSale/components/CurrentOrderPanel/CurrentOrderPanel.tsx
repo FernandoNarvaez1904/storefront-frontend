@@ -7,7 +7,7 @@ function CurrentOrderPanel() {
       sx={{
         border: '1px solid black',
         height: '100%',
-        width: '400px',
+        minWidth: '460px',
       }}
     />
   );
