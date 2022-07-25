@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0bd765fe4697ec6d2a1942e5753c65ae>>
+ * @generated SignedSource<<ad442a4966fc037ba4c4ff4ec9387f14>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,10 @@ export type ItemGrid_AllItemsQuery$data = {
   readonly itemConnection: {
     readonly edges: ReadonlyArray<{
       readonly node: {
+        readonly barcode: string | null;
+        readonly id: any;
         readonly name: string | null;
+        readonly sku: string;
         readonly " $fragmentSpreads": FragmentRefs<"ItemCard_ItemCardDataFragment">;
       };
     }>;
@@ -31,7 +34,28 @@ var v0 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "name",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "barcode",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "sku",
   "storageKey": null
 };
 return {
@@ -66,6 +90,9 @@ return {
                 "plural": false,
                 "selections": [
                   (v0/*: any*/),
+                  (v1/*: any*/),
+                  (v2/*: any*/),
+                  (v3/*: any*/),
                   {
                     "args": null,
                     "kind": "FragmentSpread",
@@ -115,13 +142,9 @@ return {
                 "plural": false,
                 "selections": [
                   (v0/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "id",
-                    "storageKey": null
-                  },
+                  (v1/*: any*/),
+                  (v2/*: any*/),
+                  (v3/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -141,16 +164,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "10d0bc8bb6b1fa79582ec512193c4eab",
+    "cacheID": "00bc0e1cc8d721dc65d4e073bc16c40e",
     "id": null,
     "metadata": {},
     "name": "ItemGrid_AllItemsQuery",
     "operationKind": "query",
-    "text": "query ItemGrid_AllItemsQuery {\n  itemConnection {\n    edges {\n      node {\n        name\n        ...ItemCard_ItemCardDataFragment\n      }\n    }\n  }\n}\n\nfragment ItemCard_ItemCardDataFragment on ItemType {\n  id\n  name\n  price\n}\n"
+    "text": "query ItemGrid_AllItemsQuery {\n  itemConnection {\n    edges {\n      node {\n        id\n        name\n        barcode\n        sku\n        ...ItemCard_ItemCardDataFragment\n      }\n    }\n  }\n}\n\nfragment ItemCard_ItemCardDataFragment on ItemType {\n  id\n  name\n  price\n}\n"
   }
 };
 })();
 
-(node as any).hash = "f4fde906e649b38771c5054b7b554428";
+(node as any).hash = "101291d1d78c19fe13426ee8da357a9d";
 
 export default node;
