@@ -1,15 +1,11 @@
-import { Box } from '@mantine/core';
 import React from 'react';
+import { DefaultProps, Paper } from '@mantine/core';
 
-function CurrentOrderPanel() {
+function CurrentOrderPanel(props: DefaultProps) {
   return (
-    <Box
-      sx={{
-        border: '1px solid black',
-        height: '100%',
-        minWidth: '460px',
-      }}
-    />
+    <Paper withBorder shadow="xl" {...props}>
+      <h1>Current</h1>
+    </Paper>
   );
 }
 
