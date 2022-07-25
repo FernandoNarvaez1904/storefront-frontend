@@ -1,19 +1,20 @@
 import { Group, ScrollArea } from '@mantine/core';
 import { graphql, PreloadedQuery, usePreloadedQuery } from 'react-relay';
+import { useRecoilValue } from 'recoil';
 import {
   ItemGrid_AllItemsQuery,
   ItemGrid_AllItemsQuery$data,
 } from './__generated__/ItemGrid_AllItemsQuery.graphql';
 import ItemCard from './ItemCard';
+import { filterItemValue } from '../../state/Atoms';
 
 type Props = {
   width: number;
   height: number;
   itemsQueryRef: PreloadedQuery<ItemGrid_AllItemsQuery>;
-  filterCondition: { name: string };
 };
 
-function ItemGrid({ width, height, itemsQueryRef, filterCondition }: Props) {
+function ItemGrid({ width, height, itemsQueryRef }: Props) {
   const data = usePreloadedQuery<ItemGrid_AllItemsQuery>(
     graphql`
       query ItemGrid_AllItemsQuery {
@@ -32,6 +33,7 @@ function ItemGrid({ width, height, itemsQueryRef, filterCondition }: Props) {
     `,
     itemsQueryRef
   );
+  const filterCondition = useRecoilValue(filterItemValue);
 
   const getFilteredItems = (
     itemQuery: ItemGrid_AllItemsQuery$data,
@@ -50,7 +52,7 @@ function ItemGrid({ width, height, itemsQueryRef, filterCondition }: Props) {
   return (
     <ScrollArea style={{ height }}>
       <Group sx={{ maxWidth: width }}>
-        {getFilteredItems(data, filterCondition.name, 'name')}
+        {getFilteredItems(data, filterCondition.value, filterCondition.kind)}
       </Group>
     </ScrollArea>
   );

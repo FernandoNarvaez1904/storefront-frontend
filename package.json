@@ -27,6 +27,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-relay": "^14.0.0",
+    "recoil": "^0.7.4",
     "relay-runtime": "^14.0.0",
     "tabler-icons-react": "^1.52.0"
   },

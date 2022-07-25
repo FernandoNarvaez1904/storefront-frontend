@@ -1,17 +1,16 @@
 import { Search } from 'tabler-icons-react';
 import { TextInput } from '@mantine/core';
-import React, { Dispatch } from 'react';
+import React from 'react';
+import { useRecoilState } from 'recoil';
+import { filterItemValue } from '../../state/Atoms';
 
-type Props = {
-  value: { name: string };
-  setValue: Dispatch<React.SetStateAction<{ name: string }>>;
-};
+function SearchInput() {
+  const [value, setValue] = useRecoilState(filterItemValue);
 
-function SearchInput({ value, setValue }: Props) {
   return (
     <TextInput
-      value={value.name}
-      onChange={(e) => setValue({ name: e.target.value })}
+      value={value.value}
+      onChange={(e) => setValue({ kind: 'name', value: e.target.value })}
       icon={<Search size={18} />}
       radius="xl"
       size="sm"
