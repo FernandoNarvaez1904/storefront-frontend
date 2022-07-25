@@ -13,6 +13,7 @@ function ItemGridPanel(props: DefaultProps) {
   const [allItemQueryRef, loadAllItem] = useQueryLoader<ItemGrid_AllItemsQuery>(
     AllItemsQueryPrefetch
   );
+  const [filterCondition, setFilterCondition] = useState({ name: '' });
 
   const { ref: refWidth, width } = useElementSize();
   // useElementSize was not used for height as it caused problems with
@@ -31,12 +32,13 @@ function ItemGridPanel(props: DefaultProps) {
   return (
     <Paper withBorder shadow="xl" ref={refWidth} {...props}>
       <Stack style={{ height: '100%' }}>
-        <SearchInput />
+        <SearchInput value={filterCondition} setValue={setFilterCondition} />
         <Box style={{ flexGrow: 1 }} ref={refHeight}>
           {allItemQueryRef && (
             <ItemGrid
               width={width}
               height={height}
+              filterCondition={filterCondition}
               itemsQueryRef={allItemQueryRef}
             />
           )}

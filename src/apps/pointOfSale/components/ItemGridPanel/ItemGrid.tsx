@@ -7,15 +7,18 @@ type Props = {
   width: number;
   height: number;
   itemsQueryRef: PreloadedQuery<ItemGrid_AllItemsQuery>;
+  filterCondition: { name: string };
 };
 
-function ItemGrid({ width, height, itemsQueryRef }: Props) {
+function ItemGrid({ width, height, itemsQueryRef, filterCondition }: Props) {
   const data = usePreloadedQuery<ItemGrid_AllItemsQuery>(
     graphql`
+      # noinspection GraphQLUnresolvedReference
       query ItemGrid_AllItemsQuery {
         itemConnection {
           edges {
             node {
+              name
               ...ItemCard_ItemCardDataFragment
             }
           }
@@ -27,9 +30,11 @@ function ItemGrid({ width, height, itemsQueryRef }: Props) {
   return (
     <ScrollArea style={{ height }}>
       <Group sx={{ maxWidth: width }}>
-        {data.itemConnection.edges.map((item) => (
-          <ItemCard item={item.node} />
-        ))}
+        {data.itemConnection.edges
+          .filter((item) => item.node.name?.startsWith(filterCondition.name))
+          .map((item) => (
+            <ItemCard item={item.node} />
+          ))}
       </Group>
     </ScrollArea>
   );
