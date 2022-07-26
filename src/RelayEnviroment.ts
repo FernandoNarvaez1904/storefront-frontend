@@ -3,7 +3,7 @@ import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 const store = new Store(new RecordSource());
 
 const network = Network.create((operation, variables) =>
-  fetch('http://localhost:8000/graphql', {
+  fetch(import.meta.env.VITE_GRAPHQL_URL, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
