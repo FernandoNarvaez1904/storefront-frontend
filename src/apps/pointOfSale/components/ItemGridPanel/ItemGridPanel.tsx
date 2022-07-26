@@ -7,6 +7,7 @@ import ItemGrid from './ItemGrid';
 import AllItemsQueryPrefetch, {
   ItemGrid_AllItemsQuery,
 } from './__generated__/ItemGrid_AllItemsQuery.graphql';
+import ItemGridConfBar from './ItemGridConfBar';
 
 function ItemGridPanel(props: DefaultProps) {
   const [allItemQueryRef, loadAllItem] = useQueryLoader<ItemGrid_AllItemsQuery>(
@@ -29,7 +30,8 @@ function ItemGridPanel(props: DefaultProps) {
   return (
     <Paper withBorder shadow="xl" {...props}>
       <Stack style={{ height: '100%' }}>
-        <SearchInput />
+        <ItemGridConfBar />
+        <SearchInput loadAllItem={loadAllItem} />
         <Box style={{ flexGrow: 1 }} ref={refHeight}>
           <Suspense fallback={<Skeleton animate width="100%" height="100%" />}>
             {allItemQueryRef && (

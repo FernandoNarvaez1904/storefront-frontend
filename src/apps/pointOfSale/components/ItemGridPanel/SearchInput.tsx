@@ -1,64 +1,23 @@
-import {
-  Barcode,
-  ChevronDown,
-  Numbers,
-  Search,
-  TextRecognition,
-} from 'tabler-icons-react';
-import { Button, Group, Menu, Text, TextInput } from '@mantine/core';
+import { Refresh, Search } from 'tabler-icons-react';
+import { Button, Group, TextInput } from '@mantine/core';
 import React from 'react';
 import { useRecoilState } from 'recoil';
+import { UseQueryLoaderLoadQueryOptions } from 'react-relay';
 import { filterItemValue } from '../../state/Atoms';
+import { ItemGrid_AllItemsQuery$variables } from './__generated__/ItemGrid_AllItemsQuery.graphql';
 
-function SearchInput() {
+type Props = {
+  loadAllItem: (
+    variables: ItemGrid_AllItemsQuery$variables,
+    options?: UseQueryLoaderLoadQueryOptions | undefined
+  ) => any;
+};
+
+function SearchInput({ loadAllItem }: Props) {
   const [value, setValue] = useRecoilState(filterItemValue);
 
-  const getIconForMenu = (val: 'name' | 'barcode' | 'sku', size = 18) => {
-    if (val === 'name') return <TextRecognition size={size} />;
-    if (val === 'barcode') return <Barcode size={size} />;
-    if (val === 'sku') return <Numbers size={size} />;
-    return null;
-  };
-
-  const onClickMenuItem = (val: 'name' | 'barcode' | 'sku') => () => {
-    setValue({ kind: val, value: '' });
-  };
   return (
-    <Group>
-      <Menu shadow="md" width={125} position="bottom-end" trigger="hover">
-        <Menu.Target>
-          <Button
-            leftIcon={getIconForMenu(value.kind, 22)}
-            size="xs"
-            sx={{ width: '120px' }}
-          >
-            <Text transform="capitalize">{value.kind}</Text>
-            <ChevronDown size={18} />
-          </Button>
-        </Menu.Target>
-
-        <Menu.Dropdown>
-          <Menu.Item
-            icon={getIconForMenu('name')}
-            onClick={onClickMenuItem('name')}
-          >
-            Name
-          </Menu.Item>
-          <Menu.Item
-            icon={getIconForMenu('barcode')}
-            onClick={onClickMenuItem('barcode')}
-          >
-            Barcode
-          </Menu.Item>
-          <Menu.Item
-            icon={getIconForMenu('sku')}
-            onClick={onClickMenuItem('sku')}
-          >
-            Sku
-          </Menu.Item>
-        </Menu.Dropdown>
-      </Menu>
-
+    <Group spacing="xs" sx={{ width: '97%' }}>
       <TextInput
         value={value.value}
         onChange={(e) =>
@@ -70,6 +29,13 @@ function SearchInput() {
         placeholder="Search Items"
         sx={{ flexGrow: 1 }}
       />
+      <Button
+        onClick={() => loadAllItem({}, { fetchPolicy: 'network-only' })}
+        size="xs"
+        leftIcon={<Refresh size={18} />}
+      >
+        Refresh
+      </Button>
     </Group>
   );
 }
