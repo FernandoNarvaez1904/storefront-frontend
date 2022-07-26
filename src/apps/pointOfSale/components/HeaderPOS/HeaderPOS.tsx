@@ -4,20 +4,9 @@ import React from 'react';
 function HeaderPOS() {
   return (
     <Group>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
-      <Button size="md">Hello</Button>
+      <Button size="xs" fullWidth>
+        Exit
+      </Button>
     </Group>
   );
 }
