@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ad442a4966fc037ba4c4ff4ec9387f14>>
+ * @generated SignedSource<<e9bbac42e4ce376567bae326f2802c81>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -151,6 +151,13 @@ return {
                     "kind": "ScalarField",
                     "name": "price",
                     "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "currentStock",
+                    "storageKey": null
                   }
                 ],
                 "storageKey": null
@@ -164,12 +171,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "00bc0e1cc8d721dc65d4e073bc16c40e",
+    "cacheID": "48acdbd4fcec8a8dd3105d6e900eeea6",
     "id": null,
     "metadata": {},
     "name": "ItemGrid_AllItemsQuery",
     "operationKind": "query",
-    "text": "query ItemGrid_AllItemsQuery {\n  itemConnection {\n    edges {\n      node {\n        id\n        name\n        barcode\n        sku\n        ...ItemCard_ItemCardDataFragment\n      }\n    }\n  }\n}\n\nfragment ItemCard_ItemCardDataFragment on ItemType {\n  id\n  name\n  price\n}\n"
+    "text": "query ItemGrid_AllItemsQuery {\n  itemConnection {\n    edges {\n      node {\n        id\n        name\n        barcode\n        sku\n        ...ItemCard_ItemCardDataFragment\n      }\n    }\n  }\n}\n\nfragment ItemCard_ItemCardDataFragment on ItemType {\n  id\n  name\n  price\n  currentStock\n}\n"
   }
 };
 })();

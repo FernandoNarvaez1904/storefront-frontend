@@ -33,8 +33,8 @@ function ItemGrid({ width, height, itemsQueryRef }: Props) {
     `,
     itemsQueryRef
   );
-  const filterCondition = useRecoilValue(filterItemValue);
 
+  const filterCondition = useRecoilValue(filterItemValue);
   const getFilteredItems = (
     itemQuery: ItemGrid_AllItemsQuery$data,
     filterText: string,
