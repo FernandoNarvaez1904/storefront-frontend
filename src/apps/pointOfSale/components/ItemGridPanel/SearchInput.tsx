@@ -65,7 +65,7 @@ function SearchInput() {
           setValue((prev) => ({ ...prev, value: e.target.value }))
         }
         icon={<Search size={18} />}
-        radius="xl"
+        radius="md"
         size="sm"
         placeholder="Search Items"
         sx={{ flexGrow: 1 }}

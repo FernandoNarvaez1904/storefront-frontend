@@ -1,6 +1,5 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Box, DefaultProps, Paper, Skeleton, Stack } from '@mantine/core';
-import { useElementSize } from '@mantine/hooks';
 import { useQueryLoader } from 'react-relay';
 import SearchInput from './SearchInput';
 import ItemGrid from './ItemGrid';
@@ -14,7 +13,6 @@ function ItemGridPanel(props: DefaultProps) {
     AllItemsQueryPrefetch
   );
 
-  const { ref: refWidth, width } = useElementSize();
   // useElementSize was not used for height as it caused problems with
   // infinite resizing when the page was resized
   const refHeight = useRef<HTMLDivElement>(null);
@@ -29,17 +27,13 @@ function ItemGridPanel(props: DefaultProps) {
   }, [refHeight, setHeight, loadAllItem]);
 
   return (
-    <Paper withBorder shadow="xl" ref={refWidth} {...props}>
+    <Paper withBorder shadow="xl" {...props}>
       <Stack style={{ height: '100%' }}>
         <SearchInput />
         <Box style={{ flexGrow: 1 }} ref={refHeight}>
           <Suspense fallback={<Skeleton animate width="100%" height="100%" />}>
             {allItemQueryRef && (
-              <ItemGrid
-                width={width}
-                height={height}
-                itemsQueryRef={allItemQueryRef}
-              />
+              <ItemGrid height={height} itemsQueryRef={allItemQueryRef} />
             )}
           </Suspense>
         </Box>

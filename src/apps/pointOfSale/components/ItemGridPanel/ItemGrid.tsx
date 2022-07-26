@@ -10,12 +10,11 @@ import ItemCard from './ItemCard';
 import { filterItemValue } from '../../state/Atoms';
 
 type Props = {
-  width: number;
   height: number;
   itemsQueryRef: PreloadedQuery<ItemGrid_AllItemsQuery>;
 };
 
-function ItemGrid({ width, height, itemsQueryRef }: Props) {
+function ItemGrid({ height, itemsQueryRef }: Props) {
   const data = usePreloadedQuery<ItemGrid_AllItemsQuery>(
     graphql`
       query ItemGrid_AllItemsQuery {
@@ -35,10 +34,12 @@ function ItemGrid({ width, height, itemsQueryRef }: Props) {
     `,
     itemsQueryRef
   );
+  const ITEMS_PER_PAGE = 18;
 
   const [activePage, setPage] = useState(1);
   const filterCondition = useRecoilValue(filterItemValue);
 
+  // Resetting activePage when the search bar is used
   useEffect(() => {
     setPage(1);
   }, [filterCondition, setPage]);
@@ -63,15 +64,15 @@ function ItemGrid({ width, height, itemsQueryRef }: Props) {
   };
 
   return (
-    <Stack>
-      <ScrollArea style={{ height }}>
-        <Group sx={{ maxWidth: width }}>
+    <Stack sx={{ height, justifyContent: 'space-between' }}>
+      <ScrollArea>
+        <Group sx={{ maxWidth: '100%' }}>
           {getFilteredItems(
             data,
             filterCondition.value,
             filterCondition.kind,
             activePage,
-            15
+            ITEMS_PER_PAGE
           )}
         </Group>
       </ScrollArea>
@@ -79,7 +80,9 @@ function ItemGrid({ width, height, itemsQueryRef }: Props) {
         <Pagination
           page={activePage}
           onChange={setPage}
-          total={Math.ceil(data.itemConnection.totalCount / 15)}
+          total={Math.ceil(data.itemConnection.totalCount / ITEMS_PER_PAGE)}
+          size="md"
+          withEdges
         />
       </Center>
     </Stack>
