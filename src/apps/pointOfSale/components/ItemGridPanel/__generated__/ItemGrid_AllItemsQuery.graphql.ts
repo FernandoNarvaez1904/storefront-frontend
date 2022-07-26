@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e9bbac42e4ce376567bae326f2802c81>>
+ * @generated SignedSource<<ece28f53f8fa68b9220aad57d5bbe850>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -22,6 +22,7 @@ export type ItemGrid_AllItemsQuery$data = {
         readonly " $fragmentSpreads": FragmentRefs<"ItemCard_ItemCardDataFragment">;
       };
     }>;
+    readonly totalCount: number;
   };
 };
 export type ItemGrid_AllItemsQuery = {
@@ -34,24 +35,31 @@ var v0 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "totalCount",
   "storageKey": null
 },
 v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "name",
+  "name": "id",
   "storageKey": null
 },
 v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "barcode",
+  "name": "name",
   "storageKey": null
 },
 v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "barcode",
+  "storageKey": null
+},
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -73,6 +81,7 @@ return {
         "name": "itemConnection",
         "plural": false,
         "selections": [
+          (v0/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -89,10 +98,10 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v0/*: any*/),
                   (v1/*: any*/),
                   (v2/*: any*/),
                   (v3/*: any*/),
+                  (v4/*: any*/),
                   {
                     "args": null,
                     "kind": "FragmentSpread",
@@ -125,6 +134,7 @@ return {
         "name": "itemConnection",
         "plural": false,
         "selections": [
+          (v0/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -141,10 +151,10 @@ return {
                 "name": "node",
                 "plural": false,
                 "selections": [
-                  (v0/*: any*/),
                   (v1/*: any*/),
                   (v2/*: any*/),
                   (v3/*: any*/),
+                  (v4/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -171,16 +181,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "48acdbd4fcec8a8dd3105d6e900eeea6",
+    "cacheID": "685fe9be24c16fd252c77eec3181f115",
     "id": null,
     "metadata": {},
     "name": "ItemGrid_AllItemsQuery",
     "operationKind": "query",
-    "text": "query ItemGrid_AllItemsQuery {\n  itemConnection {\n    edges {\n      node {\n        id\n        name\n        barcode\n        sku\n        ...ItemCard_ItemCardDataFragment\n      }\n    }\n  }\n}\n\nfragment ItemCard_ItemCardDataFragment on ItemType {\n  id\n  name\n  price\n  currentStock\n}\n"
+    "text": "query ItemGrid_AllItemsQuery {\n  itemConnection {\n    totalCount\n    edges {\n      node {\n        id\n        name\n        barcode\n        sku\n        ...ItemCard_ItemCardDataFragment\n      }\n    }\n  }\n}\n\nfragment ItemCard_ItemCardDataFragment on ItemType {\n  id\n  name\n  price\n  currentStock\n}\n"
   }
 };
 })();
 
-(node as any).hash = "101291d1d78c19fe13426ee8da357a9d";
+(node as any).hash = "e5c18126bd9ad5a0e07f8349bff3399e";
 
 export default node;
