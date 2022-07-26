@@ -30,8 +30,8 @@ function ItemGridPanel(props: DefaultProps) {
   return (
     <Paper withBorder shadow="xl" {...props}>
       <Stack style={{ height: '100%' }}>
-        <ItemGridConfBar />
-        <SearchInput loadAllItem={loadAllItem} />
+        <ItemGridConfBar loadAllItem={loadAllItem} />
+        <SearchInput />
         <Box style={{ flexGrow: 1 }} ref={refHeight}>
           <Suspense fallback={<Skeleton animate width="100%" height="100%" />}>
             {allItemQueryRef && (
