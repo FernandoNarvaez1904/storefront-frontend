@@ -1,13 +1,27 @@
 import { Center, Group, Pagination, ScrollArea, Stack } from '@mantine/core';
 import { graphql, PreloadedQuery, usePreloadedQuery } from 'react-relay';
 import { useRecoilValue } from 'recoil';
-import React, { useEffect, useState } from 'react';
-import {
-  ItemGrid_AllItemsQuery,
-  ItemGrid_AllItemsQuery$data,
-} from './__generated__/ItemGrid_AllItemsQuery.graphql';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ItemGrid_AllItemsQuery } from './__generated__/ItemGrid_AllItemsQuery.graphql';
 import ItemCard from './ItemCard';
 import { filterItemValue } from '../../state/Atoms';
+
+const ItemGridQuery = graphql`
+  query ItemGrid_AllItemsQuery {
+    itemConnection {
+      totalCount
+      edges {
+        node {
+          id
+          name
+          barcode
+          sku
+          ...ItemCard_ItemCardDataFragment
+        }
+      }
+    }
+  }
+`;
 
 type Props = {
   height: number;
@@ -16,71 +30,53 @@ type Props = {
 
 function ItemGrid({ height, itemsQueryRef }: Props) {
   const data = usePreloadedQuery<ItemGrid_AllItemsQuery>(
-    graphql`
-      query ItemGrid_AllItemsQuery {
-        itemConnection {
-          totalCount
-          edges {
-            node {
-              id
-              name
-              barcode
-              sku
-              ...ItemCard_ItemCardDataFragment
-            }
-          }
-        }
-      }
-    `,
+    ItemGridQuery,
     itemsQueryRef
   );
-  const ITEMS_PER_PAGE = 18;
 
+  const ITEMS_PER_PAGE = 18;
+  const [totalItems, setTotalItems] = useState(0);
   const [activePage, setPage] = useState(1);
   const filterCondition = useRecoilValue(filterItemValue);
 
-  // Resetting activePage when the search bar is used
+  const filteredItems = useMemo(
+    () =>
+      data.itemConnection.edges.filter((item) => {
+        const propertyValue: string = item.node[filterCondition.kind] as string;
+        return propertyValue.includes(filterCondition.value);
+      }),
+    [data, filterCondition]
+  );
+
+  const paginatedFilteredItems = useMemo(
+    () =>
+      filteredItems.slice(
+        (activePage - 1) * ITEMS_PER_PAGE,
+        activePage * ITEMS_PER_PAGE
+      ),
+    [activePage, ITEMS_PER_PAGE, filteredItems]
+  );
+
+  // Resetting pagination when the search bar is used
   useEffect(() => {
     setPage(1);
-  }, [filterCondition, setPage]);
-
-  const getFilteredItems = (
-    itemQuery: ItemGrid_AllItemsQuery$data,
-    filterText: string,
-    filterType: 'barcode' | 'name' | 'sku',
-    page: number,
-    paginationSize: number
-  ) => {
-    const filteredItems = itemQuery.itemConnection.edges
-      .filter((item) => {
-        const propertyValue: string = item.node[filterType] as string;
-        return propertyValue.includes(filterText);
-      })
-      .slice((page - 1) * paginationSize, page * paginationSize);
-
-    return filteredItems.map((item) => (
-      <ItemCard item={item.node} key={item.node.id} />
-    ));
-  };
+    setTotalItems(filteredItems.length);
+  }, [filterCondition, setPage, filteredItems]);
 
   return (
     <Stack sx={{ height, justifyContent: 'space-between' }}>
       <ScrollArea>
         <Group sx={{ maxWidth: '100%' }}>
-          {getFilteredItems(
-            data,
-            filterCondition.value,
-            filterCondition.kind,
-            activePage,
-            ITEMS_PER_PAGE
-          )}
+          {paginatedFilteredItems.map((item) => (
+            <ItemCard item={item.node} key={item.node.id} />
+          ))}
         </Group>
       </ScrollArea>
       <Center>
         <Pagination
           page={activePage}
           onChange={setPage}
-          total={Math.ceil(data.itemConnection.totalCount / ITEMS_PER_PAGE)}
+          total={Math.ceil(totalItems / ITEMS_PER_PAGE)}
           size="md"
           withEdges
         />
