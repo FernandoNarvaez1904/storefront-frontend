@@ -4,6 +4,7 @@ import {
   Paper,
   Stack,
   Text,
+  UnstyledButton,
   useMantineTheme,
 } from '@mantine/core';
 import { graphql, useFragment } from 'react-relay';
@@ -33,7 +34,12 @@ function ItemCard({ item, width, height, hasImage = false }: Props) {
   const theme = useMantineTheme();
 
   return (
-    <Paper shadow="md" withBorder sx={{ width, height }}>
+    <Paper
+      shadow="md"
+      withBorder
+      sx={{ width, height }}
+      component={UnstyledButton}
+    >
       <Group spacing={0}>
         {hasImage && (
           <Image
