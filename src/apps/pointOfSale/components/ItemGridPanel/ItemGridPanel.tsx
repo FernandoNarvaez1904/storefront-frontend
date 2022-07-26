@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Box, DefaultProps, Paper, Stack } from '@mantine/core';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
+import { Box, DefaultProps, Paper, Skeleton, Stack } from '@mantine/core';
 import { useElementSize } from '@mantine/hooks';
 import { useQueryLoader } from 'react-relay';
 import SearchInput from './SearchInput';
@@ -33,13 +33,15 @@ function ItemGridPanel(props: DefaultProps) {
       <Stack style={{ height: '100%' }}>
         <SearchInput />
         <Box style={{ flexGrow: 1 }} ref={refHeight}>
-          {allItemQueryRef && (
-            <ItemGrid
-              width={width}
-              height={height}
-              itemsQueryRef={allItemQueryRef}
-            />
-          )}
+          <Suspense fallback={<Skeleton animate width="100%" height="100%" />}>
+            {allItemQueryRef && (
+              <ItemGrid
+                width={width}
+                height={height}
+                itemsQueryRef={allItemQueryRef}
+              />
+            )}
+          </Suspense>
         </Box>
       </Stack>
     </Paper>

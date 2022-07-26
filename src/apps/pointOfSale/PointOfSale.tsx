@@ -15,7 +15,7 @@ function PointOfSale() {
           <Grid.Col lg={4} md={5} sm={6} xs={12}>
             <CurrentOrderPanel p={20} sx={{ height: '100%' }} />
           </Grid.Col>
-          <Grid.Col lg={8} md={7} sm={6} xs={12} sx={{ flexShrink: 100 }}>
+          <Grid.Col lg={8} md={7} sm={6} xs={12}>
             <ItemGridPanel p={20} sx={{ height: '100%' }} />
           </Grid.Col>
         </Grid>
