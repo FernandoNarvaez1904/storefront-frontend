@@ -9,27 +9,31 @@ import {
 import { graphql, useFragment } from 'react-relay';
 import { ItemCard_ItemCardDataFragment$key } from './__generated__/ItemCard_ItemCardDataFragment.graphql';
 
+const ItemCardFragment = graphql`
+  fragment ItemCard_ItemCardDataFragment on ItemType {
+    id
+    name
+    price
+    currentStock
+  }
+`;
 type Props = {
   item: ItemCard_ItemCardDataFragment$key;
+  width: number;
+  height: number;
+  hasImage: boolean;
 };
 
-function ItemCard({ item }: Props) {
+function ItemCard({ item, width, height, hasImage = false }: Props) {
   const data = useFragment<ItemCard_ItemCardDataFragment$key>(
-    graphql`
-      fragment ItemCard_ItemCardDataFragment on ItemType {
-        id
-        name
-        price
-        currentStock
-      }
-    `,
+    ItemCardFragment,
     item
   );
+
   const theme = useMantineTheme();
-  const hasImage = false;
 
   return (
-    <Paper shadow="md" withBorder sx={{ width: '280px', height: '100px' }}>
+    <Paper shadow="md" withBorder sx={{ width, height }}>
       <Group spacing={0}>
         {hasImage && (
           <Image

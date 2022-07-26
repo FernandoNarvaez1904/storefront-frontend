@@ -7,3 +7,9 @@ export const filterItemValue = atom<{
   key: 'filterItemValue',
   default: { kind: 'name', value: '' },
 });
+
+export type GridType = 'ImageGrid' | 'TextGrid';
+export const gridType = atom<GridType>({
+  key: 'gridType',
+  default: 'ImageGrid',
+});

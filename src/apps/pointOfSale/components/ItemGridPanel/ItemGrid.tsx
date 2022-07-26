@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import React, { useEffect, useMemo, useState } from 'react';
 import { ItemGrid_AllItemsQuery } from './__generated__/ItemGrid_AllItemsQuery.graphql';
 import ItemCard from './ItemCard';
-import { filterItemValue } from '../../state/Atoms';
+import { filterItemValue, gridType } from '../../state/Atoms';
 
 const ItemGridQuery = graphql`
   query ItemGrid_AllItemsQuery {
@@ -34,10 +34,13 @@ function ItemGrid({ height, itemsQueryRef }: Props) {
     itemsQueryRef
   );
 
-  const ITEMS_PER_PAGE = 18;
   const [totalItems, setTotalItems] = useState(0);
   const [activePage, setPage] = useState(1);
   const filterCondition = useRecoilValue(filterItemValue);
+  const gridKind = useRecoilValue(gridType);
+
+  const isImageGrid = gridKind === 'ImageGrid';
+  const itemsPerPage = isImageGrid ? 18 : 20;
 
   const filteredItems = useMemo(
     () =>
@@ -51,10 +54,10 @@ function ItemGrid({ height, itemsQueryRef }: Props) {
   const paginatedFilteredItems = useMemo(
     () =>
       filteredItems.slice(
-        (activePage - 1) * ITEMS_PER_PAGE,
-        activePage * ITEMS_PER_PAGE
+        (activePage - 1) * itemsPerPage,
+        activePage * itemsPerPage
       ),
-    [activePage, ITEMS_PER_PAGE, filteredItems]
+    [activePage, itemsPerPage, filteredItems]
   );
 
   // Resetting pagination when the search bar is used
@@ -68,15 +71,22 @@ function ItemGrid({ height, itemsQueryRef }: Props) {
       <ScrollArea>
         <Group sx={{ maxWidth: '100%' }}>
           {paginatedFilteredItems.map((item) => (
-            <ItemCard item={item.node} key={item.node.id} />
+            <ItemCard
+              item={item.node}
+              key={item.node.id}
+              width={isImageGrid ? 280 : 210}
+              hasImage={isImageGrid}
+              height={100}
+            />
           ))}
         </Group>
       </ScrollArea>
+
       <Center>
         <Pagination
           page={activePage}
           onChange={setPage}
-          total={Math.ceil(totalItems / ITEMS_PER_PAGE)}
+          total={Math.ceil(totalItems / itemsPerPage)}
           size="md"
           withEdges
         />
