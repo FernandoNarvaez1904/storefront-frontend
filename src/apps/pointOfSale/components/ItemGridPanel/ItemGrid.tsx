@@ -69,7 +69,7 @@ function ItemGrid({ height, itemsQueryRef }: Props) {
   return (
     <Stack sx={{ height, justifyContent: 'space-between' }}>
       <ScrollArea>
-        <Group sx={{ maxWidth: '100%' }}>
+        <Group>
           {paginatedFilteredItems.map((item) => (
             <ItemCard
               item={item.node}

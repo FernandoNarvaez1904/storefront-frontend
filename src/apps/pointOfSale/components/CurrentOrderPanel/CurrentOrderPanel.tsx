@@ -1,14 +1,14 @@
 import React from 'react';
-import { DefaultProps, Paper, Stack } from '@mantine/core';
+import { Paper, Stack } from '@mantine/core';
 import OrderTitle from './OrderTitle';
 import PricingInOrder from './PricingInOrder';
 import ProductStack from './ProductStack';
 import ActionBar from './ActionBar';
 import PaymentOptionsButtons from './PaymentOptionsButtons';
 
-function CurrentOrderPanel(props: DefaultProps) {
+function CurrentOrderPanel() {
   return (
-    <Paper withBorder shadow="xl" {...props}>
+    <Paper withBorder shadow="xl" sx={{ height: '100%' }} p="lg">
       <Stack sx={{ height: '100%' }} spacing="xs">
         <OrderTitle />
         <ActionBar />

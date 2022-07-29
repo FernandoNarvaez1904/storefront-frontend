@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { Box, DefaultProps, Paper, Skeleton, Stack } from '@mantine/core';
+import { Box, Paper, Skeleton, Stack } from '@mantine/core';
 import { useQueryLoader } from 'react-relay';
 import SearchInput from './SearchInput';
 import ItemGrid from './ItemGrid';
@@ -9,7 +9,7 @@ import AllItemsQueryPrefetch, {
 } from './__generated__/ItemGrid_AllItemsQuery.graphql';
 import ItemGridConfBar from './ItemGridConfBar';
 
-function ItemGridPanel(props: DefaultProps) {
+function ItemGridPanel() {
   const [allItemQueryRef, loadAllItem] = useQueryLoader<ItemGrid_AllItemsQuery>(
     AllItemsQueryPrefetch
   );
@@ -28,7 +28,7 @@ function ItemGridPanel(props: DefaultProps) {
   }, [refHeight, setHeight, loadAllItem]);
 
   return (
-    <Paper withBorder shadow="xl" {...props}>
+    <Paper withBorder shadow="xl" p="lg">
       <Stack style={{ height: '100%' }}>
         <ItemGridConfBar loadAllItem={loadAllItem} />
         <SearchInput />
