@@ -3,7 +3,6 @@ import {
   ChevronDown,
   Numbers,
   Search,
-  ShoppingCartPlus,
   TextRecognition,
 } from 'tabler-icons-react';
 import { Button, Group, Menu, Text, TextInput } from '@mantine/core';
@@ -39,11 +38,7 @@ function SearchInput() {
       />
       <Menu shadow="md" width={125} position="bottom-end" trigger="hover">
         <Menu.Target>
-          <Button
-            leftIcon={getIconForMenu(value.kind, 22)}
-            size="sm"
-            sx={{ width: '120px' }}
-          >
+          <Button leftIcon={getIconForMenu(value.kind, 22)} size="sm">
             <Text transform="capitalize">{value.kind}</Text>
             <ChevronDown size={18} />
           </Button>
@@ -70,9 +65,6 @@ function SearchInput() {
           </Menu.Item>
         </Menu.Dropdown>
       </Menu>
-      <Button size="sm" leftIcon={<ShoppingCartPlus />}>
-        Add
-      </Button>
     </Group>
   );
 }

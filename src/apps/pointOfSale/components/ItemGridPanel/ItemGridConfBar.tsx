@@ -41,12 +41,19 @@ function ItemGridConfBar({ loadAllItem }: Props) {
         onClick={() => loadAllItem({}, { fetchPolicy: 'network-only' })}
         size="sm"
         leftIcon={<Refresh size={18} />}
+        color="dark"
+        variant="white"
       >
         Refresh
       </Button>
       <Menu shadow="md" position="bottom-end" trigger="hover">
         <Menu.Target>
-          <Button leftIcon={getParseInfoForGridMenu(gridKind)?.icon} size="sm">
+          <Button
+            leftIcon={getParseInfoForGridMenu(gridKind)?.icon}
+            size="sm"
+            color="dark"
+            variant="white"
+          >
             <Text transform="capitalize">
               {getParseInfoForGridMenu(gridKind)?.text}
             </Text>

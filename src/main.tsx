@@ -8,7 +8,7 @@ import relayEnvironment from './RelayEnviroment';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <MantineProvider>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
       <NotificationsProvider>
         <RelayEnvironmentProvider environment={relayEnvironment}>
           <App />
