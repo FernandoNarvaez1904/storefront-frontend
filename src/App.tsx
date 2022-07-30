@@ -1,8 +1,8 @@
 import './global.css';
-import PointOfSale from './apps/pointOfSale';
+import PointOfSaleRoot from './apps/pointOfSale';
 
 function App() {
-  return <PointOfSale />;
+  return <PointOfSaleRoot />;
 }
 
 export default App;

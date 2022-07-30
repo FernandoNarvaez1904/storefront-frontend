@@ -2,13 +2,13 @@ import { Center, Group, Pagination, ScrollArea, Stack } from '@mantine/core';
 import {
   graphql,
   PreloadedQuery,
-  useFragment,
+  useLazyLoadQuery,
   usePreloadedQuery,
 } from 'react-relay';
 import React, { useEffect, useMemo, useState } from 'react';
 import { ItemGrid_AllItemsQuery } from './__generated__/ItemGrid_AllItemsQuery.graphql';
 import ItemCard from './ItemCard';
-import { ItemGrid_ConfFragment$key } from './__generated__/ItemGrid_ConfFragment.graphql';
+import { ItemGrid_ConfQuery } from './__generated__/ItemGrid_ConfQuery.graphql';
 
 const ItemGridQuery = graphql`
   query ItemGrid_AllItemsQuery {
@@ -27,12 +27,14 @@ const ItemGridQuery = graphql`
   }
 `;
 
-const dataConf = graphql`
-  fragment ItemGrid_ConfFragment on PointOfSaleConfType {
-    gridType
-    gridFilterValue {
-      gridFilterType
-      value
+const confQuery = graphql`
+  query ItemGrid_ConfQuery {
+    pointOfSaleConf {
+      gridType
+      gridFilterValue {
+        gridFilterType
+        value
+      }
     }
   }
 `;
@@ -40,37 +42,33 @@ const dataConf = graphql`
 type Props = {
   height: number;
   itemsQueryRef: PreloadedQuery<ItemGrid_AllItemsQuery>;
-  confFragmentRef: ItemGrid_ConfFragment$key;
 };
 
-function ItemGrid({ height, itemsQueryRef, confFragmentRef }: Props) {
+function ItemGrid({ height, itemsQueryRef }: Props) {
   const data = usePreloadedQuery<ItemGrid_AllItemsQuery>(
     ItemGridQuery,
     itemsQueryRef
   );
 
-  const dataConfig = useFragment<ItemGrid_ConfFragment$key>(
-    dataConf,
-    confFragmentRef
-  );
+  const dataC = useLazyLoadQuery<ItemGrid_ConfQuery>(confQuery, {});
+  const dataConf = dataC.pointOfSaleConf;
 
-  const [totalItems, setTotalItems] = useState(0);
   const [activePage, setPage] = useState(1);
 
-  const isImageGrid = dataConfig.gridType === 'ImageGrid';
+  const isImageGrid = dataConf.gridType === 'ImageGrid';
   const itemsPerPage = isImageGrid ? 18 : 20;
 
   const filteredItems = useMemo(
     () =>
       data.itemConnection.edges.filter((item) => {
-        if (dataConfig.gridFilterValue.gridFilterType === '%future added value')
+        if (dataConf.gridFilterValue.gridFilterType === '%future added value')
           return null;
         const propertyValue: string = item.node[
-          dataConfig.gridFilterValue.gridFilterType
+          dataConf.gridFilterValue.gridFilterType
         ] as string;
-        return propertyValue.includes(dataConfig.gridFilterValue.value);
+        return propertyValue.includes(dataConf.gridFilterValue.value);
       }),
-    [data, dataConfig.gridFilterValue]
+    [data, dataConf]
   );
 
   const paginatedFilteredItems = useMemo(
@@ -83,10 +81,10 @@ function ItemGrid({ height, itemsQueryRef, confFragmentRef }: Props) {
   );
 
   // Resetting pagination when the search bar is used
+  // It causes double re-rendering when writing in search bar
   useEffect(() => {
     setPage(1);
-    setTotalItems(filteredItems.length);
-  }, [setPage, filteredItems]);
+  }, [setPage, dataConf.gridFilterValue.value]);
 
   return (
     <Stack sx={{ height, justifyContent: 'space-between' }}>
@@ -108,7 +106,7 @@ function ItemGrid({ height, itemsQueryRef, confFragmentRef }: Props) {
         <Pagination
           page={activePage}
           onChange={setPage}
-          total={Math.ceil(totalItems / itemsPerPage)}
+          total={Math.ceil(filteredItems.length / itemsPerPage)}
           size="md"
           withEdges
         />

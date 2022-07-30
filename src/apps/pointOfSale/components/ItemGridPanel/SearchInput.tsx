@@ -7,47 +7,51 @@ import {
 } from 'tabler-icons-react';
 import { Button, Group, Menu, Text, TextInput } from '@mantine/core';
 import React from 'react';
-import { graphql, useFragment } from 'react-relay';
+import { graphql, useLazyLoadQuery } from 'react-relay';
 import { updateGridFilterItem } from '../../store/updateLocal';
 import relayEnvironment from '../../../../RelayEnviroment';
 import {
   GridFilterType,
-  SearchInput_ConfFragment$key,
-} from './__generated__/SearchInput_ConfFragment.graphql';
+  SearchInput_ConfQuery,
+} from './__generated__/SearchInput_ConfQuery.graphql';
 
 const dataConf = graphql`
-  fragment SearchInput_ConfFragment on GridFilterItemValue {
-    gridFilterType
-    value
+  query SearchInput_ConfQuery {
+    pointOfSaleConf {
+      gridFilterValue {
+        gridFilterType
+        value
+      }
+    }
   }
 `;
 
-type Props = {
-  confFragment: SearchInput_ConfFragment$key;
-};
-
-function SearchInput({ confFragment }: Props) {
-  const data = useFragment<SearchInput_ConfFragment$key>(dataConf, confFragment);
+function SearchInput() {
+  const data = useLazyLoadQuery<SearchInput_ConfQuery>(dataConf, {});
+  const dataParsed = data.pointOfSaleConf.gridFilterValue;
 
   const getIconForMenu = (val: GridFilterType, size = 18) => {
-    if (val === "name") return <TextRecognition size={size} />;
-    if (val === "barcode") return <Barcode size={size} />;
-    if (val === "sku") return <Numbers size={size} />;
+    if (val === 'name') return <TextRecognition size={size} />;
+    if (val === 'barcode') return <Barcode size={size} />;
+    if (val === 'sku') return <Numbers size={size} />;
     return null;
   };
 
-  const onClickMenuItem = (val: "name" | "barcode" | "sku") => () => {
-    updateGridFilterItem(relayEnvironment, { kind: val, value: data.value });
+  const onClickMenuItem = (val: 'name' | 'barcode' | 'sku') => () => {
+    updateGridFilterItem(relayEnvironment, {
+      kind: val,
+      value: dataParsed.value,
+    });
   };
 
   return (
-    <Group spacing="xs" sx={{ width: "97%" }}>
+    <Group spacing="xs" sx={{ width: '97%' }}>
       <TextInput
-        value={data.value}
+        value={dataParsed.value}
         onChange={(e) =>
           updateGridFilterItem(relayEnvironment, {
-            kind: data.gridFilterType,
-            value: e.target.value
+            kind: dataParsed.gridFilterType,
+            value: e.target.value,
           })
         }
         icon={<Search size={18} />}
@@ -58,28 +62,31 @@ function SearchInput({ confFragment }: Props) {
       />
       <Menu shadow="md" width={125} position="bottom-end" trigger="hover">
         <Menu.Target>
-          <Button leftIcon={getIconForMenu(data.gridFilterType, 22)} size="sm">
-            <Text transform="capitalize">{data.gridFilterType}</Text>
+          <Button
+            leftIcon={getIconForMenu(dataParsed.gridFilterType, 22)}
+            size="sm"
+          >
+            <Text transform="capitalize">{dataParsed.gridFilterType}</Text>
             <ChevronDown size={18} />
           </Button>
         </Menu.Target>
 
         <Menu.Dropdown>
           <Menu.Item
-            icon={getIconForMenu("name")}
-            onClick={onClickMenuItem("name")}
+            icon={getIconForMenu('name')}
+            onClick={onClickMenuItem('name')}
           >
             Name
           </Menu.Item>
           <Menu.Item
-            icon={getIconForMenu("barcode")}
-            onClick={onClickMenuItem("barcode")}
+            icon={getIconForMenu('barcode')}
+            onClick={onClickMenuItem('barcode')}
           >
             Barcode
           </Menu.Item>
           <Menu.Item
-            icon={getIconForMenu("sku")}
-            onClick={onClickMenuItem("sku")}
+            icon={getIconForMenu('sku')}
+            onClick={onClickMenuItem('sku')}
           >
             Sku
           </Menu.Item>

@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import {
   graphql,
-  useFragment,
+  useLazyLoadQuery,
   UseQueryLoaderLoadQueryOptions,
 } from 'react-relay';
 import { ItemGrid_AllItemsQuery$variables } from './__generated__/ItemGrid_AllItemsQuery.graphql';
@@ -16,12 +16,14 @@ import { updateGridTypeConf } from '../../store/updateLocal';
 import relayEnvironment from '../../../../RelayEnviroment';
 import {
   GridType,
-  ItemGridConfBar_ConfFragment$key,
-} from './__generated__/ItemGridConfBar_ConfFragment.graphql';
+  ItemGridConfBar_ConfQuery,
+} from './__generated__/ItemGridConfBar_ConfQuery.graphql';
 
 const dataConf = graphql`
-  fragment ItemGridConfBar_ConfFragment on PointOfSaleConfType {
-    gridType
+  query ItemGridConfBar_ConfQuery {
+    pointOfSaleConf {
+      gridType
+    }
   }
 `;
 
@@ -30,14 +32,10 @@ type Props = {
     variables: ItemGrid_AllItemsQuery$variables,
     options?: UseQueryLoaderLoadQueryOptions | undefined
   ) => any;
-  confFragmentRef: ItemGridConfBar_ConfFragment$key;
 };
 
-function ItemGridConfBar({ loadAllItem, confFragmentRef }: Props) {
-  const gridType = useFragment<ItemGridConfBar_ConfFragment$key>(
-    dataConf,
-    confFragmentRef
-  );
+function ItemGridConfBar({ loadAllItem }: Props) {
+  const gridType = useLazyLoadQuery<ItemGridConfBar_ConfQuery>(dataConf, {});
 
   const getParseInfoForGridMenu = (val: GridType) => {
     if (val === 'TextGrid')
@@ -73,13 +71,15 @@ function ItemGridConfBar({ loadAllItem, confFragmentRef }: Props) {
       <Menu shadow="md" position="bottom-end" trigger="hover">
         <Menu.Target>
           <Button
-            leftIcon={getParseInfoForGridMenu(gridType.gridType)?.icon}
+            leftIcon={
+              getParseInfoForGridMenu(gridType.pointOfSaleConf.gridType)?.icon
+            }
             size="sm"
             color="dark"
             variant="white"
           >
             <Text transform="capitalize">
-              {getParseInfoForGridMenu(gridType.gridType)?.text}
+              {getParseInfoForGridMenu(gridType.pointOfSaleConf.gridType)?.text}
             </Text>
             <ChevronDown size={18} />
           </Button>

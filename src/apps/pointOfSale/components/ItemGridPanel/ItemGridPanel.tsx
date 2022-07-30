@@ -8,13 +8,8 @@ import AllItemsQueryPrefetch, {
   ItemGrid_AllItemsQuery,
 } from './__generated__/ItemGrid_AllItemsQuery.graphql';
 import ItemGridConfBar from './ItemGridConfBar';
-import { MainPanels_ConfFragment$data } from '../MainPanels/__generated__/MainPanels_ConfFragment.graphql';
 
-type Props = {
-  confFragmentRef: MainPanels_ConfFragment$data;
-};
-
-function ItemGridPanel({ confFragmentRef }: Props) {
+function ItemGridPanel() {
   const [allItemQueryRef, loadAllItem] = useQueryLoader<ItemGrid_AllItemsQuery>(
     AllItemsQueryPrefetch
   );
@@ -35,19 +30,12 @@ function ItemGridPanel({ confFragmentRef }: Props) {
   return (
     <Paper withBorder shadow="xl" p="lg">
       <Stack style={{ height: '100%' }}>
-        <ItemGridConfBar
-          loadAllItem={loadAllItem}
-          confFragmentRef={confFragmentRef}
-        />
-        <SearchInput confFragment={confFragmentRef.gridFilterValue} />
+        <ItemGridConfBar loadAllItem={loadAllItem} />
+        <SearchInput />
         <Box style={{ flexGrow: 1 }} ref={refHeight}>
           <Suspense fallback={<Skeleton animate width="100%" height="100%" />}>
             {allItemQueryRef && (
-              <ItemGrid
-                height={height}
-                itemsQueryRef={allItemQueryRef}
-                confFragmentRef={confFragmentRef}
-              />
+              <ItemGrid height={height} itemsQueryRef={allItemQueryRef} />
             )}
           </Suspense>
         </Box>
