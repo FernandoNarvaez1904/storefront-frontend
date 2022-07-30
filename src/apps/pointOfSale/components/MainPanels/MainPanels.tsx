@@ -1,13 +1,28 @@
-import { useRecoilValue } from 'recoil';
 import Split from 'react-split';
 import React from 'react';
-import { gridType } from '../../state/Atoms';
+import { graphql, useFragment } from 'react-relay';
 import CurrentOrderPanel from '../CurrentOrderPanel';
 import ItemGridPanel from '../ItemGridPanel';
 import '../../assets/Split.js.css';
+import { MainPanels_ConfFragment$key } from './__generated__/MainPanels_ConfFragment.graphql';
 
-function MainPanels() {
-  const gridKind = useRecoilValue(gridType);
+const dataConf = graphql`
+  fragment MainPanels_ConfFragment on PointOfSaleConfType {
+    gridType
+    ...ItemGridConfBar_ConfFragment
+    ...ItemGrid_ConfFragment
+  }
+`;
+
+type Props = {
+  confFragmentRef: MainPanels_ConfFragment$key;
+};
+
+function MainPanels({ confFragmentRef }: Props) {
+  const gridType = useFragment<MainPanels_ConfFragment$key>(
+    dataConf,
+    confFragmentRef
+  );
 
   return (
     <Split
@@ -17,11 +32,11 @@ function MainPanels() {
       }}
       sizes={[30, 70]}
       gutterSize={22}
-      minSize={[450, gridKind === 'ImageGrid' ? 650 : 710]}
+      minSize={[450, gridType.gridType === 'ImageGrid' ? 650 : 710]}
       gutterAlign="center"
     >
       <CurrentOrderPanel />
-      <ItemGridPanel />
+      <ItemGridPanel confFragmentRef={gridType} />
     </Split>
   );
 }
