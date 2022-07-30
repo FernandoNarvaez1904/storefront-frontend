@@ -1,0 +1,23 @@
+enum GridType{
+    ImageGrid,
+    TextGrid
+}
+enum GridFilterType{
+    Name,
+    Barcode,
+    Sku
+}
+
+type GridFilterItemValue{
+    gridFilterType: GridFilterType!
+    value: String!
+}
+
+type PointOfSaleConfType{
+    gridType: GridType!
+    gridFilterValue: GridFilterItemValue!
+}
+
+extend type Query {
+    pointOfSaleConf: PointOfSaleConfType
+}

@@ -57,6 +57,9 @@
   "relay": {
     "src": "./src/",
     "schema": "./schema.graphql",
+    "schemaExtensions": [
+      "./src/apps/pointOfSale/"
+    ],
     "language": "typescript",
     "exclude": [
       "**/node_modules/**",
