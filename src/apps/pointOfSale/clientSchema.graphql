@@ -3,9 +3,9 @@ enum GridType{
     TextGrid
 }
 enum GridFilterType{
-    Name,
-    Barcode,
-    Sku
+    name,
+    barcode,
+    sku
 }
 
 type GridFilterItemValue{
@@ -19,5 +19,5 @@ type PointOfSaleConfType{
 }
 
 extend type Query {
-    pointOfSaleConf: PointOfSaleConfType
+    pointOfSaleConf: PointOfSaleConfType!
 }

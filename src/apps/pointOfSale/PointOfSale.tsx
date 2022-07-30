@@ -20,7 +20,7 @@ function PointOfSale() {
       'gridFilterValue',
       'GridFilterItemValue'
     );
-    gridFilterValueRecord.setValue('Name', 'gridFilterType');
+    gridFilterValueRecord.setValue('name', 'gridFilterType');
     gridFilterValueRecord.setValue('', 'value');
 
     pointOfSaleConfRecord.setLinkedRecord(
