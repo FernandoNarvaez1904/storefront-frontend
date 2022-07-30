@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ebd60bf1eddb983348fea4d2d9e6cdf5>>
+ * @generated SignedSource<<8addcbe797abe498af10d38e175cb0db>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,9 +9,14 @@
 // @ts-nocheck
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
+export type GridFilterType = "barcode" | "name" | "sku" | "%future added value";
 export type GridType = "ImageGrid" | "TextGrid" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type ItemGrid_ConfFragment$data = {
+  readonly gridFilterValue: {
+    readonly gridFilterType: GridFilterType;
+    readonly value: string;
+  };
   readonly gridType: GridType;
   readonly " $fragmentType": "ItemGrid_ConfFragment";
 };
@@ -35,6 +40,31 @@ const node: ReaderFragment = {
           "kind": "ScalarField",
           "name": "gridType",
           "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "GridFilterItemValue",
+          "kind": "LinkedField",
+          "name": "gridFilterValue",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "gridFilterType",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "value",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
         }
       ]
     }
@@ -43,6 +73,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "e0a0b0c4e3287f88bf866d564397d319";
+(node as any).hash = "a248bfde8f5a2930762ca89689a16e7d";
 
 export default node;

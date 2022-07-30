@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<76f170c4c4a9d1030cd125af7c8aa26b>>
+ * @generated SignedSource<<db89537ebb786010db3648b699df3a3a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -75,6 +75,31 @@ const node: ClientRequest = {
                 "args": null,
                 "kind": "ScalarField",
                 "name": "gridType",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "GridFilterItemValue",
+                "kind": "LinkedField",
+                "name": "gridFilterValue",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "gridFilterType",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "value",
+                    "storageKey": null
+                  }
+                ],
                 "storageKey": null
               }
             ],

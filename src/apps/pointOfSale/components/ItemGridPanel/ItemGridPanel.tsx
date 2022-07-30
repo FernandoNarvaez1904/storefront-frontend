@@ -39,7 +39,7 @@ function ItemGridPanel({ confFragmentRef }: Props) {
           loadAllItem={loadAllItem}
           confFragmentRef={confFragmentRef}
         />
-        <SearchInput />
+        <SearchInput confFragment={confFragmentRef.gridFilterValue} />
         <Box style={{ flexGrow: 1 }} ref={refHeight}>
           <Suspense fallback={<Skeleton animate width="100%" height="100%" />}>
             {allItemQueryRef && (

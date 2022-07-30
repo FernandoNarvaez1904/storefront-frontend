@@ -5,11 +5,9 @@ import {
   useFragment,
   usePreloadedQuery,
 } from 'react-relay';
-import { useRecoilValue } from 'recoil';
 import React, { useEffect, useMemo, useState } from 'react';
 import { ItemGrid_AllItemsQuery } from './__generated__/ItemGrid_AllItemsQuery.graphql';
 import ItemCard from './ItemCard';
-import { filterItemValue } from '../../state/Atoms';
 import { ItemGrid_ConfFragment$key } from './__generated__/ItemGrid_ConfFragment.graphql';
 
 const ItemGridQuery = graphql`
@@ -32,6 +30,10 @@ const ItemGridQuery = graphql`
 const dataConf = graphql`
   fragment ItemGrid_ConfFragment on PointOfSaleConfType {
     gridType
+    gridFilterValue {
+      gridFilterType
+      value
+    }
   }
 `;
 
@@ -47,25 +49,28 @@ function ItemGrid({ height, itemsQueryRef, confFragmentRef }: Props) {
     itemsQueryRef
   );
 
-  const gridType = useFragment<ItemGrid_ConfFragment$key>(
+  const dataConfig = useFragment<ItemGrid_ConfFragment$key>(
     dataConf,
     confFragmentRef
   );
 
   const [totalItems, setTotalItems] = useState(0);
   const [activePage, setPage] = useState(1);
-  const filterCondition = useRecoilValue(filterItemValue);
 
-  const isImageGrid = gridType.gridType === 'ImageGrid';
+  const isImageGrid = dataConfig.gridType === 'ImageGrid';
   const itemsPerPage = isImageGrid ? 18 : 20;
 
   const filteredItems = useMemo(
     () =>
       data.itemConnection.edges.filter((item) => {
-        const propertyValue: string = item.node[filterCondition.kind] as string;
-        return propertyValue.includes(filterCondition.value);
+        if (dataConfig.gridFilterValue.gridFilterType === '%future added value')
+          return null;
+        const propertyValue: string = item.node[
+          dataConfig.gridFilterValue.gridFilterType
+        ] as string;
+        return propertyValue.includes(dataConfig.gridFilterValue.value);
       }),
-    [data, filterCondition]
+    [data, dataConfig.gridFilterValue]
   );
 
   const paginatedFilteredItems = useMemo(
@@ -81,7 +86,7 @@ function ItemGrid({ height, itemsQueryRef, confFragmentRef }: Props) {
   useEffect(() => {
     setPage(1);
     setTotalItems(filteredItems.length);
-  }, [filterCondition, setPage, filteredItems]);
+  }, [setPage, filteredItems]);
 
   return (
     <Stack sx={{ height, justifyContent: 'space-between' }}>

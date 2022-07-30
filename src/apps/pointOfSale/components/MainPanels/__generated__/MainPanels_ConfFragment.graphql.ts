@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<eca71a581afdfc210c5952aa4ab7b8b3>>
+ * @generated SignedSource<<359986872ce17b07beb51c81d9cff676>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,9 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 export type GridType = "ImageGrid" | "TextGrid" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type MainPanels_ConfFragment$data = {
+  readonly gridFilterValue: {
+    readonly " $fragmentSpreads": FragmentRefs<"SearchInput_ConfFragment">;
+  };
   readonly gridType: GridType;
   readonly " $fragmentSpreads": FragmentRefs<"ItemGridConfBar_ConfFragment" | "ItemGrid_ConfFragment">;
   readonly " $fragmentType": "MainPanels_ConfFragment";
@@ -46,6 +49,22 @@ const node: ReaderFragment = {
           "kind": "ScalarField",
           "name": "gridType",
           "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "GridFilterItemValue",
+          "kind": "LinkedField",
+          "name": "gridFilterValue",
+          "plural": false,
+          "selections": [
+            {
+              "args": null,
+              "kind": "FragmentSpread",
+              "name": "SearchInput_ConfFragment"
+            }
+          ],
+          "storageKey": null
         }
       ]
     }
@@ -54,6 +73,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "937787ca63b3bedde5a7372556682a56";
+(node as any).hash = "6bfb024de8121e1a56d1394bc9d37baa";
 
 export default node;

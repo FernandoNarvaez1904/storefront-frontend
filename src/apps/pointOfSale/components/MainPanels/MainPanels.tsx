@@ -11,6 +11,9 @@ const dataConf = graphql`
     gridType
     ...ItemGridConfBar_ConfFragment
     ...ItemGrid_ConfFragment
+    gridFilterValue {
+      ...SearchInput_ConfFragment
+    }
   }
 `;
 
