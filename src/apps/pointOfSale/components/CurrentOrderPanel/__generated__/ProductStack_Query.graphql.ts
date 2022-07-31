@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2c040ff4e0ae58912b00cea4176e4788>>
+ * @generated SignedSource<<ee035c413f7c60d7cf9fb8cc3bfd96bd>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,18 +9,23 @@
 // @ts-nocheck
 
 import { ClientRequest, ClientQuery } from 'relay-runtime';
+export type GridType = "ImageGrid" | "TextGrid" | "%future added value";
 export type ProductStack_Query$variables = {};
 export type ProductStack_Query$data = {
   readonly activeOrder: {
     readonly items: ReadonlyArray<{
+      readonly id: string;
       readonly item: {
         readonly id: any;
         readonly name: string | null;
         readonly price: number | null;
-      } | null;
-      readonly quantity: number | null;
-    } | null> | null;
-  } | null;
+      };
+      readonly quantity: number;
+    } | null>;
+  };
+  readonly pointOfSaleConf: {
+    readonly gridType: GridType;
+  };
 };
 export type ProductStack_Query = {
   response: ProductStack_Query$data;
@@ -28,7 +33,14 @@ export type ProductStack_Query = {
 };
 
 const node: ClientRequest = (function(){
-var v0 = [
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v1 = [
   {
     "kind": "ClientExtension",
     "selections": [
@@ -48,6 +60,7 @@ var v0 = [
             "name": "items",
             "plural": true,
             "selections": [
+              (v0/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -56,13 +69,7 @@ var v0 = [
                 "name": "item",
                 "plural": false,
                 "selections": [
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "id",
-                    "storageKey": null
-                  },
+                  (v0/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -92,6 +99,24 @@ var v0 = [
           }
         ],
         "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "PointOfSaleConfType",
+        "kind": "LinkedField",
+        "name": "pointOfSaleConf",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "gridType",
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
       }
     ]
   }
@@ -102,7 +127,7 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "ProductStack_Query",
-    "selections": (v0/*: any*/),
+    "selections": (v1/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
@@ -111,7 +136,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Operation",
     "name": "ProductStack_Query",
-    "selections": (v0/*: any*/)
+    "selections": (v1/*: any*/)
   },
   "params": {
     "cacheID": "42e74dde321badfc00bd4bf8adf5203b",
@@ -124,6 +149,6 @@ return {
 };
 })();
 
-(node as any).hash = "e9e1bf8fd7b05ba16ce1b041825295ae";
+(node as any).hash = "0328d5a85f3cb8d34d981b7d2dd4f478";
 
 export default node;
