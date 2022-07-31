@@ -1,15 +1,15 @@
 import {
   Box,
   CloseButton,
+  Divider,
   Group,
   Image,
   NumberInput,
   ScrollArea,
   Stack,
-  Table,
   Text,
 } from '@mantine/core';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 import { useElementSize } from '@mantine/hooks';
 import { ProductStack_Query } from './__generated__/ProductStack_Query.graphql';
@@ -41,81 +41,129 @@ function ProductStack() {
     {},
     { fetchPolicy: 'store-only' }
   );
+  const viewport = useRef<HTMLDivElement>();
+  const [prevLength, setPrevLength] = useState(0);
+  const isImageGrid = data.pointOfSaleConf.gridType === 'ImageGrid';
 
-  const { ref, height } = useElementSize();
+  useEffect(() => {
+    if (viewport.current !== undefined && data.activeOrder.items) {
+      if (data.activeOrder.items.length > prevLength) {
+        console.log('scroll');
+        viewport.current.scrollTo({
+          top: viewport.current.scrollHeight,
+          behavior: 'smooth',
+        });
+      }
+      setPrevLength(data.activeOrder.items.length);
+    }
+  }, [data.activeOrder.items, viewport, prevLength, setPrevLength]);
+
   const getItems = () => {
     if (data.activeOrder === null) return null;
     if (data.activeOrder.items === null) return null;
 
-    return data.activeOrder.items.map((el) => {
-      if (el === null) return null;
-      if (el.item.price === null) return null;
+    return data.activeOrder.items
+      .map((el) => {
+        if (el === null) return null;
+        if (el.item.price === null) return null;
 
-      return (
-        <tr key={el.item.id}>
-          <td>
-            <Group>
-              {data.pointOfSaleConf.gridType === 'ImageGrid' && (
-                <Image
-                  withPlaceholder
-                  width={60}
-                  height={60}
-                  src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2334&q=80"
-                />
-              )}
-
-              <Box>
-                <Text size="md">{el.item.name}</Text>
-                <Text size="xs">Price: {el.item.price.toFixed(2)}</Text>
-              </Box>
-            </Group>
-          </td>
-          <td style={{ textAlign: 'start' }}>
-            <NumberInput
-              value={el.quantity}
-              style={{ maxWidth: '80px' }}
-              size="sm"
-              min={0}
-              precision={2}
-              stepHoldDelay={500}
-              stepHoldInterval={100}
-              onChange={(value) =>
-                updateQuantityOnItem(relayEnvironment, el.id, value || 1)
-              }
-            />
-          </td>
-          <td style={{ textAlign: 'end' }}>
-            <Stack
-              spacing={0}
-              style={{
-                justifyContent: 'flex-end',
-                position: 'relative',
+        return (
+          <Box key={el.id}>
+            <Group
+              sx={{
+                height: 60,
+                width: '100%',
               }}
-              align="end"
+              mb="xs"
+              spacing={0}
+              align="center"
             >
-              <CloseButton
-                onClick={() => deleteItemOrder(relayEnvironment, el.id)}
-                size="xs"
-                style={{ top: 0 }}
-              />
-              <Text size="md">
-                C$
-                {Number.isInteger(el.item.price * el.quantity)
-                  ? el.item.price * el.quantity
-                  : (el.item.price * el.quantity).toFixed(2)}
-              </Text>
-            </Stack>
-          </td>
-        </tr>
-      );
-    });
+              <Group
+                spacing={0}
+                noWrap
+                sx={{
+                  width: 'calc(40%)',
+                  flexGrow: 1,
+                }}
+              >
+                <CloseButton
+                  onClick={() => deleteItemOrder(relayEnvironment, el.id)}
+                  size="xs"
+                />
+                {isImageGrid && (
+                  <Image width={50} height={50} withPlaceholder />
+                )}
+
+                <Box
+                  sx={{
+                    overflow: 'hidden',
+                  }}
+                  ml={!isImageGrid ? 10 : 0}
+                >
+                  <Text
+                    size="md"
+                    sx={{
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                    }}
+                  >
+                    {el.item.name}
+                  </Text>
+                  <Text size="xs">Price: C${el.item.price}</Text>
+                </Box>
+              </Group>
+
+              <Box
+                sx={{
+                  width: 'calc(30%) ',
+                  maxWidth: '100px',
+                }}
+                ml={5}
+              >
+                <NumberInput
+                  value={el.quantity}
+                  size="sm"
+                  min={1}
+                  precision={2}
+                  stepHoldDelay={500}
+                  stepHoldInterval={100}
+                  onChange={(value) =>
+                    updateQuantityOnItem(relayEnvironment, el.id, value || 1)
+                  }
+                />
+              </Box>
+
+              <Group
+                sx={{
+                  width: 'calc(30%)',
+                  textAlign: 'right',
+                  overflow: 'hidden',
+                  justifyContent: 'flex-end',
+                }}
+                px={5}
+              >
+                <Text
+                  sx={{
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  C${(el.item.price * el.quantity).toFixed(2)}
+                </Text>
+              </Group>
+            </Group>
+            <Divider />
+          </Box>
+        );
+      })
+      .reverse();
   };
+
+  const { height, ref } = useElementSize();
   return (
     <Box sx={{ flexGrow: 1 }} ref={ref}>
-      <ScrollArea style={{ height }} offsetScrollbars>
-        <Table verticalSpacing="xs" highlightOnHover>
-          <tbody>{getItems()?.reverse()}</tbody>
-        </Table>
+      <ScrollArea style={{ height }} offsetScrollbars viewportRef={viewport}>
+        <Stack spacing={0}>{getItems()}</Stack>
       </ScrollArea>
     </Box>
   );
