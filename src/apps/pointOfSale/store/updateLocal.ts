@@ -45,10 +45,35 @@ export const addItemToActiveOrder = (
       );
       itemOrder.setLinkedRecord(item, 'item');
       itemOrder.setValue(1, 'quantity');
+      itemOrder.setValue(`client:root:activeOrder:${itemId}`, 'id');
       activeOrder?.setLinkedRecords([itemOrder, ...activeItems], 'items');
     } else {
       const quantity = itemInOrder?.getValue('quantity') as number;
       itemInOrder?.setValue(quantity + 1, 'quantity');
+    }
+  });
+};
+
+export const updateQuantityOnItem = (
+  environment: RelayModernEnvironment,
+  itemOrderId: string,
+  quantity: number
+) => {
+  commitLocalUpdate(environment, (store) => {
+    const item = store.get(itemOrderId);
+    item?.setValue(quantity, 'quantity');
+  });
+};
+
+export const deleteItemOrder = (
+  environment: RelayModernEnvironment,
+  itemOrderId: string
+) => {
+  commitLocalUpdate(environment, (store) => {
+    const item = store.get(itemOrderId);
+
+    if (item) {
+      store.delete(itemOrderId);
     }
   });
 };

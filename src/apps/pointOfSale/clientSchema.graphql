@@ -19,15 +19,16 @@ type PointOfSaleConfType{
 }
 
 type ItemInOrder{
-    item: ItemType
-    quantity: Float
+    id: ID!
+    item: ItemType!
+    quantity: Float!
 }
 
 type ActiveOrder{
-    items: [ItemInOrder]
+    items: [ItemInOrder]!
 }
 
 extend type Query {
     pointOfSaleConf: PointOfSaleConfType!
-    activeOrder: ActiveOrder
+    activeOrder: ActiveOrder!
 }

@@ -41,6 +41,9 @@ function ItemCard({ item, width, height, hasImage = false }: Props) {
         onClick={() => {
           addItemToActiveOrder(relayEnvironment, data.id);
         }}
+        style={{
+          width: '100%',
+        }}
       >
         <Group spacing={0}>
           {hasImage && (
