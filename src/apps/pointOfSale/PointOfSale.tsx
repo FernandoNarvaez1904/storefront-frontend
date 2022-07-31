@@ -11,7 +11,7 @@ function PointOfSale() {
   return (
     <Stack p={10} style={{ height: '100%' }}>
       <HeaderPOS />
-      <MainPanels />;
+      <MainPanels />
       <FooterPOS />
     </Stack>
   );
