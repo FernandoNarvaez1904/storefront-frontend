@@ -18,6 +18,16 @@ type PointOfSaleConfType{
     gridFilterValue: GridFilterItemValue!
 }
 
+type ItemInOrder{
+    item: ItemType
+    quantity: Float
+}
+
+type ActiveOrder{
+    items: [ItemInOrder]
+}
+
 extend type Query {
     pointOfSaleConf: PointOfSaleConfType!
+    activeOrder: ActiveOrder
 }

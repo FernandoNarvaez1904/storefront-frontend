@@ -3,6 +3,7 @@ import { commitLocalUpdate } from 'relay-runtime';
 
 export const setStoreDefaultValues = (environment: RelayModernEnvironment) => {
   commitLocalUpdate(environment, (store) => {
+    // pointOfSaleConf
     const pointOfSaleConfRecord = store.create(
       'client:root:pointOfSaleConf',
       'PointOfSaleConfType'
@@ -22,7 +23,16 @@ export const setStoreDefaultValues = (environment: RelayModernEnvironment) => {
       'gridFilterValue'
     );
 
+    // activeOrder
+    const activeOrderRecord = store.create(
+      'client:root:activeOrder',
+      'ActiveOrder'
+    );
+    activeOrderRecord.setValue(null, 'items');
+
+    // root
     const root = store.getRoot();
     root.setLinkedRecord(pointOfSaleConfRecord, 'pointOfSaleConf');
+    root.setLinkedRecord(activeOrderRecord, 'activeOrder');
   });
 };

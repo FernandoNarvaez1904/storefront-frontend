@@ -1,5 +1,5 @@
 import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
-import { commitLocalUpdate } from 'relay-runtime';
+import { commitLocalUpdate, RecordProxy } from 'relay-runtime';
 
 export const updateGridTypeConf = (
   environment: RelayModernEnvironment,
@@ -21,5 +21,34 @@ export const updateGridFilterItem = (
     const confRecord = store.get('client:root:pointOfSaleConf:gridFilterValue');
     confRecord?.setValue(val.kind, 'gridFilterType');
     confRecord?.setValue(val.value, 'value');
+  });
+};
+
+export const addItemToActiveOrder = (
+  environment: RelayModernEnvironment,
+  itemId: string
+) => {
+  commitLocalUpdate(environment, (store) => {
+    const item = store.get(itemId) as RecordProxy<{}>;
+
+    const activeOrder = store.get('client:root:activeOrder');
+    const activeItems = activeOrder?.getLinkedRecords('items') || [];
+
+    const itemInOrder = activeItems.find(
+      (el) => el?.getLinkedRecord('item') === item
+    );
+
+    if (!itemInOrder) {
+      const itemOrder = store.create(
+        `client:root:activeOrder:${itemId}`,
+        'ItemInOrder'
+      );
+      itemOrder.setLinkedRecord(item, 'item');
+      itemOrder.setValue(1, 'quantity');
+      activeOrder?.setLinkedRecords([itemOrder, ...activeItems], 'items');
+    } else {
+      const quantity = itemInOrder?.getValue('quantity') as number;
+      itemInOrder?.setValue(quantity + 1, 'quantity');
+    }
   });
 };
