@@ -106,6 +106,7 @@ function ProductStack() {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                     }}
+                    weight={isImageGrid ? 'normal' : 'bold'}
                   >
                     {el.item.name}
                   </Text>
