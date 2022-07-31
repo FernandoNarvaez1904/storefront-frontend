@@ -66,7 +66,7 @@ function ProductStack() {
 
               <Box>
                 <Text size="md">{el.item.name}</Text>
-                <Text size="xs">Price: {el.item.price}</Text>
+                <Text size="xs">Price: {el.item.price.toFixed(2)}</Text>
               </Box>
             </Group>
           </td>
