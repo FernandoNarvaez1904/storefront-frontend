@@ -9,7 +9,7 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 import { useElementSize } from '@mantine/hooks';
 import { ProductStack_Query } from './__generated__/ProductStack_Query.graphql';
@@ -48,7 +48,6 @@ function ProductStack() {
   useEffect(() => {
     if (viewport.current !== undefined && data.activeOrder.items) {
       if (data.activeOrder.items.length > prevLength) {
-        console.log('scroll');
         viewport.current.scrollTo({
           top: viewport.current.scrollHeight,
           behavior: 'smooth',
@@ -163,7 +162,11 @@ function ProductStack() {
   const { height, ref } = useElementSize();
   return (
     <Box sx={{ flexGrow: 1 }} ref={ref}>
-      <ScrollArea style={{ height }} offsetScrollbars viewportRef={viewport}>
+      <ScrollArea
+        style={{ height }}
+        offsetScrollbars
+        viewportRef={viewport as MutableRefObject<HTMLDivElement>}
+      >
         <Stack spacing={0}>{getItems()}</Stack>
       </ScrollArea>
     </Box>
