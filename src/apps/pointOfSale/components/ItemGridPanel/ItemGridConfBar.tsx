@@ -1,19 +1,19 @@
 import { Button, Group, Menu, Text } from '@mantine/core';
-import {
-  Capture,
-  ChevronDown,
-  Refresh,
-  TextRecognition,
-} from 'tabler-icons-react';
+import { updateGridTypeConf } from 'apps/pointOfSale/store/updateLocal';
 import React from 'react';
 import {
   graphql,
   useLazyLoadQuery,
   UseQueryLoaderLoadQueryOptions,
 } from 'react-relay';
+import relayEnvironment from 'RelayEnviroment';
+import {
+  Capture,
+  ChevronDown,
+  Refresh,
+  TextRecognition,
+} from 'tabler-icons-react';
 import { ItemGrid_AllItemsQuery$variables } from './__generated__/ItemGrid_AllItemsQuery.graphql';
-import { updateGridTypeConf } from '../../store/updateLocal';
-import relayEnvironment from '../../../../RelayEnviroment';
 import {
   GridType,
   ItemGridConfBar_ConfQuery,

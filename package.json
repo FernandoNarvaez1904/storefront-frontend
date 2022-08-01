@@ -29,7 +29,8 @@
     "react-relay": "^14.0.0",
     "react-split": "^2.0.14",
     "relay-runtime": "^14.0.0",
-    "tabler-icons-react": "^1.52.0"
+    "tabler-icons-react": "^1.52.0",
+    "vite-tsconfig-paths": "^3.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

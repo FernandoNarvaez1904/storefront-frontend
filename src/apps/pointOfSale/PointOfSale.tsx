@@ -1,10 +1,10 @@
-import React from 'react';
 import { Stack } from '@mantine/core';
+import React from 'react';
+import relayEnvironment from 'RelayEnviroment';
+import FooterPOS from './components/FooterPOS';
 import HeaderPOS from './components/HeaderPOS';
 import MainPanels from './components/MainPanels';
-import FooterPOS from './components/FooterPOS';
 import { setStoreDefaultValues } from './store/defaultValues';
-import relayEnvironment from '../../RelayEnviroment';
 
 function PointOfSale() {
   setStoreDefaultValues(relayEnvironment);

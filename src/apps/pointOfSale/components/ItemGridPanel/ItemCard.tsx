@@ -7,10 +7,10 @@ import {
   UnstyledButton,
   useMantineTheme,
 } from '@mantine/core';
+import { addItemToActiveOrder } from 'apps/pointOfSale/store/updateLocal';
 import { graphql, useFragment } from 'react-relay';
+import relayEnvironment from 'RelayEnviroment';
 import { ItemCard_ItemCardDataFragment$key } from './__generated__/ItemCard_ItemCardDataFragment.graphql';
-import { addItemToActiveOrder } from '../../store/updateLocal';
-import relayEnvironment from '../../../../RelayEnviroment';
 
 const ItemCardFragment = graphql`
   fragment ItemCard_ItemCardDataFragment on ItemType {

@@ -1,9 +1,9 @@
-import Split from 'react-split';
+import 'apps/pointOfSale/assets/Split.js.css';
 import React from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
+import Split from 'react-split';
 import CurrentOrderPanel from '../CurrentOrderPanel';
 import ItemGridPanel from '../ItemGridPanel';
-import '../../assets/Split.js.css';
 import { MainPanels_ConfQuery } from './__generated__/MainPanels_ConfQuery.graphql';
 
 const confQuery = graphql`

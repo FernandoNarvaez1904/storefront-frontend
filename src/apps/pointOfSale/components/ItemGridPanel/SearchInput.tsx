@@ -1,3 +1,8 @@
+import { Button, Group, Menu, Text, TextInput } from '@mantine/core';
+import { updateGridFilterItem } from 'apps/pointOfSale/store/updateLocal';
+import React from 'react';
+import { graphql, useLazyLoadQuery } from 'react-relay';
+import relayEnvironment from 'RelayEnviroment';
 import {
   Barcode,
   ChevronDown,
@@ -5,11 +10,6 @@ import {
   Search,
   TextRecognition,
 } from 'tabler-icons-react';
-import { Button, Group, Menu, Text, TextInput } from '@mantine/core';
-import React from 'react';
-import { graphql, useLazyLoadQuery } from 'react-relay';
-import { updateGridFilterItem } from '../../store/updateLocal';
-import relayEnvironment from '../../../../RelayEnviroment';
 import {
   GridFilterType,
   SearchInput_ConfQuery,

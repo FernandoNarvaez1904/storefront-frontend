@@ -7,10 +7,13 @@ import {
   NumberInput,
   Text,
 } from '@mantine/core';
+import {
+  deleteItemOrder,
+  updateQuantityOnItem,
+} from 'apps/pointOfSale/store/updateLocal';
 import React from 'react';
 import { graphql, useFragment } from 'react-relay';
-import { deleteItemOrder, updateQuantityOnItem } from '../../store/updateLocal';
-import relayEnvironment from '../../../../RelayEnviroment';
+import relayEnvironment from 'RelayEnviroment';
 import { ItemInOrder_AllItemFragment$key } from './__generated__/ItemInOrder_AllItemFragment.graphql';
 
 const dataFragment = graphql`
