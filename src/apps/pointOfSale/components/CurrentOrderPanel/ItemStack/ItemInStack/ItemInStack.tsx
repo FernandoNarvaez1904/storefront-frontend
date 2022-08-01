@@ -40,7 +40,15 @@ function ItemInStack({ fragmentRef, isImageGrid }: Props) {
   );
   const { classes } = useItemInStackStyles({ isImageGrid });
 
+  // TS compliance
+  if (data === null) return null;
+  if (data.item === null) return null;
   if (data.item.price === null) return null;
+
+  // Limiting price to 2 decimals and adding ,
+  const totalPrice: string = Number(
+    (data.item.price * data.quantity).toFixed(2)
+  ).toLocaleString();
 
   return (
     <Box>
@@ -57,7 +65,7 @@ function ItemInStack({ fragmentRef, isImageGrid }: Props) {
             <Text size="md" className={classes.titleNameText}>
               {data.item.name}
             </Text>
-            <Text size="xs">Price: C${data.item.price}</Text>
+            <Text size="xs">Price: C${totalPrice}</Text>
           </Box>
         </Group>
 
@@ -76,9 +84,7 @@ function ItemInStack({ fragmentRef, isImageGrid }: Props) {
         </Box>
 
         <Group className={classes.priceRoot} px={5}>
-          <Text className={classes.priceText}>
-            C${(data.item.price * data.quantity).toFixed(2)}
-          </Text>
+          <Text className={classes.priceText}>C${totalPrice}</Text>
         </Group>
       </Group>
       <Divider />
