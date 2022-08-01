@@ -1,4 +1,8 @@
 import { Button, Group, Menu, Text, TextInput } from '@mantine/core';
+import {
+  GridFilterType,
+  SearchInput_ConfQuery,
+} from 'apps/pointOfSale/components/ItemGridPanel/__generated__/SearchInput_ConfQuery.graphql';
 import { updateGridFilterItem } from 'apps/pointOfSale/store/updateLocal';
 import React from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
@@ -10,10 +14,6 @@ import {
   Search,
   TextRecognition,
 } from 'tabler-icons-react';
-import {
-  GridFilterType,
-  SearchInput_ConfQuery,
-} from './__generated__/SearchInput_ConfQuery.graphql';
 
 const dataConf = graphql`
   query SearchInput_ConfQuery {

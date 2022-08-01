@@ -1,13 +1,12 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Box, Paper, Skeleton, Stack } from '@mantine/core';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { useQueryLoader } from 'react-relay';
-import SearchInput from './SearchInput';
 import ItemGrid from './ItemGrid';
-
 import AllItemsQueryPrefetch, {
   ItemGrid_AllItemsQuery,
-} from './__generated__/ItemGrid_AllItemsQuery.graphql';
+} from './ItemGrid/__generated__/ItemGrid_AllItemsQuery.graphql';
 import ItemGridConfBar from './ItemGridConfBar';
+import SearchInput from './SearchInput';
 
 function ItemGridPanel() {
   const [allItemQueryRef, loadAllItem] = useQueryLoader<ItemGrid_AllItemsQuery>(

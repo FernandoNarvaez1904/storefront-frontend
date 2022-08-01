@@ -1,13 +1,13 @@
 import { Center, Group, Pagination, ScrollArea, Stack } from '@mantine/core';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   graphql,
   PreloadedQuery,
   useLazyLoadQuery,
   usePreloadedQuery,
 } from 'react-relay';
-import React, { useEffect, useMemo, useState } from 'react';
+import ItemCard from '../ItemCard';
 import { ItemGrid_AllItemsQuery } from './__generated__/ItemGrid_AllItemsQuery.graphql';
-import ItemCard from './ItemCard';
 import { ItemGrid_ConfQuery } from './__generated__/ItemGrid_ConfQuery.graphql';
 
 const ItemGridQuery = graphql`
