@@ -15,7 +15,7 @@ import {
   SearchInput_ConfQuery,
 } from './__generated__/SearchInput_ConfQuery.graphql';
 
-const dataConf = graphql`
+const dataConfQuery = graphql`
   query SearchInput_ConfQuery {
     pointOfSaleConf {
       gridFilterValue {
@@ -27,7 +27,7 @@ const dataConf = graphql`
 `;
 
 function SearchInput() {
-  const data = useLazyLoadQuery<SearchInput_ConfQuery>(dataConf, {});
+  const data = useLazyLoadQuery<SearchInput_ConfQuery>(dataConfQuery, {});
   const dataParsed = data.pointOfSaleConf.gridFilterValue;
 
   const getIconForMenu = (val: GridFilterType, size = 18) => {

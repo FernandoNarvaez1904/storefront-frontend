@@ -19,7 +19,7 @@ import {
   ItemGridConfBar_ConfQuery,
 } from './__generated__/ItemGridConfBar_ConfQuery.graphql';
 
-const dataConf = graphql`
+const dataConfQuery = graphql`
   query ItemGridConfBar_ConfQuery {
     pointOfSaleConf {
       gridType
@@ -35,7 +35,10 @@ type Props = {
 };
 
 function ItemGridConfBar({ loadAllItem }: Props) {
-  const gridType = useLazyLoadQuery<ItemGridConfBar_ConfQuery>(dataConf, {});
+  const dataConf = useLazyLoadQuery<ItemGridConfBar_ConfQuery>(
+    dataConfQuery,
+    {}
+  );
 
   const getParseInfoForGridMenu = (val: GridType) => {
     if (val === 'TextGrid')
@@ -72,14 +75,14 @@ function ItemGridConfBar({ loadAllItem }: Props) {
         <Menu.Target>
           <Button
             leftIcon={
-              getParseInfoForGridMenu(gridType.pointOfSaleConf.gridType)?.icon
+              getParseInfoForGridMenu(dataConf.pointOfSaleConf.gridType)?.icon
             }
             size="sm"
             color="dark"
             variant="white"
           >
             <Text transform="capitalize">
-              {getParseInfoForGridMenu(gridType.pointOfSaleConf.gridType)?.text}
+              {getParseInfoForGridMenu(dataConf.pointOfSaleConf.gridType)?.text}
             </Text>
             <ChevronDown size={18} />
           </Button>
