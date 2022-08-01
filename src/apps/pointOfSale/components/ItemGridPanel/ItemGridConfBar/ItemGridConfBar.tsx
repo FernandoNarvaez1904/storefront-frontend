@@ -13,7 +13,7 @@ import {
   Refresh,
   TextRecognition,
 } from 'tabler-icons-react';
-import { ItemGrid_AllItemsQuery$variables } from './__generated__/ItemGrid_AllItemsQuery.graphql';
+import { ItemGrid_AllItemsQuery$variables } from '../ItemGrid/__generated__/ItemGrid_AllItemsQuery.graphql';
 import {
   GridType,
   ItemGridConfBar_ConfQuery,
