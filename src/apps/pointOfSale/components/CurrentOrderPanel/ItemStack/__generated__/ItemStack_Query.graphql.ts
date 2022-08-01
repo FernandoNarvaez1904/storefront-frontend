@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5ba7622459cad59f919ea2259a364b20>>
+ * @generated SignedSource<<19c49e2e9592acc088cf9c955a5fb133>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,7 +16,7 @@ export type ItemStack_Query$data = {
   readonly activeOrder: {
     readonly items: ReadonlyArray<{
       readonly id: string;
-      readonly " $fragmentSpreads": FragmentRefs<"ItemInOrder_AllItemFragment">;
+      readonly " $fragmentSpreads": FragmentRefs<"ItemInStack_AllItemFragment">;
     } | null>;
   };
   readonly pointOfSaleConf: {
@@ -84,7 +84,7 @@ return {
                   {
                     "args": null,
                     "kind": "FragmentSpread",
-                    "name": "ItemInOrder_AllItemFragment"
+                    "name": "ItemInStack_AllItemFragment"
                   }
                 ],
                 "storageKey": null
@@ -179,6 +179,6 @@ return {
 };
 })();
 
-(node as any).hash = "647130da0747906f71ba41c5144ed41b";
+(node as any).hash = "0d12bf2cf5d3ee198e47c10c8cf0f31a";
 
 export default node;

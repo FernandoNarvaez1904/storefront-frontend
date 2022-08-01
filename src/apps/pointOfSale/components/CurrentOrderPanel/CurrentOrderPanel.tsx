@@ -1,17 +1,15 @@
-import React from 'react';
 import { Paper, Stack } from '@mantine/core';
-import OrderTitle from './OrderTitle';
-import PricingInOrder from './PricingInOrder';
+import React from 'react';
+import HeaderCurrentOrder from './HeaderCurrentOrder';
 import ItemStack from './ItemStack';
-import ActionBar from './ActionBar';
 import PaymentOptionsButtons from './PaymentOptionsButtons';
+import PricingInOrder from './PricingInOrder';
 
 function CurrentOrderPanel() {
   return (
     <Paper withBorder shadow="xl" sx={{ height: '100%' }} p="lg">
       <Stack sx={{ height: '100%' }} spacing="xs">
-        <OrderTitle />
-        <ActionBar />
+        <HeaderCurrentOrder />
         <ItemStack />
         <PricingInOrder />
         <PaymentOptionsButtons />

@@ -1,16 +1,16 @@
 import { Box, ScrollArea, Stack } from '@mantine/core';
+import { useElementSize } from '@mantine/hooks';
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
-import { useElementSize } from '@mantine/hooks';
 import { ItemStack_Query } from './__generated__/ItemStack_Query.graphql';
-import ItemInOrder from './ItemInOrder';
+import ItemInStack from './ItemInStack';
 
 const selectedItemsQuery = graphql`
   query ItemStack_Query {
     activeOrder {
       items {
         id
-        ...ItemInOrder_AllItemFragment
+        ...ItemInStack_AllItemFragment
       }
     }
     pointOfSaleConf {
@@ -49,17 +49,19 @@ function ItemStack() {
   const getItems = () => {
     if (data.activeOrder === null) return null;
     if (data.activeOrder.items === null) return null;
-    
-    return data.activeOrder.items.map((item) => {
-      if (item === null) return null;
-      return (
-        <ItemInOrder
-          fragmentRef={item}
-          isImageGrid={isImageGrid}
-          key={item.id}
-        />
-      );
-    });
+
+    return data.activeOrder.items
+      .map((item) => {
+        if (item === null) return null;
+        return (
+          <ItemInStack
+            fragmentRef={item}
+            isImageGrid={isImageGrid}
+            key={item.id}
+          />
+        );
+      })
+      .reverse();
   };
 
   return (

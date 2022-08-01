@@ -1,20 +1,12 @@
-import { Group, Text, useMantineTheme } from '@mantine/core';
+import { Group, Text } from '@mantine/core';
+import useOrderTitleStyles from 'apps/pointOfSale/components/CurrentOrderPanel/HeaderCurrentOrder/OrderTitle/OrderTitleStyles';
 import React from 'react';
 
 function OrderTitle() {
-  const theme = useMantineTheme();
+  const { classes } = useOrderTitleStyles();
 
   return (
-    <Group
-      sx={{
-        backgroundColor: theme.colors.blue[6],
-        justifyContent: 'space-between',
-        borderRadius: '5px',
-        color: 'white',
-      }}
-      py={2}
-      px="xs"
-    >
+    <Group className={classes.pill} py={2} px="xs">
       <Text weight="bold" size="sm">
         #1904
       </Text>
