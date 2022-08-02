@@ -48,17 +48,16 @@ function ItemCard({ item, width, height, hasImage = false }: Props) {
         <Group spacing={0}>
           {hasImage && (
             <Image
-              height={100}
-              width="auto"
+              height={height - 2.2}
+              width={100}
               withPlaceholder
-              src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2334&q=80"
               radius="xs"
             />
           )}
 
           <Stack
             spacing="sm"
-            sx={{ flexGrow: 1, textAlign: 'center' }}
+            sx={{ flexGrow: 1, textAlign: 'center', border: '0' }}
             px={10}
             pb={3}
           >
