@@ -48,7 +48,10 @@ function ItemInStack({ fragmentRef, isImageGrid }: Props) {
   // Limiting price to 2 decimals and adding ,
   const totalPrice: string = Number(
     (data.item.price * data.quantity).toFixed(2)
-  ).toLocaleString();
+  ).toLocaleString(undefined, {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+  });
 
   return (
     <Box>

@@ -39,7 +39,7 @@ function PricingInOrder() {
 
     return Number(totalPrice.toFixed(2));
   };
-  
+
   return (
     <Stack spacing={10}>
       <Divider variant="dashed" />
@@ -47,7 +47,11 @@ function PricingInOrder() {
         <Group className={classes.priceRow}>
           <Text size="sm">Subtotal</Text>
           <Text size="sm" weight="bold">
-            C${getTotalPrice().toLocaleString()}
+            C$
+            {getTotalPrice().toLocaleString(undefined, {
+              maximumFractionDigits: 2,
+              minimumFractionDigits: 2,
+            })}
           </Text>
         </Group>
       </Box>
@@ -63,7 +67,11 @@ function PricingInOrder() {
       <Group className={classes.priceRow}>
         <Text size="sm">Total</Text>
         <Text size="sm" weight="bolder">
-          C${getTotalPrice().toLocaleString()}
+          C$
+          {getTotalPrice().toLocaleString(undefined, {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2,
+          })}
         </Text>
       </Group>
     </Stack>
