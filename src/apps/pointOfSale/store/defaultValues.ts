@@ -1,20 +1,31 @@
-import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import { commitLocalUpdate } from 'relay-runtime';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 
 export const setStoreDefaultValues = (environment: RelayModernEnvironment) => {
   commitLocalUpdate(environment, (store) => {
     // pointOfSaleConf
-    const pointOfSaleConfRecord = store.create(
-      'client:root:pointOfSaleConf',
-      'PointOfSaleConfType'
-    );
+    const pointOfSaleConfRecordId = 'client:root:pointOfSaleConf';
+    let pointOfSaleConfRecord = store.get(pointOfSaleConfRecordId);
+    if (pointOfSaleConfRecord === null || pointOfSaleConfRecord === undefined) {
+      pointOfSaleConfRecord = store.create(
+        pointOfSaleConfRecordId,
+        'PointOfSaleConfType'
+      );
+    }
 
     pointOfSaleConfRecord.setValue('ImageGrid', 'gridType');
 
-    const gridFilterValueRecord = store.create(
-      'client:root:pointOfSaleConf:gridFilterValue',
-      'GridFilterItemValue'
-    );
+    // pointOfSaleConf:gridFilterValue
+    const gridFilterValueRecordId =
+      'client:root:pointOfSaleConf:gridFilterValue';
+    let gridFilterValueRecord = store.get(gridFilterValueRecordId);
+    if (gridFilterValueRecord === null || gridFilterValueRecord === undefined) {
+      gridFilterValueRecord = store.create(
+        gridFilterValueRecordId,
+        'GridFilterItemValue'
+      );
+    }
+
     gridFilterValueRecord.setValue('name', 'gridFilterType');
     gridFilterValueRecord.setValue('', 'value');
 
@@ -24,10 +35,12 @@ export const setStoreDefaultValues = (environment: RelayModernEnvironment) => {
     );
 
     // activeOrder
-    const activeOrderRecord = store.create(
-      'client:root:activeOrder',
-      'ActiveOrder'
-    );
+    const activeOrderRecordId = 'client:root:activeOrder';
+    let activeOrderRecord = store.get(activeOrderRecordId);
+    if (activeOrderRecord === null || activeOrderRecord === undefined) {
+      activeOrderRecord = store.create(activeOrderRecordId, 'ActiveOrder');
+    }
+
     activeOrderRecord.setValue(null, 'items');
 
     // root
