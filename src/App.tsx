@@ -1,8 +1,15 @@
+import PointOfSale from 'apps/pointOfSale';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './global.css';
-import PointOfSaleRoot from './apps/pointOfSale';
 
 function App() {
-  return <PointOfSaleRoot />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PointOfSale />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
