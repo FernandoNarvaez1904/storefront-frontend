@@ -54,7 +54,7 @@ function Sidebar() {
             <Title order={4}>Inventory</Title>
           </Group>
 
-          <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
+          <Code sx={{ fontWeight: 700 }}>v0.0.1</Code>
         </Group>
         {links}
       </Navbar.Section>
