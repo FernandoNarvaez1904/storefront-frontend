@@ -10,7 +10,7 @@ import {
 import { IconBuildingWarehouse, IconLogout } from '@tabler/icons';
 import useSidebarStyles from 'apps/inventory/components/Sidebar/SidebarStyles';
 import route from 'apps/inventory/routes';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 function Sidebar() {
@@ -18,6 +18,10 @@ function Sidebar() {
   const { classes, cx } = useSidebarStyles();
   const path = useLocation();
   const [active, setActive] = useState(path.pathname);
+
+  useEffect(() => {
+    setActive(path.pathname);
+  }, [path]);
 
   const links = route.subRoutes?.map((subRoute) => (
     <UnstyledButton
