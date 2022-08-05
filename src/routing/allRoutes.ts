@@ -1,31 +1,18 @@
 import { MantineColor } from '@mantine/core';
-import Inventory from 'apps/inventory';
-import PointOfSale from 'apps/pointOfSale';
-import { BuildingWarehouse, Cash, Icon } from 'tabler-icons-react';
+import { TablerIcon } from '@tabler/icons';
+import inventoryRoute from 'apps/inventory/routes';
+import posRoute from 'apps/pointOfSale/routes';
 
 export interface AppRoute {
   path: string;
   title: string;
+  icon: TablerIcon;
   color: MantineColor;
-  icon: Icon;
   element: () => JSX.Element;
+  // Default sub route must be the same of path
+  subRoutes?: Array<AppRoute>;
 }
 
-const allRoutes: Array<AppRoute> = [
-  {
-    title: 'Point of Sale',
-    path: '/pos',
-    color: 'green',
-    icon: Cash,
-    element: PointOfSale,
-  },
-  {
-    title: 'Inventory',
-    path: 'inventory',
-    color: 'red',
-    icon: BuildingWarehouse,
-    element: Inventory,
-  },
-];
+const allRoutes: Array<AppRoute> = [{ ...posRoute }, { ...inventoryRoute }];
 
 export default allRoutes;
