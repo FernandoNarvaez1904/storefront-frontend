@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 
 const data = [
   { link: '', label: 'Dashboard', icon: IconGauge },
-  { link: '', label: 'Basket', icon: IconBasket },
+  { link: '', label: 'Items', icon: IconBasket },
 ];
 
 function Sidebar() {
