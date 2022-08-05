@@ -1,19 +1,31 @@
 import Home from 'pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import allRoutes from 'routing/allRoutes';
+import allRoutes, { AppRoute } from 'routing/allRoutes';
 import './global.css';
 
 function App() {
-  const getAppRoutes = () =>
-    allRoutes.map((el) => (
-      <Route path={el.path} element={<el.element />} key={el.path} />
+  const getAppsRoutes = () =>
+    allRoutes.map((appRoute: AppRoute) => (
+      <Route
+        path={appRoute.path}
+        element={<appRoute.element />}
+        key={appRoute.path}
+      >
+        {appRoute.subRoutes?.map((subRoute: AppRoute) => (
+          <Route
+            path={subRoute.path}
+            element={<subRoute.element />}
+            key={subRoute.path}
+          />
+        ))}
+      </Route>
     ));
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        {getAppRoutes()}
+        {getAppsRoutes()}
       </Routes>
     </BrowserRouter>
   );

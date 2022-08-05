@@ -7,39 +7,32 @@ import {
   UnstyledButton,
   useMantineTheme,
 } from '@mantine/core';
-import {
-  IconBasket,
-  IconBuildingWarehouse,
-  IconGauge,
-  IconLogout,
-} from '@tabler/icons';
+import { IconBuildingWarehouse, IconLogout } from '@tabler/icons';
 import useSidebarStyles from 'apps/inventory/components/Sidebar/SidebarStyles';
+import route from 'apps/inventory/routes';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-
-const data = [
-  { link: '', label: 'Dashboard', icon: IconGauge },
-  { link: '', label: 'Items', icon: IconBasket },
-];
+import { Link, useLocation } from 'react-router-dom';
 
 function Sidebar() {
   const theme = useMantineTheme();
   const { classes, cx } = useSidebarStyles();
-  const [active, setActive] = useState('Dashboard');
+  const path = useLocation();
+  const [active, setActive] = useState(path.pathname);
 
-  const links = data.map((item) => (
-    <UnstyledButton<'a'>
+  const links = route.subRoutes?.map((subRoute) => (
+    <UnstyledButton
+      component={Link}
       className={cx(classes.link, {
-        [classes.linkActive]: item.label === active,
+        [classes.linkActive]: subRoute.path === active,
       })}
-      href={item.link}
-      key={item.label}
+      to={subRoute.path}
+      key={subRoute.title}
       onClick={() => {
-        setActive(item.label);
+        setActive(subRoute.path);
       }}
     >
-      <item.icon className={classes.linkIcon} stroke={1.5} />
-      <span>{item.label}</span>
+      <subRoute.icon className={classes.linkIcon} stroke={1.5} />
+      <span>{subRoute.title}</span>
     </UnstyledButton>
   ));
 
