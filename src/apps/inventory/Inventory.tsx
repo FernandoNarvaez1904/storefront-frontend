@@ -1,5 +1,7 @@
+import Sidebar from './components/Sidebar/Sidebar';
+
 function Inventory() {
-  return <h1>Inventory</h1>;
+  return <Sidebar />;
 }
 
 export default Inventory;

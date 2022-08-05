@@ -68,6 +68,5 @@
       "**/__mocks__/**",
       "**/__generated__/**"
     ]
-  },
-  "artifactDirectory": "./src/__generated__"
+  }
 }

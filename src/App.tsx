@@ -5,7 +5,9 @@ import './global.css';
 
 function App() {
   const getAppRoutes = () =>
-    allRoutes.map((el) => <Route path={el.path} element={<el.element />} />);
+    allRoutes.map((el) => (
+      <Route path={el.path} element={<el.element />} key={el.path} />
+    ));
 
   return (
     <BrowserRouter>
