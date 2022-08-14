@@ -1,9 +1,10 @@
 import { Box, Stack } from '@mantine/core';
+import ItemsHeader from './components/ItemsHeader';
 
 function Items() {
   return (
     <Stack sx={{ height: '100%' }}>
-      <Box>Header</Box>
+      <ItemsHeader />
       <Box sx={{ flexGrow: 1 }}>rest</Box>
     </Stack>
   );
