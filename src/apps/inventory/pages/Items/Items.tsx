@@ -1,5 +1,13 @@
+import { Paper, Stack } from '@mantine/core';
+import ItemsHeader from './components/ItemsHeader';
+
 function Items() {
-  return <h1>Items</h1>;
+  return (
+    <Stack sx={{ height: '100%' }}>
+      <ItemsHeader />
+      <Paper sx={{ flexGrow: 1 }} withBorder p="md" shadow="md" />
+    </Stack>
+  );
 }
 
 export default Items;
