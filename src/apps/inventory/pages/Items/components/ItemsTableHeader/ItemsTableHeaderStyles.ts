@@ -1,10 +1,9 @@
 import { createStyles } from '@mantine/core';
 
-const useItemsTableHeaderStyles = createStyles((theme) => ({
+const useItemsTableHeaderStyles = createStyles({
   header: {
-    justifyContent: 'space-between',
     alignContent: 'start',
   },
-}));
+});
 
 export default useItemsTableHeaderStyles;

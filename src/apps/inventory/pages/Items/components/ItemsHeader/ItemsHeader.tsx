@@ -1,11 +1,18 @@
 import {
   Breadcrumbs,
   Button,
+  Center,
   Group,
+  SegmentedControl,
   Text,
   UnstyledButton,
 } from '@mantine/core';
-import { IconFolderPlus, IconPlus } from '@tabler/icons';
+import {
+  IconFolderPlus,
+  IconLayoutGrid,
+  IconList,
+  IconPlus,
+} from '@tabler/icons';
 import { Link } from 'react-router-dom';
 
 function ItemsHeader() {
@@ -30,6 +37,27 @@ function ItemsHeader() {
         </UnstyledButton>
       </Breadcrumbs>
       <Group>
+        <SegmentedControl
+          value="list"
+          data={[
+            {
+              label: (
+                <Center>
+                  <IconList size={18} />
+                </Center>
+              ),
+              value: 'list',
+            },
+            {
+              label: (
+                <Center>
+                  <IconLayoutGrid size={18} />
+                </Center>
+              ),
+              value: 'grid',
+            },
+          ]}
+        />
         <Button color="blue.5" leftIcon={<IconFolderPlus size={20} />}>
           Add Group
         </Button>

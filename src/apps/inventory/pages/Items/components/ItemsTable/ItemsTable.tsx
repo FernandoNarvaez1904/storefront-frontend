@@ -1,10 +1,22 @@
 import { ScrollArea, Table } from '@mantine/core';
+import { useState } from 'react';
+import useItemTableStyles from './ItemTableStyles';
 
-function ItemsTable({ height }: { height: number | string }) {
+type Props = {
+  height: number | string;
+};
+
+function ItemsTable({ height }: Props) {
+  const { classes, cx } = useItemTableStyles();
+  const [scrolled, setScrolled] = useState(false);
+
   return (
-    <ScrollArea sx={{ height }}>
+    <ScrollArea
+      sx={{ height }}
+      onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
+    >
       <Table verticalSpacing="sm" fontSize="sm" highlightOnHover>
-        <thead>
+        <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
           <tr>
             <th>#</th>
             <th>Name</th>

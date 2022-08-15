@@ -8,7 +8,7 @@ function Inventory() {
     <AppShell navbar={<Sidebar />} padding={0}>
       <Stack sx={{ height: '100%' }} spacing="xs">
         <Header />
-        <Box p="xs" sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }}>
           {/* Renders the content inside Sub-Route */}
           <Outlet />
         </Box>
