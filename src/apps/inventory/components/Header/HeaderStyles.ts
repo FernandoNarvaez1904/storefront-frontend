@@ -6,6 +6,7 @@ const useHeaderStyles = createStyles((theme) => ({
       theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
     }`,
     justifyContent: 'space-between',
+    height: 66,
   },
 }));
 
