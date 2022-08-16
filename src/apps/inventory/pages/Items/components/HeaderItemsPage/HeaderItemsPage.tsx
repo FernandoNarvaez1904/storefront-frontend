@@ -15,7 +15,7 @@ import {
 } from '@tabler/icons';
 import { Link } from 'react-router-dom';
 
-function ItemsHeader() {
+function HeaderItemsPage() {
   return (
     <Group sx={{ justifyContent: 'space-between' }} align="flex-end">
       <Breadcrumbs
@@ -69,4 +69,4 @@ function ItemsHeader() {
   );
 }
 
-export default ItemsHeader;
+export default HeaderItemsPage;

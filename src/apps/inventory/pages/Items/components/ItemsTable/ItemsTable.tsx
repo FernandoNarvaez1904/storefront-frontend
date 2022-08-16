@@ -1,12 +1,16 @@
 import { ScrollArea, Table } from '@mantine/core';
+import { ItemsQuery_ItemsPageQuery } from 'apps/inventory/pages/Items/__generated__/ItemsQuery_ItemsPageQuery.graphql';
 import { useState } from 'react';
+import { PreloadedQuery } from 'react-relay';
+import TbodyItemsTable from './components/TbodyItemsTable';
 import useItemTableStyles from './ItemTableStyles';
 
-type Props = {
+export type Props = {
   height: number | string;
+  queryRef: PreloadedQuery<ItemsQuery_ItemsPageQuery>;
 };
 
-function ItemsTable({ height }: Props) {
+function ItemsTable({ height, queryRef }: Props) {
   const { classes, cx } = useItemTableStyles();
   const [scrolled, setScrolled] = useState(false);
 
@@ -28,189 +32,7 @@ function ItemsTable({ height }: Props) {
             <th>Is Active</th>
           </tr>
         </thead>
-
-        <tbody>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-          <tr>
-            <td>#</td>
-            <td>Item Detail with coke pack</td>
-            <td>2343</td>
-            <td>234.54</td>
-            <td>34%</td>
-            <td>5678.87</td>
-            <td>True</td>
-            <td>True</td>
-          </tr>
-        </tbody>
+        <TbodyItemsTable queryRef={queryRef} />
       </Table>
     </ScrollArea>
   );
