@@ -45,7 +45,7 @@ function Sidebar() {
       <Navbar.Section grow>
         <Group className={classes.header} position="apart" align="end">
           <Group spacing="xs" align="end" ml="sm">
-            <ActionIcon color="red" size="lg">
+            <ActionIcon color="red" size="lg" variant="transparent">
               <IconBuildingWarehouse height={32} width={32} />
             </ActionIcon>
             <Title order={4}>Inventory</Title>
