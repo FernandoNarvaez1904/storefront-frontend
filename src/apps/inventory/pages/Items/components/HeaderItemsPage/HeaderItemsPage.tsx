@@ -82,6 +82,7 @@ function HeaderItemsPage() {
 
       <Group>
         <SegmentedControl
+          disabled
           value="list"
           data={[
             {
@@ -104,6 +105,7 @@ function HeaderItemsPage() {
         />
 
         <Button
+          disabled
           color="blue.5"
           leftIcon={<IconFolderPlus size={20} />}
           onClick={openDrawer('group')}
@@ -118,6 +120,7 @@ function HeaderItemsPage() {
         >
           Add Item
         </Button>
+
         <Drawer
           opened={drawerOpened}
           title={getDrawerTitle(drawerType)}
