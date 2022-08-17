@@ -24,15 +24,14 @@ function RowTbodyItems({ fragmentRef, idx }: Props) {
     itemsRowFragment,
     fragmentRef
   );
-
   return (
     <tr key={item.id}>
       <td>{idx}</td>
       <td>{item.name}</td>
       <td>{item.sku}</td>
-      <td>{item.cost}</td>
+      <td>C${item.cost}</td>
       <td>{item.markup}%</td>
-      <td>{item.price}</td>
+      <td>C${item.price}</td>
       <td>{item.isService ? 'True' : 'False'}</td>
       <td>{item.isActive ? 'True' : 'False'}</td>
     </tr>
