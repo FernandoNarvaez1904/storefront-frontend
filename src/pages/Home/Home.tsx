@@ -4,6 +4,7 @@ import AppsGrid from './AppsGrid';
 
 function Home() {
   const { classes } = useHomeStyles();
+
   return (
     <Center className={classes.root}>
       <Box className={classes.allGridRoot}>

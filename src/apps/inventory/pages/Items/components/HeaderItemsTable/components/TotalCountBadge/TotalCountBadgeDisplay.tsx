@@ -1,6 +1,6 @@
 import { Badge } from '@mantine/core';
-import { TotalCountBadgeComponent_ItemCountFragment$key } from 'apps/inventory/pages/Items/components/HeaderItemsTable/components/TotalCountBadge/__generated__/TotalCountBadgeComponent_ItemCountFragment.graphql';
 import { graphql, useFragment } from 'react-relay';
+import { TotalCountBadgeDisplay_ItemCountFragment$key } from './__generated__/TotalCountBadgeDisplay_ItemCountFragment.graphql';
 
 const itemCountFragment = graphql`
   fragment TotalCountBadgeDisplay_ItemCountFragment on ItemTypeConnection {
@@ -9,12 +9,15 @@ const itemCountFragment = graphql`
 `;
 
 type Props = {
-  itemCountFragmentRef: TotalCountBadgeComponent_ItemCountFragment$key;
+  itemConnectionFragmentRef: TotalCountBadgeDisplay_ItemCountFragment$key;
 };
 
-function TotalCountBadgeDisplay({ itemCountFragmentRef }: Props) {
-  const data = useFragment(itemCountFragment, itemCountFragmentRef);
-  return <Badge> Item Count: {data.totalCount}</Badge>;
+function TotalCountBadgeDisplay({ itemConnectionFragmentRef }: Props) {
+  const itemConnection = useFragment(
+    itemCountFragment,
+    itemConnectionFragmentRef
+  );
+  return <Badge> Item Count: {itemConnection.totalCount}</Badge>;
 }
 
 export default TotalCountBadgeDisplay;

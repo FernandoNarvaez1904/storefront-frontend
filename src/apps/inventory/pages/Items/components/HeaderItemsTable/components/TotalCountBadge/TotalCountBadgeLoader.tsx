@@ -1,8 +1,8 @@
 import ItemsQuery_ItemsPageQueryGraphql, {
   ItemsQuery_ItemsPageQuery,
 } from 'apps/inventory/pages/Items/__generated__/ItemsQuery_ItemsPageQuery.graphql';
-import TotalCountBadgeDisplay from 'apps/inventory/pages/Items/components/HeaderItemsTable/components/TotalCountBadge/TotalCountBadgeDisplay';
 import { PreloadedQuery, usePreloadedQuery } from 'react-relay';
+import TotalCountBadgeDisplay from './TotalCountBadgeDisplay';
 
 type Props = {
   queryRef: PreloadedQuery<ItemsQuery_ItemsPageQuery>;
@@ -14,7 +14,9 @@ function TotalCountBadge({ queryRef }: Props) {
     queryRef
   );
 
-  return <TotalCountBadgeDisplay itemCountFragmentRef={data.itemConnection} />;
+  return (
+    <TotalCountBadgeDisplay itemConnectionFragmentRef={data.itemConnection} />
+  );
 }
 
 export default TotalCountBadge;

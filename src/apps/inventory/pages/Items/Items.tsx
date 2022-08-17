@@ -4,6 +4,7 @@ import { useLayoutEffect } from 'react';
 import { graphql, useQueryLoader } from 'react-relay';
 import HeaderItemsPage from './components/HeaderItemsPage';
 import MainContent from './components/MainContent';
+import useItemsStyles from './itemsStyles';
 
 const itemsPageQuery = graphql`
   query ItemsQuery_ItemsPageQuery {
@@ -15,6 +16,7 @@ const itemsPageQuery = graphql`
 `;
 
 function Items() {
+  const { classes } = useItemsStyles();
   const [queryRef, loadQuery] =
     useQueryLoader<ItemsQuery_ItemsPageQuery>(itemsPageQuery);
 
@@ -25,7 +27,7 @@ function Items() {
   }, [loadQuery]);
 
   return (
-    <Stack sx={{ height: '100%' }} p="xs">
+    <Stack className={classes.itemsPageContainer}>
       <HeaderItemsPage />
       {queryRef && <MainContent queryRef={queryRef} />}
     </Stack>
