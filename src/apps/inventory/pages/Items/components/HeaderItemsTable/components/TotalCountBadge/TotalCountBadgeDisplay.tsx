@@ -3,7 +3,7 @@ import { TotalCountBadgeComponent_ItemCountFragment$key } from 'apps/inventory/p
 import { graphql, useFragment } from 'react-relay';
 
 const itemCountFragment = graphql`
-  fragment TotalCountBadgeComponent_ItemCountFragment on ItemTypeConnection {
+  fragment TotalCountBadgeDisplay_ItemCountFragment on ItemTypeConnection {
     totalCount
   }
 `;

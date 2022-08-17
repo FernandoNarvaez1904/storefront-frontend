@@ -21,6 +21,8 @@ function MainContent({ queryRef }: Props) {
       <Suspense fallback={<HeaderItemsTableSkeleton />}>
         <HeaderItemsTable queryRef={queryRef} />
       </Suspense>
+
+      {/* This Box is needed to get the height of the table to get the scroll bar height */}
       <Box sx={{ flexGrow: 1 }} ref={refTableHeight}>
         <Suspense fallback={<Skeleton width="100%" height="100%" mt="xs" />}>
           <ItemsTable height={tableHeight} queryRef={queryRef} />

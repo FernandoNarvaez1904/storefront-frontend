@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<629cf0654ad6ebee0110f7ada15c4da3>>
+ * @generated SignedSource<<24aa760e954c1ec5fc1911db34900d6b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,7 @@ import { FragmentRefs } from "relay-runtime";
 export type ItemsQuery_ItemsPageQuery$variables = {};
 export type ItemsQuery_ItemsPageQuery$data = {
   readonly itemConnection: {
-    readonly " $fragmentSpreads": FragmentRefs<"ItemTableTbodyDisplay_AllItemFragment" | "TotalCountBadgeComponent_ItemCountFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"TbodyItemsTableDisplay_AllItemFragment" | "TotalCountBadgeDisplay_ItemCountFragment">;
   };
 };
 export type ItemsQuery_ItemsPageQuery = {
@@ -39,12 +39,12 @@ const node: ConcreteRequest = {
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "TotalCountBadgeComponent_ItemCountFragment"
+            "name": "TotalCountBadgeDisplay_ItemCountFragment"
           },
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "ItemTableTbodyDisplay_AllItemFragment"
+            "name": "TbodyItemsTableDisplay_AllItemFragment"
           }
         ],
         "storageKey": null
@@ -158,15 +158,15 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "53edb6cd4dc8d2e813ce10259ea30ceb",
+    "cacheID": "ffda4b024120cf4f4fda24b086250a54",
     "id": null,
     "metadata": {},
     "name": "ItemsQuery_ItemsPageQuery",
     "operationKind": "query",
-    "text": "query ItemsQuery_ItemsPageQuery {\n  itemConnection {\n    ...TotalCountBadgeComponent_ItemCountFragment\n    ...ItemTableTbodyDisplay_AllItemFragment\n  }\n}\n\nfragment ItemTableTbodyDisplay_AllItemFragment on ItemTypeConnection {\n  edges {\n    node {\n      id\n      name\n      sku\n      cost\n      markup\n      price\n      isService\n      isActive\n    }\n  }\n}\n\nfragment TotalCountBadgeComponent_ItemCountFragment on ItemTypeConnection {\n  totalCount\n}\n"
+    "text": "query ItemsQuery_ItemsPageQuery {\n  itemConnection {\n    ...TotalCountBadgeDisplay_ItemCountFragment\n    ...TbodyItemsTableDisplay_AllItemFragment\n  }\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n\nfragment TbodyItemsTableDisplay_AllItemFragment on ItemTypeConnection {\n  edges {\n    node {\n      id\n      ...RowTbodyItems_ItemsRowFragment\n    }\n  }\n}\n\nfragment TotalCountBadgeDisplay_ItemCountFragment on ItemTypeConnection {\n  totalCount\n}\n"
   }
 };
 
-(node as any).hash = "bcc23a68e40adb91819aa38b3876908a";
+(node as any).hash = "594e5e6526e8a4816c85888832168220";
 
 export default node;

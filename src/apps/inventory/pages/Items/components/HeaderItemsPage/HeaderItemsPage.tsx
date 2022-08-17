@@ -6,15 +6,18 @@ import {
   Group,
   SegmentedControl,
   Text,
+  Title,
   UnstyledButton,
   useMantineTheme,
 } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 import {
   IconFolderPlus,
   IconLayoutGrid,
   IconList,
   IconPlus,
 } from '@tabler/icons';
+import FormCreateItem from 'apps/inventory/pages/Items/components/FormCreateItem';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -22,6 +25,28 @@ function HeaderItemsPage() {
   const theme = useMantineTheme();
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [drawerType, setDrawerType] = useState<'item' | 'group'>('item');
+
+  const onItemCreated = () => {
+    setDrawerOpened(false);
+    showNotification({
+      title: 'Item Added',
+      message: '',
+      color: 'green',
+    });
+  };
+
+  const getDrawerContent = () => {
+    if (drawerType === 'item') {
+      return (
+        <FormCreateItem
+          onItemCreated={() => {
+            onItemCreated();
+          }}
+        />
+      );
+    }
+    return <h3>Group</h3>;
+  };
 
   return (
     <Group sx={{ justifyContent: 'space-between' }} align="flex-end">
@@ -91,6 +116,11 @@ function HeaderItemsPage() {
           size="xl"
           padding="xl"
           position="right"
+          title={
+            <Title order={3}>
+              {drawerType === 'item' ? 'Add Item' : 'Add Group'}
+            </Title>
+          }
           overlayColor={
             theme.colorScheme === 'dark'
               ? theme.colors.dark[9]
@@ -99,7 +129,7 @@ function HeaderItemsPage() {
           overlayOpacity={0.55}
           overlayBlur={3}
         >
-          {drawerType === 'item' ? 'Item' : 'Group'}
+          {getDrawerContent()}
         </Drawer>
       </Group>
     </Group>

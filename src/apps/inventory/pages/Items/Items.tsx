@@ -8,8 +8,8 @@ import MainContent from './components/MainContent';
 const itemsPageQuery = graphql`
   query ItemsQuery_ItemsPageQuery {
     itemConnection {
-      ...TotalCountBadgeComponent_ItemCountFragment
-      ...ItemTableTbodyDisplay_AllItemFragment
+      ...TotalCountBadgeDisplay_ItemCountFragment
+      ...TbodyItemsTableDisplay_AllItemFragment
     }
   }
 `;
@@ -18,7 +18,9 @@ function Items() {
   const [queryRef, loadQuery] =
     useQueryLoader<ItemsQuery_ItemsPageQuery>(itemsPageQuery);
 
+  // Using layoutEffect because it will send the request sooner
   useLayoutEffect(() => {
+    // Loading data from server
     loadQuery({});
   }, [loadQuery]);
 
