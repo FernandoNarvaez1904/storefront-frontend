@@ -16,6 +16,7 @@ import useHeaderStyles from './HeaderStyles';
 
 function Header() {
   const { classes } = useHeaderStyles();
+
   return (
     <Group className={classes.header} py={5} px="sm">
       <TextInput

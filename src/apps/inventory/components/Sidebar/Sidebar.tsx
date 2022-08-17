@@ -14,9 +14,9 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 function Sidebar() {
+  const path = useLocation();
   const theme = useMantineTheme();
   const { classes, cx } = useSidebarStyles();
-  const path = useLocation();
   const [active, setActive] = useState(path.pathname);
 
   useEffect(() => {
@@ -25,10 +25,10 @@ function Sidebar() {
 
   const links = route.subRoutes?.map((subRoute) => (
     <UnstyledButton
-      component={Link}
       className={cx(classes.link, {
         [classes.linkActive]: subRoute.path === active,
       })}
+      component={Link}
       to={subRoute.path}
       key={subRoute.title}
       onClick={() => {

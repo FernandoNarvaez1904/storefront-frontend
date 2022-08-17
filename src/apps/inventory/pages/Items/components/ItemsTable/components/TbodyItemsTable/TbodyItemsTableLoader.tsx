@@ -14,7 +14,7 @@ function TbodyItemsTableLoader({ queryRef }: Props) {
     queryRef
   );
 
-  return <TbodyItemsTableDisplay fragmentRef={data.itemConnection} />;
+  return <TbodyItemsTableDisplay itemConnectionRef={data.itemConnection} />;
 }
 
 export default TbodyItemsTableLoader;

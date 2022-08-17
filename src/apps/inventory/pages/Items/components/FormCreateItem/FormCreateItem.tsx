@@ -1,11 +1,11 @@
 import { Button, NumberInput, Stack, Switch, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { graphql, useMutation } from 'react-relay';
+import { PayloadError, SelectorStoreUpdater } from 'relay-runtime';
 import {
   FormCreateItem_CreateItemMutation,
   FormCreateItem_CreateItemMutation$data,
-} from 'apps/inventory/pages/Items/components/FormCreateItem/__generated__/FormCreateItem_CreateItemMutation.graphql';
-import { graphql, useMutation } from 'react-relay';
-import { PayloadError, SelectorStoreUpdater } from 'relay-runtime';
+} from './__generated__/FormCreateItem_CreateItemMutation.graphql';
 
 const createItemMutation = graphql`
   mutation FormCreateItem_CreateItemMutation($input: ItemCreateInput!) {
@@ -29,19 +29,21 @@ type Props = {
   ) => void;
 };
 
+interface CreateItemFormValues {
+  name: string;
+  sku: string;
+  barcode: string;
+  cost: number | null;
+  markup: number | null;
+  price: number | null;
+  isService: boolean;
+}
+
 function FormCreateItem({ onItemCreated }: Props) {
   const [commit, onFlight] =
     useMutation<FormCreateItem_CreateItemMutation>(createItemMutation);
 
-  const initVal: {
-    name: string;
-    sku: string;
-    barcode: string;
-    cost: number | null;
-    markup: number | null;
-    price: number | null;
-    isService: boolean;
-  } = {
+  const formInitialValue: CreateItemFormValues = {
     name: '',
     sku: '',
     barcode: '',
@@ -52,7 +54,7 @@ function FormCreateItem({ onItemCreated }: Props) {
   };
 
   const form = useForm({
-    initialValues: initVal,
+    initialValues: formInitialValue,
   });
 
   const price =
@@ -110,6 +112,7 @@ function FormCreateItem({ onItemCreated }: Props) {
       onCompleted: (response, errors) => {
         const hasErrors = response.itemCreate.userErrors.length;
         if (hasErrors) {
+          // Show Error in corresponding field
           response.itemCreate.userErrors.forEach((error) => {
             form.setFieldError(error.field, error.message);
           });
@@ -128,7 +131,7 @@ function FormCreateItem({ onItemCreated }: Props) {
       <Stack spacing="xs" sx={{ height: '100%' }}>
         <TextInput
           label="Name"
-          placeholder={"Item's Name"}
+          placeholder="Item's Name"
           required
           {...form.getInputProps('name')}
         />
@@ -160,18 +163,17 @@ function FormCreateItem({ onItemCreated }: Props) {
         />
         <NumberInput
           disabled
-          description="Editing Coming Soon"
           label="Price"
           precision={2}
           placeholder={price}
           required
+          description="Editing Coming Soon"
           {...form.getInputProps('price')}
         />
-
         <Switch
           label="Is Service"
-          {...form.getInputProps('isService')}
           mt="sm"
+          {...form.getInputProps('isService')}
         />
         <Button mt="sm" type="submit" loading={onFlight}>
           Save Item

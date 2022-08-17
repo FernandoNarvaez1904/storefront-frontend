@@ -17,14 +17,19 @@ import {
   IconList,
   IconPlus,
 } from '@tabler/icons';
-import FormCreateItem from 'apps/inventory/pages/Items/components/FormCreateItem';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import FormCreateItem from '../FormCreateItem';
 
 function HeaderItemsPage() {
   const theme = useMantineTheme();
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [drawerType, setDrawerType] = useState<'item' | 'group'>('item');
+
+  const openDrawer = (openedDrawerType: 'item' | 'group') => () => {
+    setDrawerOpened(true);
+    setDrawerType(openedDrawerType);
+  };
 
   const onItemCreated = () => {
     setDrawerOpened(false);
@@ -34,6 +39,12 @@ function HeaderItemsPage() {
       color: 'green',
     });
   };
+
+  const getDrawerTitle = (openedDrawerType: 'item' | 'group') => (
+    <Title order={3}>
+      {openedDrawerType === 'item' ? 'Add Item' : 'Add Group'}
+    </Title>
+  );
 
   const getDrawerContent = () => {
     if (drawerType === 'item') {
@@ -68,6 +79,7 @@ function HeaderItemsPage() {
           </Text>
         </UnstyledButton>
       </Breadcrumbs>
+
       <Group>
         <SegmentedControl
           value="list"
@@ -90,37 +102,28 @@ function HeaderItemsPage() {
             },
           ]}
         />
+
         <Button
           color="blue.5"
           leftIcon={<IconFolderPlus size={20} />}
-          onClick={() => {
-            setDrawerOpened(true);
-            setDrawerType('group');
-          }}
+          onClick={openDrawer('group')}
         >
           Add Group
         </Button>
+
         <Button
           color="teal.5"
           leftIcon={<IconPlus size={20} />}
-          onClick={() => {
-            setDrawerOpened(true);
-            setDrawerType('item');
-          }}
+          onClick={openDrawer('item')}
         >
           Add Item
         </Button>
         <Drawer
           opened={drawerOpened}
-          onClose={() => setDrawerOpened(false)}
+          title={getDrawerTitle(drawerType)}
           size="xl"
           padding="xl"
           position="right"
-          title={
-            <Title order={3}>
-              {drawerType === 'item' ? 'Add Item' : 'Add Group'}
-            </Title>
-          }
           overlayColor={
             theme.colorScheme === 'dark'
               ? theme.colors.dark[9]
@@ -128,6 +131,7 @@ function HeaderItemsPage() {
           }
           overlayOpacity={0.55}
           overlayBlur={3}
+          onClose={() => setDrawerOpened(false)}
         >
           {getDrawerContent()}
         </Drawer>

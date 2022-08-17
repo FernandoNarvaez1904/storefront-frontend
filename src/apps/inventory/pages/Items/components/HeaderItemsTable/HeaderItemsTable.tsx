@@ -5,11 +5,11 @@ import { PreloadedQuery } from 'react-relay';
 import TotalCountBadge from './components/TotalCountBadge';
 import useItemsTableHeaderStyles from './ItemsTableHeaderStyles';
 
-function HeaderItemsTable({
-  queryRef,
-}: {
+type Props = {
   queryRef: PreloadedQuery<ItemsQuery_ItemsPageQuery>;
-}) {
+};
+
+function HeaderItemsTable({ queryRef }: Props) {
   const { classes } = useItemsTableHeaderStyles();
 
   return (
@@ -18,7 +18,7 @@ function HeaderItemsTable({
         size="xs"
         placeholder="Search Items"
         icon={<IconSearch size={16} />}
-        sx={{ flexGrow: 1 }}
+        className={classes.searchInput}
       />
 
       <TotalCountBadge queryRef={queryRef} />

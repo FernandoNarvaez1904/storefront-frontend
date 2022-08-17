@@ -5,7 +5,7 @@ import { PreloadedQuery } from 'react-relay';
 import TbodyItemsTable from './components/TbodyItemsTable';
 import useItemTableStyles from './ItemTableStyles';
 
-export type Props = {
+type Props = {
   height: number | string;
   queryRef: PreloadedQuery<ItemsQuery_ItemsPageQuery>;
 };
@@ -17,7 +17,7 @@ function ItemsTable({ height, queryRef }: Props) {
   return (
     <ScrollArea
       sx={{ height }}
-      onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
+      onScrollPositionChange={(position) => setScrolled(position.y !== 0)}
     >
       <Table verticalSpacing="sm" fontSize="sm" highlightOnHover>
         <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>

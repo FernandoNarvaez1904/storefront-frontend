@@ -14,16 +14,17 @@ const allItemsFragment = graphql`
 `;
 
 type Props = {
-  fragmentRef: TbodyItemsTableDisplay_AllItemFragment$key;
+  itemConnectionRef: TbodyItemsTableDisplay_AllItemFragment$key;
 };
 
-function TbodyItemsTableDisplay({ fragmentRef }: Props) {
-  const data = useFragment<TbodyItemsTableDisplay_AllItemFragment$key>(
-    allItemsFragment,
-    fragmentRef
-  );
+function TbodyItemsTableDisplay({ itemConnectionRef }: Props) {
+  const itemConnection =
+    useFragment<TbodyItemsTableDisplay_AllItemFragment$key>(
+      allItemsFragment,
+      itemConnectionRef
+    );
 
-  const rows = data.edges.map((item, idx: number) => (
+  const rows = itemConnection.edges.map((item, idx: number) => (
     <RowTbodyItems fragmentRef={item.node} idx={idx + 1} key={item.node.id} />
   ));
 
