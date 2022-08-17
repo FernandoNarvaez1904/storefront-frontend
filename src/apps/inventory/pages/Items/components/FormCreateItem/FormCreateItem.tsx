@@ -154,7 +154,7 @@ function FormCreateItem({ onItemCreated }: Props) {
         <NumberInput
           label="Markup"
           precision={2}
-          placeholder="C$0.00"
+          placeholder="0.00%"
           required
           {...form.getInputProps('markup')}
         />
