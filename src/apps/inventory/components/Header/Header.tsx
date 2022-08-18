@@ -29,22 +29,22 @@ function Header() {
         placeholder="Search"
       />
       <Group>
-        <ActionIcon color="red.5" size="lg">
+        <ActionIcon color="red.5" size="lg" disabled>
           <IconWifiOff />
         </ActionIcon>
 
-        <ActionIcon size="lg">
+        <ActionIcon size="lg" disabled>
           <IconBell />
         </ActionIcon>
 
-        <ActionIcon size="lg">
+        <ActionIcon size="lg" disabled>
           <IconMoon />
         </ActionIcon>
 
         <Tooltip
           label={fullscreen ? 'Minimize' : 'Maximize'}
-          withArrow
           color="gray"
+          withArrow
           openDelay={500}
         >
           <ActionIcon size="lg" onClick={toggleFullscreen}>
