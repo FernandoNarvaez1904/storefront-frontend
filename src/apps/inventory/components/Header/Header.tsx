@@ -43,7 +43,7 @@ function Header() {
 
         <Tooltip
           label={fullscreen ? 'Minimize' : 'Maximize'}
-          color="gray"
+          color="gray.6"
           withArrow
           openDelay={500}
         >
