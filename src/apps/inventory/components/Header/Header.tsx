@@ -5,8 +5,10 @@ import {
   TextInput,
   UnstyledButton,
 } from '@mantine/core';
+import { useFullscreen } from '@mantine/hooks';
 import {
   IconArrowsMaximize,
+  IconArrowsMinimize,
   IconBell,
   IconMoon,
   IconSearch,
@@ -16,6 +18,7 @@ import useHeaderStyles from './HeaderStyles';
 
 function Header() {
   const { classes } = useHeaderStyles();
+  const { toggle: toggleFullscreen, fullscreen } = useFullscreen();
 
   return (
     <Group className={classes.header} py={5} px="sm">
@@ -37,8 +40,8 @@ function Header() {
           <IconMoon />
         </ActionIcon>
 
-        <ActionIcon size="lg">
-          <IconArrowsMaximize />
+        <ActionIcon size="lg" onClick={toggleFullscreen}>
+          {fullscreen ? <IconArrowsMinimize /> : <IconArrowsMaximize />}
         </ActionIcon>
 
         <UnstyledButton>
