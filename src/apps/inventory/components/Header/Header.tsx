@@ -3,6 +3,7 @@ import {
   Avatar,
   Group,
   TextInput,
+  Tooltip,
   UnstyledButton,
 } from '@mantine/core';
 import { useFullscreen } from '@mantine/hooks';
@@ -40,9 +41,16 @@ function Header() {
           <IconMoon />
         </ActionIcon>
 
-        <ActionIcon size="lg" onClick={toggleFullscreen}>
-          {fullscreen ? <IconArrowsMinimize /> : <IconArrowsMaximize />}
-        </ActionIcon>
+        <Tooltip
+          label={fullscreen ? 'Minimize' : 'Maximize'}
+          withArrow
+          color="gray"
+          openDelay={500}
+        >
+          <ActionIcon size="lg" onClick={toggleFullscreen}>
+            {fullscreen ? <IconArrowsMinimize /> : <IconArrowsMaximize />}
+          </ActionIcon>
+        </Tooltip>
 
         <UnstyledButton>
           <Avatar radius="sm" color="blue" size={30}>
