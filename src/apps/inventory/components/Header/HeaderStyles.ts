@@ -14,6 +14,13 @@ const useHeaderStyles = createStyles((theme) => ({
         ? theme.colors.yellow[4]
         : theme.colors.blue[5],
   },
+
+  defaultButton: {
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[2]
+        : theme.colors.gray[6],
+  },
 }));
 
 export default useHeaderStyles;

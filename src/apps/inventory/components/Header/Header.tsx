@@ -60,7 +60,11 @@ function Header() {
           withArrow
           openDelay={500}
         >
-          <ActionIcon size="lg" onClick={toggleFullscreen}>
+          <ActionIcon
+            size="lg"
+            onClick={toggleFullscreen}
+            className={classes.defaultButton}
+          >
             {fullscreen ? <IconArrowsMinimize /> : <IconArrowsMaximize />}
           </ActionIcon>
         </Tooltip>
