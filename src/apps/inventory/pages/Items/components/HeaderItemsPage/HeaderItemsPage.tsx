@@ -20,9 +20,11 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import FormCreateItem from '../FormCreateItem';
+import useHeaderItemsPageStyles from './HeaderItemsPageStyles';
 
 function HeaderItemsPage() {
   const theme = useMantineTheme();
+  const { classes } = useHeaderItemsPageStyles();
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [drawerType, setDrawerType] = useState<'item' | 'group'>('item');
 
@@ -114,7 +116,7 @@ function HeaderItemsPage() {
         </Button>
 
         <Button
-          color="teal.5"
+          className={classes.addItemButton}
           leftIcon={<IconPlus size={20} />}
           onClick={openDrawer('item')}
         >
