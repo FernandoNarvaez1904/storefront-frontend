@@ -1,9 +1,22 @@
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider,
+} from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
 import Home from 'pages/Home';
+import { useState } from 'react';
+import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import relayEnvironment from 'RelayEnviroment';
 import allRoutes, { AppRoute } from 'routing/allRoutes';
 import './global.css';
 
 function App() {
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
   const getAppsRoutes = () =>
     allRoutes.map((appRoute: AppRoute) => (
       <Route
@@ -22,12 +35,27 @@ function App() {
     ));
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {getAppsRoutes()}
-      </Routes>
-    </BrowserRouter>
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
+      <MantineProvider
+        theme={{ colorScheme }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
+        <NotificationsProvider position="top-right">
+          <RelayEnvironmentProvider environment={relayEnvironment}>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                {getAppsRoutes()}
+              </Routes>
+            </BrowserRouter>
+          </RelayEnvironmentProvider>
+        </NotificationsProvider>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
 
