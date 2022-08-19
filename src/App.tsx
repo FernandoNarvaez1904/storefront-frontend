@@ -3,9 +3,9 @@ import {
   ColorSchemeProvider,
   MantineProvider,
 } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
 import Home from 'pages/Home';
-import { useState } from 'react';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import relayEnvironment from 'RelayEnviroment';
@@ -13,7 +13,10 @@ import allRoutes, { AppRoute } from 'routing/allRoutes';
 import './global.css';
 
 function App() {
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: 'colorScheme',
+    defaultValue: 'light',
+  });
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
