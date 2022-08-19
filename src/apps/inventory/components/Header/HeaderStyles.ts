@@ -8,6 +8,12 @@ const useHeaderStyles = createStyles((theme) => ({
     justifyContent: 'space-between',
     height: 66,
   },
+  changeThemeButton: {
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.yellow[4]
+        : theme.colors.blue[5],
+  },
 }));
 
 export default useHeaderStyles;
