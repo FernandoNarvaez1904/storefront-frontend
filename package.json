@@ -60,7 +60,7 @@
     "src": "./src/",
     "schema": "./schema.graphql",
     "schemaExtensions": [
-      "./src/apps/pointOfSale/"
+      "./src"
     ],
     "language": "typescript",
     "exclude": [
