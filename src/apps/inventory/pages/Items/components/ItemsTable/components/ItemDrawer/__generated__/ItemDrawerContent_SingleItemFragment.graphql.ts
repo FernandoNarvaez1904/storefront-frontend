@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0a0b20bdb7267aee6372273d4612ebc8>>
+ * @generated SignedSource<<7afadd69e2fc93512e8cb4ec4dfd5c3b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,16 +11,7 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ItemDrawerContent_SingleItemFragment$data = {
-  readonly barcode: string | null;
-  readonly cost: number;
-  readonly currentStock: number;
-  readonly id: any;
-  readonly isActive: boolean;
-  readonly isService: boolean;
-  readonly markup: number;
-  readonly name: string | null;
-  readonly price: number | null;
-  readonly sku: string;
+  readonly " $fragmentSpreads": FragmentRefs<"GeneralInformationTab_itemFragment">;
   readonly " $fragmentType": "ItemDrawerContent_SingleItemFragment";
 };
 export type ItemDrawerContent_SingleItemFragment$key = {
@@ -35,80 +26,15 @@ const node: ReaderFragment = {
   "name": "ItemDrawerContent_SingleItemFragment",
   "selections": [
     {
-      "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "name",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "sku",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "cost",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "markup",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "price",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "isService",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "isActive",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "currentStock",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "barcode",
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "GeneralInformationTab_itemFragment"
     }
   ],
   "type": "ItemType",
   "abstractKey": null
 };
 
-(node as any).hash = "671be08b4f8b8bdde960e381b9a9ee4f";
+(node as any).hash = "852aa30b4944a1ec6cb3ab92e7109995";
 
 export default node;

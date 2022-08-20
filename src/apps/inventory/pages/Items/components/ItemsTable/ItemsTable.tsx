@@ -1,10 +1,10 @@
 import { ScrollArea, Table } from '@mantine/core';
 import { ItemsQuery_ItemsPageQuery } from 'apps/inventory/pages/Items/__generated__/ItemsQuery_ItemsPageQuery.graphql';
-import ItemDrawer from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer';
 import { setItemDrawerStoreDefaultValues } from 'apps/inventory/pages/Items/components/ItemsTable/store/defaultValues';
 import { useState } from 'react';
 import { PreloadedQuery } from 'react-relay';
 import relayEnvironment from 'RelayEnviroment';
+import ItemDrawer from './components/ItemDrawer';
 import TbodyItemsTable from './components/TbodyItemsTable';
 import useItemTableStyles from './ItemTableStyles';
 
@@ -22,7 +22,6 @@ function ItemsTable({ height, queryRef }: Props) {
   return (
     <>
       <ItemDrawer />
-
       <ScrollArea
         sx={{ height }}
         onScrollPositionChange={(position) => setScrolled(position.y !== 0)}
