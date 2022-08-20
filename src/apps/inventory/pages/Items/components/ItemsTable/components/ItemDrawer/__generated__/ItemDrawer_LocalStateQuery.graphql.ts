@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c196b7ee35ef5b99ab6217dc1912f112>>
+ * @generated SignedSource<<3be08252592d577e2d367a91b61de4eb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,7 @@ export type ItemDrawer_LocalStateQuery$data = {
     readonly drawerState: {
       readonly currentItem: {
         readonly id: any;
+        readonly name: string | null;
         readonly " $fragmentSpreads": FragmentRefs<"ItemDrawerContent_SingleItemFragment">;
       } | null;
       readonly opened: boolean;
@@ -40,6 +41,13 @@ v1 = {
   "args": null,
   "kind": "ScalarField",
   "name": "id",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
   "storageKey": null
 };
 return {
@@ -78,6 +86,7 @@ return {
                     "plural": false,
                     "selections": [
                       (v1/*: any*/),
+                      (v2/*: any*/),
                       {
                         "args": null,
                         "kind": "FragmentSpread",
@@ -133,13 +142,7 @@ return {
                     "plural": false,
                     "selections": [
                       (v1/*: any*/),
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "name",
-                        "storageKey": null
-                      },
+                      (v2/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -158,13 +161,6 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "markup",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
                         "name": "price",
                         "storageKey": null
                       },
@@ -172,7 +168,14 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "isService",
+                        "name": "markup",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "barcode",
                         "storageKey": null
                       },
                       {
@@ -186,14 +189,28 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "currentStock",
+                        "name": "isService",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "barcode",
+                        "name": "versionId",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "creationDate",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "currentStock",
                         "storageKey": null
                       }
                     ],
@@ -220,6 +237,6 @@ return {
 };
 })();
 
-(node as any).hash = "c9d4c6e21dcfff25343db098d82a0107";
+(node as any).hash = "d0cbd70b2fc169fec5d4fc9b0a9eef49";
 
 export default node;

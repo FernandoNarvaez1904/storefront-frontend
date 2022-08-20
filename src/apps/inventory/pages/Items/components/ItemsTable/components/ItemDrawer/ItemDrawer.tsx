@@ -1,4 +1,4 @@
-import { Drawer, useMantineTheme } from '@mantine/core';
+import { Box, Drawer, Title, useMantineTheme } from '@mantine/core';
 import { closeItemDrawer } from 'apps/inventory/pages/Items/components/ItemsTable/store/updateLocal';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 import relayEnvironment from 'RelayEnviroment';
@@ -12,6 +12,7 @@ const itemDrawerQuery = graphql`
         opened
         currentItem {
           id
+          name
           ...ItemDrawerContent_SingleItemFragment
         }
       }
@@ -29,7 +30,15 @@ function ItemDrawer() {
 
   return (
     <Drawer
-      title="Item"
+      title={
+        <Box>
+          {data.itemsTable_localState.drawerState.currentItem !== null && (
+            <Title order={2}>
+              Item {data.itemsTable_localState.drawerState.currentItem.name}
+            </Title>
+          )}
+        </Box>
+      }
       size="xl"
       padding="xl"
       position="right"
@@ -45,12 +54,11 @@ function ItemDrawer() {
         closeItemDrawer(relayEnvironment);
       }}
     >
-      {
-        data.itemsTable_localState.drawerState.currentItem && <ItemDrawerContent
+      {data.itemsTable_localState.drawerState.currentItem !== null && (
+        <ItemDrawerContent
           itemFragmentRef={data.itemsTable_localState.drawerState.currentItem}
         />
-      }
-
+      )}
     </Drawer>
   );
 }

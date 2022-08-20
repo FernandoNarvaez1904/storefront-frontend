@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6039449b7b1e549b41a7fc1f5513f1e6>>
+ * @generated SignedSource<<337968b5ea3cd112fb59e16ff3a1eec6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -175,14 +175,28 @@ const node: ConcreteRequest = {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "currentStock",
+                    "name": "barcode",
                     "storageKey": null
                   },
                   {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "barcode",
+                    "name": "versionId",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "creationDate",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "currentStock",
                     "storageKey": null
                   }
                 ],
@@ -204,12 +218,12 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "104e6f5bdf3c316c018ce26207ac9eb0",
+    "cacheID": "f4cf324aa3ce9496f1cdfbf7a27c9f14",
     "id": null,
     "metadata": {},
     "name": "ItemsQuery_ItemsPageQuery",
     "operationKind": "query",
-    "text": "query ItemsQuery_ItemsPageQuery {\n  itemConnection {\n    ...TbodyItemsTableDisplay_AllItemFragment\n    ...TotalCountBadgeDisplay_ItemCountFragment\n    edges {\n      node {\n        ...ItemDrawerContent_SingleItemFragment\n      }\n    }\n  }\n}\n\nfragment ItemDrawerContent_SingleItemFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n  currentStock\n  barcode\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n\nfragment TbodyItemsTableDisplay_AllItemFragment on ItemTypeConnection {\n  edges {\n    node {\n      id\n      ...RowTbodyItems_ItemsRowFragment\n    }\n  }\n}\n\nfragment TotalCountBadgeDisplay_ItemCountFragment on ItemTypeConnection {\n  totalCount\n}\n"
+    "text": "query ItemsQuery_ItemsPageQuery {\n  itemConnection {\n    ...TbodyItemsTableDisplay_AllItemFragment\n    ...TotalCountBadgeDisplay_ItemCountFragment\n    edges {\n      node {\n        ...ItemDrawerContent_SingleItemFragment\n      }\n    }\n  }\n}\n\nfragment GeneralInformationTab_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  versionId\n  creationDate\n  currentStock\n}\n\nfragment ItemDrawerContent_SingleItemFragment on ItemType {\n  ...GeneralInformationTab_itemFragment\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n\nfragment TbodyItemsTableDisplay_AllItemFragment on ItemTypeConnection {\n  edges {\n    node {\n      id\n      ...RowTbodyItems_ItemsRowFragment\n    }\n  }\n}\n\nfragment TotalCountBadgeDisplay_ItemCountFragment on ItemTypeConnection {\n  totalCount\n}\n"
   }
 };
 
