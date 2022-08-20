@@ -1,4 +1,6 @@
+import { openItemDrawer } from 'apps/inventory/pages/Items/components/ItemsTable/store/updateLocal';
 import { graphql, useFragment } from 'react-relay';
+import relayEnvironment from 'RelayEnviroment';
 import { TbodyItemsTableDisplay_AllItemFragment$key } from './__generated__/TbodyItemsTableDisplay_AllItemFragment.graphql';
 import RowTbodyItems from './RowTbodyItems';
 
@@ -25,7 +27,14 @@ function TbodyItemsTableDisplay({ itemConnectionRef }: Props) {
     );
 
   const rows = itemConnection.edges.map((item, idx: number) => (
-    <RowTbodyItems fragmentRef={item.node} idx={idx + 1} key={item.node.id} />
+    <RowTbodyItems
+      fragmentRef={item.node}
+      idx={idx + 1}
+      key={item.node.id}
+      onClick={() => {
+        openItemDrawer(relayEnvironment, item.node.id);
+      }}
+    />
   ));
 
   return <tbody>{rows}</tbody>;

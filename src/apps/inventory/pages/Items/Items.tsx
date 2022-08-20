@@ -9,8 +9,17 @@ import useItemsStyles from './itemsStyles';
 const itemsPageQuery = graphql`
   query ItemsQuery_ItemsPageQuery {
     itemConnection {
-      ...TotalCountBadgeDisplay_ItemCountFragment
       ...TbodyItemsTableDisplay_AllItemFragment
+      ...TotalCountBadgeDisplay_ItemCountFragment
+
+      # This is included to not force loading, when entering pos
+      # It does not lead to any queryRef, because the fragment is called
+      # in its own component via useLazyLoadQuery
+      edges {
+        node {
+          ...ItemDrawerContent_SingleItemFragment
+        }
+      }
     }
   }
 `;

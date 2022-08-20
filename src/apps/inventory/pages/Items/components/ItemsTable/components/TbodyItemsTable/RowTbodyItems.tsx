@@ -1,3 +1,4 @@
+import React from 'react';
 import { graphql, useFragment } from 'react-relay';
 import { RowTbodyItems_ItemsRowFragment$key } from './__generated__/RowTbodyItems_ItemsRowFragment.graphql';
 
@@ -14,18 +15,22 @@ const itemsRowFragment = graphql`
   }
 `;
 
-type Props = {
+type Props = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLTableRowElement>,
+  HTMLTableRowElement
+> & {
   fragmentRef: RowTbodyItems_ItemsRowFragment$key;
   idx: number;
 };
 
-function RowTbodyItems({ fragmentRef, idx }: Props) {
+function RowTbodyItems({ fragmentRef, idx, ...props }: Props) {
   const item = useFragment<RowTbodyItems_ItemsRowFragment$key>(
     itemsRowFragment,
     fragmentRef
   );
   return (
-    <tr key={item.id}>
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <tr key={item.id} {...props}>
       <td>{idx}</td>
       <td>{item.name}</td>
       <td>{item.sku}</td>
