@@ -31,7 +31,7 @@ function ItemDrawer() {
   return (
     <Drawer
       title={
-        <Box>
+        <Box data-autofocus>
           {data.itemsTable_localState.drawerState.currentItem !== null && (
             <Title order={2}>
               Item {data.itemsTable_localState.drawerState.currentItem.name}
