@@ -3,7 +3,7 @@ import { ItemsQuery_ItemsPageQuery } from 'apps/inventory/pages/Items/__generate
 import { useLayoutEffect } from 'react';
 import { graphql, useQueryLoader } from 'react-relay';
 import HeaderItemsPage from './components/HeaderItemsPage';
-import MainContent from './components/MainContent';
+import ItemsTable from './components/ItemsTable';
 import useItemsStyles from './itemsStyles';
 
 const itemsPageQuery = graphql`
@@ -38,7 +38,7 @@ function Items() {
   return (
     <Stack className={classes.itemsPageContainer}>
       <HeaderItemsPage />
-      {queryRef && <MainContent queryRef={queryRef} />}
+      {queryRef && <ItemsTable queryRef={queryRef} />}
     </Stack>
   );
 }

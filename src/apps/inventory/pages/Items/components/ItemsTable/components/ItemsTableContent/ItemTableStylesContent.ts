@@ -1,6 +1,6 @@
 import { createStyles } from '@mantine/core';
 
-const useItemTableStyles = createStyles((theme) => ({
+const useItemsTableContentStyles = createStyles((theme) => ({
   header: {
     position: 'sticky',
     top: 0,
@@ -27,4 +27,4 @@ const useItemTableStyles = createStyles((theme) => ({
   },
 }));
 
-export default useItemTableStyles;
+export default useItemsTableContentStyles;

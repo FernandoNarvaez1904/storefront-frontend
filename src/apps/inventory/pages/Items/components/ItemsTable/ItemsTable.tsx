@@ -1,50 +1,38 @@
-import { ScrollArea, Table } from '@mantine/core';
+import { Box, Skeleton, Stack } from '@mantine/core';
+import { useElementSize } from '@mantine/hooks';
 import { ItemsQuery_ItemsPageQuery } from 'apps/inventory/pages/Items/__generated__/ItemsQuery_ItemsPageQuery.graphql';
 import { setItemDrawerStoreDefaultValues } from 'apps/inventory/pages/Items/components/ItemsTable/store/defaultValues';
-import { useState } from 'react';
+import { Suspense } from 'react';
 import { PreloadedQuery } from 'react-relay';
 import relayEnvironment from 'RelayEnviroment';
-import ItemDrawer from './components/ItemDrawer';
-import TbodyItemsTable from './components/TbodyItemsTable';
-import useItemTableStyles from './ItemTableStyles';
+import HeaderItemsTable, {
+  HeaderItemsTableSkeleton,
+} from './components/HeaderItemsTable';
+import ItemsTableContent from './components/ItemsTableContent';
+import useMainContentStyles from './ItemsTableStyles';
 
 type Props = {
-  height: number | string;
   queryRef: PreloadedQuery<ItemsQuery_ItemsPageQuery>;
 };
 
-function ItemsTable({ height, queryRef }: Props) {
+function ItemsTable({ queryRef }: Props) {
+  const { classes } = useMainContentStyles();
+  const { height: tableHeight, ref: refTableHeight } = useElementSize();
   setItemDrawerStoreDefaultValues(relayEnvironment);
 
-  const { classes, cx } = useItemTableStyles();
-  const [scrolled, setScrolled] = useState(false);
-
   return (
-    <>
-      <ItemDrawer />
-      <ScrollArea
-        sx={{ height }}
-        onScrollPositionChange={(position) => setScrolled(position.y !== 0)}
-      >
-        <Table verticalSpacing="sm" fontSize="sm" highlightOnHover>
-          <thead
-            className={cx(classes.header, { [classes.scrolled]: scrolled })}
-          >
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>SKU</th>
-              <th>Cost</th>
-              <th>Markup</th>
-              <th>Sell Price</th>
-              <th>Is Service</th>
-              <th>Is Active</th>
-            </tr>
-          </thead>
-          <TbodyItemsTable queryRef={queryRef} />
-        </Table>
-      </ScrollArea>
-    </>
+    <Stack className={classes.fullHeightFlex} spacing={0}>
+      <Suspense fallback={<HeaderItemsTableSkeleton />}>
+        <HeaderItemsTable queryRef={queryRef} />
+      </Suspense>
+
+      {/* This Box is needed to get the height of the table to get the scroll bar height */}
+      <Box className={classes.growingFlexItem} ref={refTableHeight}>
+        <Suspense fallback={<Skeleton width="100%" height="100%" mt="xs" />}>
+          <ItemsTableContent height={tableHeight} queryRef={queryRef} />
+        </Suspense>
+      </Box>
+    </Stack>
   );
 }
 

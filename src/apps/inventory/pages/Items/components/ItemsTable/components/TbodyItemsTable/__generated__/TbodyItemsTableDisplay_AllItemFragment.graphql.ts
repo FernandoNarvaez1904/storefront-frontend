@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<24e1ac108d119d457678d6b71537d4cf>>
+ * @generated SignedSource<<21868dc4c59c1f4f6249345b6e0c74df>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,10 @@ import { FragmentRefs } from "relay-runtime";
 export type TbodyItemsTableDisplay_AllItemFragment$data = {
   readonly edges: ReadonlyArray<{
     readonly node: {
+      readonly barcode: string | null;
       readonly id: any;
+      readonly name: string | null;
+      readonly sku: string;
       readonly " $fragmentSpreads": FragmentRefs<"RowTbodyItems_ItemsRowFragment">;
     };
   }>;
@@ -54,6 +57,27 @@ const node: ReaderFragment = {
               "storageKey": null
             },
             {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "name",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "barcode",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "sku",
+              "storageKey": null
+            },
+            {
               "args": null,
               "kind": "FragmentSpread",
               "name": "RowTbodyItems_ItemsRowFragment"
@@ -69,6 +93,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "539bb30c113135287411755033290740";
+(node as any).hash = "c7ceb335a71e30a26b5fb835b328fb1e";
 
 export default node;
