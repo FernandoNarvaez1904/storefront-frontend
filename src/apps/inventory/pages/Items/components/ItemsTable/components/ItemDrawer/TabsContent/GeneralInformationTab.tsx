@@ -160,15 +160,6 @@ function GeneralInformationTab({ itemFragmentRef }: Props) {
             C${item.currentStock * (item.price === null ? 0 : item.price)}
           </Text>
         </Group>
-
-        <Group grow>
-          <Text color="dimmed" weight="500" size="sm">
-            Stock Sell Value:
-          </Text>
-          <Text size="sm">
-            C${item.currentStock * (item.price === null ? 0 : item.price)}
-          </Text>
-        </Group>
       </Stack>
     </Stack>
   );

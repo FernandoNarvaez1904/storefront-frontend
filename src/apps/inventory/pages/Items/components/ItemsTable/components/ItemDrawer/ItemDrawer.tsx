@@ -1,7 +1,19 @@
-import { Box, Drawer, Title, useMantineTheme } from '@mantine/core';
-import { closeItemDrawer } from 'apps/inventory/pages/Items/components/ItemsTable/store/updateLocal';
+import {
+  ActionIcon,
+  Box,
+  CloseButton,
+  Drawer,
+  Group,
+  Title,
+  useMantineTheme,
+} from '@mantine/core';
+import { IconEdit, IconInfoCircle } from '@tabler/icons';
+import FormUpdateItem from 'apps/inventory/pages/Items/components/FormUpdateItem';
+import useItemDrawerStyles from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/ItemDrawerStyles';
+import { useState } from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 import relayEnvironment from 'RelayEnviroment';
+import { closeItemDrawer } from '../../store/updateLocal';
 import { ItemDrawer_LocalStateQuery } from './__generated__/ItemDrawer_LocalStateQuery.graphql';
 import ItemDrawerContent from './ItemDrawerContent';
 
@@ -14,6 +26,7 @@ const itemDrawerQuery = graphql`
           id
           name
           ...ItemDrawerContent_SingleItemFragment
+          ...FormUpdateItem_ItemFragment
         }
       }
     }
@@ -21,24 +34,51 @@ const itemDrawerQuery = graphql`
 `;
 
 function ItemDrawer() {
-  const theme = useMantineTheme();
   const data = useLazyLoadQuery<ItemDrawer_LocalStateQuery>(
     itemDrawerQuery,
     {},
     { fetchPolicy: 'store-only' }
   );
+  const { drawerState } = data.itemsTable_localState;
+  const { currentItem } = drawerState;
+
+  const [isEditMode, setIsEditMode] = useState(false);
+  const toggleEditMode = () => {
+    setIsEditMode((prev) => !prev);
+  };
+
+  const theme = useMantineTheme();
+  const { classes } = useItemDrawerStyles();
+
+  const closeDrawer = () => {
+    closeItemDrawer(relayEnvironment);
+    setIsEditMode(false);
+  };
+
+  const getDrawerContent = (isEditModeActive: boolean) => {
+    if (isEditModeActive) {
+      return (
+        <Box sx={{ height: '100%' }}>
+          {currentItem !== null && (
+            <FormUpdateItem
+              itemFragmentRef={currentItem}
+              onItemUpdate={() => setIsEditMode(false)}
+            />
+          )}
+        </Box>
+      );
+    }
+    return (
+      <Box sx={{ height: '100%' }}>
+        {currentItem !== null && (
+          <ItemDrawerContent itemFragmentRef={currentItem} />
+        )}
+      </Box>
+    );
+  };
 
   return (
     <Drawer
-      title={
-        <Box data-autofocus>
-          {data.itemsTable_localState.drawerState.currentItem !== null && (
-            <Title order={2}>
-              Item {data.itemsTable_localState.drawerState.currentItem.name}
-            </Title>
-          )}
-        </Box>
-      }
       size="xl"
       padding="xl"
       position="right"
@@ -49,16 +89,39 @@ function ItemDrawer() {
           ? theme.colors.dark[9]
           : theme.colors.gray[2]
       }
-      opened={data.itemsTable_localState.drawerState.opened}
+      withCloseButton={false}
+      opened={drawerState.opened}
       onClose={() => {
-        closeItemDrawer(relayEnvironment);
+        closeDrawer();
       }}
     >
-      {data.itemsTable_localState.drawerState.currentItem !== null && (
-        <ItemDrawerContent
-          itemFragmentRef={data.itemsTable_localState.drawerState.currentItem}
+      <Group sx={{ justifyContent: 'space-between' }} mb="xs">
+        <Group align="center">
+          {currentItem !== null && (
+            <>
+              <Title order={2}>
+                {isEditMode ? 'Update' : 'View'} {currentItem.name}
+              </Title>
+
+              <ActionIcon size="md" onClick={toggleEditMode}>
+                {isEditMode ? (
+                  <IconInfoCircle size={22} className={classes.defaultButton} />
+                ) : (
+                  <IconEdit size={22} className={classes.defaultButton} />
+                )}
+              </ActionIcon>
+            </>
+          )}
+        </Group>
+        <CloseButton
+          iconSize={16}
+          onClick={() => {
+            closeDrawer();
+          }}
+          className={classes.defaultButton}
         />
-      )}
+      </Group>
+      {getDrawerContent(isEditMode)}
     </Drawer>
   );
 }

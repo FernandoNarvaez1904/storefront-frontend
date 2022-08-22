@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3be08252592d577e2d367a91b61de4eb>>
+ * @generated SignedSource<<b37a90c42e36561732d0a5b9b68410e2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,7 +17,7 @@ export type ItemDrawer_LocalStateQuery$data = {
       readonly currentItem: {
         readonly id: any;
         readonly name: string | null;
-        readonly " $fragmentSpreads": FragmentRefs<"ItemDrawerContent_SingleItemFragment">;
+        readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItem_ItemFragment" | "ItemDrawerContent_SingleItemFragment">;
       } | null;
       readonly opened: boolean;
     };
@@ -91,6 +91,11 @@ return {
                         "args": null,
                         "kind": "FragmentSpread",
                         "name": "ItemDrawerContent_SingleItemFragment"
+                      },
+                      {
+                        "args": null,
+                        "kind": "FragmentSpread",
+                        "name": "FormUpdateItem_ItemFragment"
                       }
                     ],
                     "storageKey": null
@@ -237,6 +242,6 @@ return {
 };
 })();
 
-(node as any).hash = "d0cbd70b2fc169fec5d4fc9b0a9eef49";
+(node as any).hash = "e116913a5655119f0cfbc33b5b442fa4";
 
 export default node;

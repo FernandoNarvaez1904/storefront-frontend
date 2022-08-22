@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c2e8425a32d251ebb31085c52eba1397>>
+ * @generated SignedSource<<614ca01b5b06736ce66ca038ad51751a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type ItemsQuery_ItemsPageQuery$data = {
   readonly itemConnection: {
     readonly edges: ReadonlyArray<{
       readonly node: {
-        readonly " $fragmentSpreads": FragmentRefs<"ItemDrawerContent_SingleItemFragment">;
+        readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItem_ItemFragment" | "ItemDrawerContent_SingleItemFragment">;
       };
     }>;
     readonly " $fragmentSpreads": FragmentRefs<"TbodyItemsTableDisplay_AllItemFragment" | "TotalCountBadgeDisplay_ItemCountFragment">;
@@ -71,6 +71,11 @@ const node: ConcreteRequest = {
                     "args": null,
                     "kind": "FragmentSpread",
                     "name": "ItemDrawerContent_SingleItemFragment"
+                  },
+                  {
+                    "args": null,
+                    "kind": "FragmentSpread",
+                    "name": "FormUpdateItem_ItemFragment"
                   }
                 ],
                 "storageKey": null
@@ -218,15 +223,15 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "43e3df6ca4fc8d7186225a123030fa80",
+    "cacheID": "6e66fcfe68ef990229199f0eeb487cf1",
     "id": null,
     "metadata": {},
     "name": "ItemsQuery_ItemsPageQuery",
     "operationKind": "query",
-    "text": "query ItemsQuery_ItemsPageQuery {\n  itemConnection {\n    ...TbodyItemsTableDisplay_AllItemFragment\n    ...TotalCountBadgeDisplay_ItemCountFragment\n    edges {\n      node {\n        ...ItemDrawerContent_SingleItemFragment\n      }\n    }\n  }\n}\n\nfragment GeneralInformationTab_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  versionId\n  creationDate\n  currentStock\n}\n\nfragment ItemDrawerContent_SingleItemFragment on ItemType {\n  ...GeneralInformationTab_itemFragment\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n\nfragment TbodyItemsTableDisplay_AllItemFragment on ItemTypeConnection {\n  edges {\n    node {\n      id\n      name\n      barcode\n      sku\n      ...RowTbodyItems_ItemsRowFragment\n    }\n  }\n}\n\nfragment TotalCountBadgeDisplay_ItemCountFragment on ItemTypeConnection {\n  totalCount\n}\n"
+    "text": "query ItemsQuery_ItemsPageQuery {\n  itemConnection {\n    ...TbodyItemsTableDisplay_AllItemFragment\n    ...TotalCountBadgeDisplay_ItemCountFragment\n    edges {\n      node {\n        ...ItemDrawerContent_SingleItemFragment\n        ...FormUpdateItem_ItemFragment\n      }\n    }\n  }\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment GeneralInformationTab_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  versionId\n  creationDate\n  currentStock\n}\n\nfragment ItemDrawerContent_SingleItemFragment on ItemType {\n  ...GeneralInformationTab_itemFragment\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n\nfragment TbodyItemsTableDisplay_AllItemFragment on ItemTypeConnection {\n  edges {\n    node {\n      id\n      name\n      barcode\n      sku\n      ...RowTbodyItems_ItemsRowFragment\n    }\n  }\n}\n\nfragment TotalCountBadgeDisplay_ItemCountFragment on ItemTypeConnection {\n  totalCount\n}\n"
   }
 };
 
-(node as any).hash = "52a0407dcb1f8e61a0bc41513b7b3195";
+(node as any).hash = "20f6352891149d2802a8053608bf29ec";
 
 export default node;

@@ -18,6 +18,7 @@ const itemsPageQuery = graphql`
       edges {
         node {
           ...ItemDrawerContent_SingleItemFragment
+          ...FormUpdateItem_ItemFragment
         }
       }
     }

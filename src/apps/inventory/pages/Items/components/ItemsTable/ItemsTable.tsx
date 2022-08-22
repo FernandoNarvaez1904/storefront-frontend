@@ -16,9 +16,10 @@ type Props = {
 };
 
 function ItemsTable({ queryRef }: Props) {
+  setItemDrawerStoreDefaultValues(relayEnvironment);
+
   const { classes } = useMainContentStyles();
   const { height: tableHeight, ref: refTableHeight } = useElementSize();
-  setItemDrawerStoreDefaultValues(relayEnvironment);
 
   return (
     <Stack className={classes.fullHeightFlex} spacing={0}>

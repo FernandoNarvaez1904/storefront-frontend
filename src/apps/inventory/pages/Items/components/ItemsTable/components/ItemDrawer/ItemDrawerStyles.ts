@@ -6,6 +6,12 @@ const useItemDrawerStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  defaultButton: {
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[2]
+        : theme.colors.gray[6],
+  },
 }));
 
 export default useItemDrawerStyles;
