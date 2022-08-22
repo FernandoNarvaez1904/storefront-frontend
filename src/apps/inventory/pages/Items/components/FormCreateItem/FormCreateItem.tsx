@@ -17,6 +17,7 @@ const createItemMutation = graphql`
       node {
         id
         ...RowTbodyItems_ItemsRowFragment
+        ...FormUpdateItem_ItemFragment
       }
     }
   }
@@ -97,6 +98,7 @@ function FormCreateItem({ onItemCreated }: Props) {
   const onSubmit = form.onSubmit((values) => {
     if (values.cost === null) return;
     if (values.markup === null) return;
+    alert(values.barcode);
 
     commit({
       variables: {

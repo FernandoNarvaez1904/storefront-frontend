@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5935751ba68a53d5174984c6b162e849>>
+ * @generated SignedSource<<422d2d7a847d3b1d6d402d55f5418852>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,7 +25,7 @@ export type FormCreateItem_CreateItemMutation$data = {
   readonly itemCreate: {
     readonly node: {
       readonly id: any;
-      readonly " $fragmentSpreads": FragmentRefs<"RowTbodyItems_ItemsRowFragment">;
+      readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItem_ItemFragment" | "RowTbodyItems_ItemsRowFragment">;
     } | null;
     readonly userErrors: ReadonlyArray<{
       readonly field: string;
@@ -115,6 +115,11 @@ return {
                 "args": null,
                 "kind": "FragmentSpread",
                 "name": "RowTbodyItems_ItemsRowFragment"
+              },
+              {
+                "args": null,
+                "kind": "FragmentSpread",
+                "name": "FormUpdateItem_ItemFragment"
               }
             ],
             "storageKey": null
@@ -217,6 +222,13 @@ return {
                 "kind": "ScalarField",
                 "name": "isActive",
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "barcode",
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -227,16 +239,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "050feddde1b24a14f4619e1a1b96a796",
+    "cacheID": "076174f3693b9a4ef9f1e40dc1349765",
     "id": null,
     "metadata": {},
     "name": "FormCreateItem_CreateItemMutation",
     "operationKind": "mutation",
-    "text": "mutation FormCreateItem_CreateItemMutation(\n  $input: ItemCreateInput!\n) {\n  itemCreate(input: $input) {\n    userErrors {\n      __typename\n      field\n      message\n    }\n    node {\n      id\n      ...RowTbodyItems_ItemsRowFragment\n    }\n  }\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n"
+    "text": "mutation FormCreateItem_CreateItemMutation(\n  $input: ItemCreateInput!\n) {\n  itemCreate(input: $input) {\n    userErrors {\n      __typename\n      field\n      message\n    }\n    node {\n      id\n      ...RowTbodyItems_ItemsRowFragment\n      ...FormUpdateItem_ItemFragment\n    }\n  }\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n"
   }
 };
 })();
 
-(node as any).hash = "095b36eedca2d4ae93b8c91d2d472d02";
+(node as any).hash = "81a7007dc7a0985b6501ed5b885f6b3a";
 
 export default node;
