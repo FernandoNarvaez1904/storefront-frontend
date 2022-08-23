@@ -67,7 +67,7 @@ function FormUpdateItem({ itemFragmentRef, onItemUpdate }: Props) {
     },
   });
 
-  const onSubmit = () => {
+  const onSubmit = () =>
     form.onSubmit((values) => {
       const updateItemInput: ItemUpdateDataInput = {
         barcode: values.barcode,
@@ -85,10 +85,9 @@ function FormUpdateItem({ itemFragmentRef, onItemUpdate }: Props) {
         onCompleted: onItemUpdate,
       });
     });
-  };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit()}>
       <Stack>
         <TextInput label="Name" required {...form.getInputProps('name')} />
         <TextInput
