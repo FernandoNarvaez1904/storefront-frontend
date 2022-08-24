@@ -8,12 +8,16 @@ import {
   useMantineTheme,
 } from '@mantine/core';
 import { IconBuildingWarehouse, IconLogout } from '@tabler/icons';
-import useSidebarStyles from 'apps/inventory/components/Sidebar/SidebarStyles';
-import route from 'apps/inventory/routes';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { AppRoute } from 'routing/allRoutes';
+import useSidebarStyles from './SidebarStyles';
 
-function Sidebar() {
+type Props = {
+  route: AppRoute;
+};
+
+function Sidebar({ route }: Props) {
   const path = useLocation();
   const theme = useMantineTheme();
   const { classes, cx } = useSidebarStyles();

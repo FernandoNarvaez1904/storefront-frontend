@@ -17,6 +17,8 @@ const route: AppRoute = {
       color: 'gray',
       icon: IconGauge,
       element: Dashboard,
+      hasSidebar: false,
+      hasHomeGridTile: false,
     },
     {
       title: 'Items',
@@ -24,8 +26,12 @@ const route: AppRoute = {
       color: 'gray',
       icon: IconBasket,
       element: Items,
+      hasSidebar: false,
+      hasHomeGridTile: false,
     },
   ],
+  hasSidebar: true,
+  hasHomeGridTile: true,
 };
 
 export default route;
