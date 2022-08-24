@@ -2,6 +2,7 @@ import { Stack } from '@mantine/core';
 import { ItemsQuery_ItemsPageQuery } from 'apps/inventory/pages/Items/__generated__/ItemsQuery_ItemsPageQuery.graphql';
 import { useLayoutEffect } from 'react';
 import { graphql, useQueryLoader } from 'react-relay';
+import { RecoilRoot } from 'recoil';
 import HeaderItemsPage from './components/HeaderItemsPage';
 import ItemsTable from './components/ItemsTable';
 import useItemsStyles from './itemsStyles';
@@ -37,10 +38,13 @@ function Items() {
   }, [loadQuery]);
 
   return (
-    <Stack className={classes.itemsPageContainer}>
-      <HeaderItemsPage />
-      {queryRef && <ItemsTable queryRef={queryRef} />}
-    </Stack>
+    <RecoilRoot>
+      <Stack className={classes.itemsPageContainer}>
+        <HeaderItemsPage />
+        {queryRef && <ItemsTable queryRef={queryRef} />}
+      </Stack>
+    </RecoilRoot>
+
   );
 }
 
