@@ -1,12 +1,10 @@
 import { openItemDrawer } from 'apps/inventory/pages/Items/components/ItemsTable/store/updateLocal';
+import { itemsTableFilterAtom } from 'apps/inventory/pages/Items/state/atoms';
 import { useMemo } from 'react';
-import { graphql, useFragment, useLazyLoadQuery } from 'react-relay';
+import { graphql, useFragment } from 'react-relay';
+import { useRecoilValue } from 'recoil';
 import relayEnvironment from 'RelayEnviroment';
 import { TbodyItemsTableDisplay_AllItemFragment$key } from './__generated__/TbodyItemsTableDisplay_AllItemFragment.graphql';
-import {
-  ItemsTable_FilterTypes,
-  TbodyItemsTableDisplay_SearchLocalStateQuery,
-} from './__generated__/TbodyItemsTableDisplay_SearchLocalStateQuery.graphql';
 import RowTbodyItems from './RowTbodyItems';
 
 const allItemsFragment = graphql`
@@ -23,17 +21,6 @@ const allItemsFragment = graphql`
   }
 `;
 
-const localStateQuery = graphql`
-  query TbodyItemsTableDisplay_SearchLocalStateQuery {
-    itemsTable_localState {
-      filter {
-        value
-        type
-      }
-    }
-  }
-`;
-
 type Props = {
   itemConnectionRef: TbodyItemsTableDisplay_AllItemFragment$key;
 };
@@ -44,18 +31,12 @@ function TbodyItemsTableDisplay({ itemConnectionRef }: Props) {
       allItemsFragment,
       itemConnectionRef
     );
-  const localState =
-    useLazyLoadQuery<TbodyItemsTableDisplay_SearchLocalStateQuery>(
-      localStateQuery,
-      {}
-    );
+
+  const itemsTableFilter = useRecoilValue(itemsTableFilterAtom);
 
   const rows = useMemo(() => {
-    const localStateValue =
-      localState.itemsTable_localState.filter.value.toLowerCase();
-    const filterType: ItemsTable_FilterTypes =
-      localState.itemsTable_localState.filter.type;
-    if (filterType === '%future added value') return false;
+    const localStateValue = itemsTableFilter.value.toLowerCase();
+    const filterType = itemsTableFilter.type;
 
     const filteredItems = itemConnection.edges.filter((item) => {
       const value = item.node[filterType]?.toLowerCase();
@@ -72,11 +53,7 @@ function TbodyItemsTableDisplay({ itemConnectionRef }: Props) {
         }}
       />
     ));
-  }, [
-    itemConnection.edges,
-    localState.itemsTable_localState.filter.value,
-    localState.itemsTable_localState.filter.type,
-  ]);
+  }, [itemConnection.edges, itemsTableFilter]);
 
   return <tbody>{rows}</tbody>;
 }

@@ -27,15 +27,3 @@ export const closeItemDrawer = (environment: RelayModernEnvironment) => {
     drawerState?.setValue(null, 'currentItem');
   });
 };
-
-export const updateSearchFilter = (
-  environment: RelayModernEnvironment,
-  filter: { value: string; type: 'barcode' | 'sku' | 'name' }
-) => {
-  commitLocalUpdate(environment, (store) => {
-    const filterState = store.get('client:root:itemsTable_localState:filter');
-
-    filterState?.setValue(filter.value, "value")
-    filterState?.setValue(filter.type, "type")
-  });
-};

@@ -25,19 +25,8 @@ export const setItemDrawerStoreDefaultValues = (
       );
     }
 
-    // filter
-    const filterId = 'client:root:itemsTable_localState:filter';
-    let filter = store.get(filterId);
-    if (filter === null || filter === undefined) {
-      filter = store.create(filterId, 'ItemsTable_Filter');
-    }
-
-    filter.setValue('', 'value');
-    filter.setValue('name', 'type');
-
     // set local state
     itemsTableLocalState.setLinkedRecord(drawerState, 'drawerState');
-    itemsTableLocalState.setLinkedRecord(filter, 'filter');
 
     // root
     const root = store.getRoot();
