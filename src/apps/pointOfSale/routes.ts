@@ -8,6 +8,7 @@ const route: AppRoute = {
   color: 'green',
   icon: IconCash,
   element: PointOfSale,
+  hasSidebar: false,
 };
 
 export default route;

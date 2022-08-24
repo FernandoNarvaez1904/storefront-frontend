@@ -9,6 +9,7 @@ export interface AppRoute {
   icon: TablerIcon;
   color: MantineColor;
   element: () => JSX.Element;
+  hasSidebar: boolean;
   // Default sub route must be the same of path
   subRoutes?: Array<AppRoute>;
 }

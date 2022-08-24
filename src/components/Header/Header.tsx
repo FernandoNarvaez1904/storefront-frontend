@@ -17,7 +17,7 @@ import {
   IconSun,
   IconWifiOff,
 } from '@tabler/icons';
-import useHeaderStyles from './HeaderStyles';
+import useHeaderStyles from 'components/Header/HeaderStyles';
 
 function Header() {
   const { classes } = useHeaderStyles();
