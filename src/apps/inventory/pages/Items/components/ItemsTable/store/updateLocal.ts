@@ -23,7 +23,7 @@ export const closeItemDrawer = (environment: RelayModernEnvironment) => {
       'client:root:itemsTable_localState:drawerState'
     );
 
-    drawerState?.setValue(false, 'opened');
     drawerState?.setValue(null, 'currentItem');
+    drawerState?.setValue(false, 'opened');
   });
 };
