@@ -1,4 +1,4 @@
-import { AppShell } from '@mantine/core';
+import { AppShell, Box, Stack } from '@mantine/core';
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { useLayoutEffect, useMemo, useState } from 'react';
@@ -38,10 +38,17 @@ function Layout({ allRoutes }: Props) {
 
   return (
     <AppShell
-      header={<Header />}
       navbar={isSidebarActive ? <Sidebar route={allRoutes[1]} /> : undefined}
+      padding={0}
     >
-      <Outlet />
+      <Stack sx={{ height: '100%' }} spacing="xs">
+        <Header />
+
+        <Box sx={{ flexGrow: 1 }}>
+          {/* Renders the content inside Sub-Route */}
+          <Outlet />
+        </Box>
+      </Stack>
     </AppShell>
   );
 }
