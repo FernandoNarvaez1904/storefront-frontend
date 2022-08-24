@@ -11,18 +11,19 @@ type Props = {
 
 function Layout({ allRoutes }: Props) {
   const location = useLocation();
+  const currentAppRoute = location.pathname.split('/')[1];
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
   // type { appName: route.hasSidebar} where hasSidebar is a boolean
-  const sidebarRoutes: Record<string, boolean> = useMemo(() => {
-    let tempSidebarRoutes: Record<string, boolean> = {};
+  const sidebarRoutes: Record<string, AppRoute> = useMemo(() => {
+    let tempSidebarRoutes: Record<string, AppRoute> = {};
 
     allRoutes.forEach((route) => {
       // slicing if for deleting the / from the path
       const appName = route.path.slice(1);
       // updating with new appName: hasSidebar
       tempSidebarRoutes = {
-        [appName]: route.hasSidebar,
+        [appName]: { ...route },
         ...tempSidebarRoutes,
       };
     });
@@ -32,13 +33,16 @@ function Layout({ allRoutes }: Props) {
 
   // Determines if current location uses sidebar
   useLayoutEffect(() => {
-    const rootRoute = location.pathname.split('/')[1];
-    setIsSidebarActive(sidebarRoutes[rootRoute]);
-  }, [allRoutes, sidebarRoutes, location]);
+    setIsSidebarActive(sidebarRoutes[currentAppRoute].hasSidebar);
+  }, [allRoutes, sidebarRoutes, currentAppRoute]);
 
   return (
     <AppShell
-      navbar={isSidebarActive ? <Sidebar route={allRoutes[1]} /> : undefined}
+      navbar={
+        isSidebarActive ? (
+          <Sidebar route={sidebarRoutes[currentAppRoute]} />
+        ) : undefined
+      }
       padding={0}
     >
       <Stack sx={{ height: '100%' }} spacing="xs">

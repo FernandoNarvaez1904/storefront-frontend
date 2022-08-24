@@ -1,6 +1,5 @@
 import Layout from 'components/Layout';
 import GlobalProviders from 'GlobalProviders';
-import Home from 'pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import allRoutes, { AppRoute } from 'routing/allRoutes';
 import './global.css';
@@ -28,7 +27,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout allRoutes={allRoutes} />}>
-            <Route path="/" element={<Home />} />
             {getAppsRoutes()}
           </Route>
         </Routes>
