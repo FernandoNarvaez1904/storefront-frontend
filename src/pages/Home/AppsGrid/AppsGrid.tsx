@@ -1,10 +1,17 @@
-import { Card, Group, SimpleGrid, Text, UnstyledButton } from '@mantine/core';
+import {
+  ActionIcon,
+  Card,
+  Group,
+  SimpleGrid,
+  Text,
+  UnstyledButton,
+} from '@mantine/core';
 import useAppsGridStyles from 'pages/Home/AppsGrid/AppsGridStyles';
 import { Link } from 'react-router-dom';
 import allRoutes from 'routing/allRoutes';
 
 function AppsGrid() {
-  const { classes, theme } = useAppsGridStyles();
+  const { classes } = useAppsGridStyles();
 
   const items = allRoutes.map((item) => {
     if (!item.hasHomeGridTile) return null;
@@ -15,8 +22,10 @@ function AppsGrid() {
         component={Link}
         to={item.path}
       >
-        <item.icon color={theme.colors[item.color][6]} size={32} />
-        <Text size="xs" mt={7}>
+        <ActionIcon color={item.color} size="lg" variant="transparent">
+          <item.icon width={32} height={32} />
+        </ActionIcon>
+        <Text size="sm" mt={5} weight={400}>
           {item.title}
         </Text>
       </UnstyledButton>

@@ -5,7 +5,7 @@ import { AppRoute } from 'routing/allRoutes';
 const route: AppRoute = {
   title: 'Point of Sale',
   path: '/pos',
-  color: 'green',
+  color: 'green.6',
   icon: IconCash,
   element: PointOfSale,
   hasSidebar: false,

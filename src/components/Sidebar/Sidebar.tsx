@@ -7,7 +7,7 @@ import {
   UnstyledButton,
   useMantineTheme,
 } from '@mantine/core';
-import { IconBuildingWarehouse, IconLogout } from '@tabler/icons';
+import { IconLogout } from '@tabler/icons';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AppRoute } from 'routing/allRoutes';
@@ -22,6 +22,7 @@ function Sidebar({ route }: Props) {
   const theme = useMantineTheme();
   const { classes, cx } = useSidebarStyles();
   const [active, setActive] = useState(path.pathname);
+  const SidebarIcon = route.icon;
 
   useEffect(() => {
     setActive(path.pathname);
@@ -49,14 +50,10 @@ function Sidebar({ route }: Props) {
       <Navbar.Section grow>
         <Group className={classes.header} position="apart" align="end">
           <Group spacing="xs" align="end" ml="sm">
-            <ActionIcon size="lg" variant="transparent">
-              <IconBuildingWarehouse
-                height={32}
-                width={32}
-                color={theme.colors.red[5]}
-              />
+            <ActionIcon size="lg" variant="transparent" color={route.color}>
+              <SidebarIcon height={32} width={32} />
             </ActionIcon>
-            <Title order={4}>Inventory</Title>
+            <Title order={4}>{route.title}</Title>
           </Group>
 
           <Code sx={{ fontWeight: 700 }}>v0.0.1</Code>

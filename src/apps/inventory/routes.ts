@@ -7,7 +7,7 @@ import Items from './pages/Items';
 const route: AppRoute = {
   title: 'Inventory',
   path: '/inventory',
-  color: 'red',
+  color: 'red.5',
   icon: IconBuildingWarehouse,
   element: Inventory,
   subRoutes: [
