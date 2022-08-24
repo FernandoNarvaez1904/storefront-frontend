@@ -1,10 +1,8 @@
 import { Box, Skeleton, Stack } from '@mantine/core';
 import { useElementSize } from '@mantine/hooks';
 import { ItemsQuery_ItemsPageQuery } from 'apps/inventory/pages/Items/__generated__/ItemsQuery_ItemsPageQuery.graphql';
-import { setItemDrawerStoreDefaultValues } from 'apps/inventory/pages/Items/components/ItemsTable/store/defaultValues';
 import { Suspense } from 'react';
 import { PreloadedQuery } from 'react-relay';
-import relayEnvironment from 'RelayEnviroment';
 import HeaderItemsTable, {
   HeaderItemsTableSkeleton,
 } from './components/HeaderItemsTable';
@@ -16,8 +14,6 @@ type Props = {
 };
 
 function ItemsTable({ queryRef }: Props) {
-  setItemDrawerStoreDefaultValues(relayEnvironment);
-
   const { classes } = useMainContentStyles();
   const { height: tableHeight, ref: refTableHeight } = useElementSize();
 
