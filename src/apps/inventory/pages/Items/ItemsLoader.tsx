@@ -1,15 +1,14 @@
-import { ItemsLoader_ItemsPageQuery } from 'apps/inventory/pages/Items/__generated__/ItemsLoader_ItemsPageQuery.graphql';
 import ItemsDisplay from 'apps/inventory/pages/Items/ItemsDisplay';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { graphql, useQueryLoader } from 'react-relay';
 import { RecoilRoot } from 'recoil';
+import { ItemsLoader_ItemsPageQuery } from './__generated__/ItemsLoader_ItemsPageQuery.graphql';
 
 const itemsPageQuery = graphql`
   query ItemsLoader_ItemsPageQuery {
     itemConnection {
       ...TbodyItemsTableDisplay_AllItemFragment
-      ...TotalCountBadgeDisplay_ItemCountFragment
-
+      ...HeaderItemsTableDisplay_ItemCountFragment
       # This is included to not force loading, when entering pos
       # It does not lead to any queryRef, because the fragment is called
       # in its own component via useLazyLoadQuery
@@ -27,9 +26,9 @@ function ItemsLoader() {
   const [queryRef, loader] =
     useQueryLoader<ItemsLoader_ItemsPageQuery>(itemsPageQuery);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     loader({});
-  });
+  }, [loader]);
 
   return (
     <RecoilRoot>{queryRef && <ItemsDisplay queryRef={queryRef} />}</RecoilRoot>

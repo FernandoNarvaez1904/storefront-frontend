@@ -1,5 +1,7 @@
-import HeaderItemsTable from 'apps/inventory/pages/Items/components/ItemsTable/components/HeaderItemsTable/HeaderItemsTable';
-import HeaderItemsTableSkeleton from 'apps/inventory/pages/Items/components/ItemsTable/components/HeaderItemsTable/HeaderItemsTableSkeleton';
+import HeaderItemsTableLoader from './HeaderItemsTableLoader';
+import HeaderItemsTableSkeleton from './HeaderItemsTableSkeleton';
 
 export { HeaderItemsTableSkeleton };
+const HeaderItemsTable = HeaderItemsTableLoader;
+
 export default HeaderItemsTable;

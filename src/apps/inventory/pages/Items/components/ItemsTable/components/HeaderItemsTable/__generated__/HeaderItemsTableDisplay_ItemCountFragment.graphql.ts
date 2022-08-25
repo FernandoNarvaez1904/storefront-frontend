@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7cadc8944b7e5d7004f557f0f1a4a9ee>>
+ * @generated SignedSource<<a7d21a5db122565a38977c6d3a0b6c2f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,20 +10,20 @@
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type TotalCountBadgeDisplay_ItemCountFragment$data = {
+export type HeaderItemsTableDisplay_ItemCountFragment$data = {
   readonly totalCount: number;
-  readonly " $fragmentType": "TotalCountBadgeDisplay_ItemCountFragment";
+  readonly " $fragmentType": "HeaderItemsTableDisplay_ItemCountFragment";
 };
-export type TotalCountBadgeDisplay_ItemCountFragment$key = {
-  readonly " $data"?: TotalCountBadgeDisplay_ItemCountFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"TotalCountBadgeDisplay_ItemCountFragment">;
+export type HeaderItemsTableDisplay_ItemCountFragment$key = {
+  readonly " $data"?: HeaderItemsTableDisplay_ItemCountFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"HeaderItemsTableDisplay_ItemCountFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "TotalCountBadgeDisplay_ItemCountFragment",
+  "name": "HeaderItemsTableDisplay_ItemCountFragment",
   "selections": [
     {
       "alias": null,
@@ -37,6 +37,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "83d0db00c7b8986c1bbb091cd2cf06d8";
+(node as any).hash = "f7e7d1b34a144716928b50b6c2b0dec4";
 
 export default node;
