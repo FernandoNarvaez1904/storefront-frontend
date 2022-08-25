@@ -15,13 +15,13 @@ const itemsRowFragment = graphql`
   }
 `;
 
-type Props = React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLTableRowElement>,
-  HTMLTableRowElement
-> & {
+type Props = {
   fragmentRef: RowTbodyItems_ItemsRowFragment$key;
   idx: number;
-};
+} & React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLTableRowElement>,
+  HTMLTableRowElement
+>;
 
 function RowTbodyItems({ fragmentRef, idx, ...props }: Props) {
   const item = useFragment<RowTbodyItems_ItemsRowFragment$key>(

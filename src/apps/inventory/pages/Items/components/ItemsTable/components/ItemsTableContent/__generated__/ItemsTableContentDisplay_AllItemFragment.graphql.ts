@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<21868dc4c59c1f4f6249345b6e0c74df>>
+ * @generated SignedSource<<3aa06ecd9132df318b478a23d158887a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type TbodyItemsTableDisplay_AllItemFragment$data = {
+export type ItemsTableContentDisplay_AllItemFragment$data = {
   readonly edges: ReadonlyArray<{
     readonly node: {
       readonly barcode: string | null;
@@ -20,18 +20,18 @@ export type TbodyItemsTableDisplay_AllItemFragment$data = {
       readonly " $fragmentSpreads": FragmentRefs<"RowTbodyItems_ItemsRowFragment">;
     };
   }>;
-  readonly " $fragmentType": "TbodyItemsTableDisplay_AllItemFragment";
+  readonly " $fragmentType": "ItemsTableContentDisplay_AllItemFragment";
 };
-export type TbodyItemsTableDisplay_AllItemFragment$key = {
-  readonly " $data"?: TbodyItemsTableDisplay_AllItemFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"TbodyItemsTableDisplay_AllItemFragment">;
+export type ItemsTableContentDisplay_AllItemFragment$key = {
+  readonly " $data"?: ItemsTableContentDisplay_AllItemFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"ItemsTableContentDisplay_AllItemFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "TbodyItemsTableDisplay_AllItemFragment",
+  "name": "ItemsTableContentDisplay_AllItemFragment",
   "selections": [
     {
       "alias": null,
@@ -93,6 +93,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "c7ceb335a71e30a26b5fb835b328fb1e";
+(node as any).hash = "2548ea8c96936aa5169c7517dd444467";
 
 export default node;

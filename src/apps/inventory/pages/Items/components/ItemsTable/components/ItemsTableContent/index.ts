@@ -1,3 +1,7 @@
-import ItemsTableContent from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemsTableContent/ItemsTableContent';
+import ItemsTableContentLoader from './ItemsTableContentLoader';
+import ItemsTableContentSkeleton from './ItemsTableContentSkeleton';
+
+const ItemsTableContent = ItemsTableContentLoader;
+export { ItemsTableContentSkeleton };
 
 export default ItemsTableContent;

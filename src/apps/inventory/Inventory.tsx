@@ -1,7 +1,12 @@
 import { Outlet } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 function Inventory() {
-  return <Outlet />;
+  return (
+    <RecoilRoot>
+      <Outlet />
+    </RecoilRoot>
+  );
 }
 
 export default Inventory;
