@@ -1,9 +1,10 @@
-import { openItemDrawer } from 'apps/inventory/pages/Items/components/ItemsTable/store/updateLocal';
-import { itemsTableFilterAtom } from 'apps/inventory/pages/Items/state/atoms';
+import {
+  itemDrawerStateAtom,
+  itemsTableFilterAtom,
+} from 'apps/inventory/pages/Items/state/atoms';
 import { useMemo } from 'react';
 import { graphql, useFragment } from 'react-relay';
-import { useRecoilValue } from 'recoil';
-import relayEnvironment from 'RelayEnviroment';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { TbodyItemsTableDisplay_AllItemFragment$key } from './__generated__/TbodyItemsTableDisplay_AllItemFragment.graphql';
 import RowTbodyItems from './RowTbodyItems';
 
@@ -33,6 +34,7 @@ function TbodyItemsTableDisplay({ itemConnectionRef }: Props) {
     );
 
   const itemsTableFilter = useRecoilValue(itemsTableFilterAtom);
+  const setItemDrawerState = useSetRecoilState(itemDrawerStateAtom);
 
   const rows = useMemo(() => {
     const localStateValue = itemsTableFilter.value.toLowerCase();
@@ -49,11 +51,11 @@ function TbodyItemsTableDisplay({ itemConnectionRef }: Props) {
         idx={idx + 1}
         key={item.node.id}
         onClick={() => {
-          openItemDrawer(relayEnvironment, item.node.id);
+          setItemDrawerState({ isOpened: true, currentItem: item.node.id });
         }}
       />
     ));
-  }, [itemConnection.edges, itemsTableFilter]);
+  }, [itemConnection.edges, itemsTableFilter, setItemDrawerState]);
 
   return <tbody>{rows}</tbody>;
 }

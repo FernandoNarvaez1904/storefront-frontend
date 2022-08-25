@@ -9,38 +9,32 @@ import {
 } from '@mantine/core';
 import { IconEdit, IconInfoCircle } from '@tabler/icons';
 import FormUpdateItem from 'apps/inventory/pages/Items/components/FormUpdateItem';
+import { ItemDrawer_itemQuery } from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/__generated__/ItemDrawer_itemQuery.graphql';
 import useItemDrawerStyles from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/ItemDrawerStyles';
+import { itemDrawerStateAtom } from 'apps/inventory/pages/Items/state/atoms';
 import { useState } from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
-import relayEnvironment from 'RelayEnviroment';
-import { closeItemDrawer } from '../../store/updateLocal';
-import { ItemDrawer_LocalStateQuery } from './__generated__/ItemDrawer_LocalStateQuery.graphql';
+import { useSetRecoilState } from 'recoil';
 import ItemDrawerContent from './ItemDrawerContent';
 
 const itemDrawerQuery = graphql`
-  query ItemDrawer_LocalStateQuery {
-    itemsTable_localState {
-      drawerState {
-        opened
-        currentItem {
-          id
-          name
-          ...ItemDrawerContent_SingleItemFragment
-          ...FormUpdateItem_ItemFragment
-        }
-      }
+  query ItemDrawer_itemQuery($id: GlobalID!) {
+    item(id: $id) {
+      id
+      name
+      ...ItemDrawerContent_SingleItemFragment
+      ...FormUpdateItem_ItemFragment
     }
   }
 `;
 
-function ItemDrawer() {
-  const data = useLazyLoadQuery<ItemDrawer_LocalStateQuery>(
-    itemDrawerQuery,
-    {},
-    { fetchPolicy: 'store-only' }
-  );
-  const { drawerState } = data.itemsTable_localState;
-  const { currentItem } = drawerState;
+function ItemDrawer({ id, opened }: { id: string; opened: boolean }) {
+  const item = useLazyLoadQuery<ItemDrawer_itemQuery>(itemDrawerQuery, {
+    id,
+  });
+  const currentItem = item.item;
+
+  const setItemDrawerState = useSetRecoilState(itemDrawerStateAtom);
 
   const [isEditMode, setIsEditMode] = useState(false);
   const toggleEditMode = () => {
@@ -51,8 +45,8 @@ function ItemDrawer() {
   const { classes } = useItemDrawerStyles();
 
   const closeDrawer = () => {
-    closeItemDrawer(relayEnvironment);
     setIsEditMode(false);
+    setItemDrawerState({ isOpened: false, currentItem: '' });
   };
 
   const getDrawerContent = (isEditModeActive: boolean) => {
@@ -90,7 +84,7 @@ function ItemDrawer() {
           : theme.colors.gray[2]
       }
       withCloseButton={false}
-      opened={drawerState.opened}
+      opened={opened}
       onClose={() => {
         closeDrawer();
       }}

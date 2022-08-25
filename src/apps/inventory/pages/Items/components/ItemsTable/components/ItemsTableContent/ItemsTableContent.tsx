@@ -1,7 +1,9 @@
 import { ScrollArea, Table } from '@mantine/core';
 import { ItemsQuery_ItemsPageQuery } from 'apps/inventory/pages/Items/__generated__/ItemsQuery_ItemsPageQuery.graphql';
-import { useState } from 'react';
+import { itemDrawerStateAtom } from 'apps/inventory/pages/Items/state/atoms';
+import { Suspense, useState } from 'react';
 import { PreloadedQuery } from 'react-relay';
+import { useRecoilValue } from 'recoil';
 import ItemDrawer from '../ItemDrawer';
 import TbodyItemsTable from '../TbodyItemsTable';
 import useItemsTableContentStyles from './ItemTableStylesContent';
@@ -15,9 +17,21 @@ function ItemsTableContent({ height, queryRef }: Props) {
   const { classes, cx } = useItemsTableContentStyles();
   const [scrolled, setScrolled] = useState(false);
 
+  const itemDrawerState = useRecoilValue(itemDrawerStateAtom);
+
   return (
     <>
-      <ItemDrawer />
+
+      {itemDrawerState.isOpened && (
+        <Suspense fallback={<h4>loading</h4>}>
+          <ItemDrawer
+            id={itemDrawerState.currentItem}
+            opened={itemDrawerState.isOpened}
+          />
+        </Suspense>
+
+      )}
+
       <ScrollArea
         sx={{ height }}
         onScrollPositionChange={(position) => setScrolled(position.y !== 0)}
@@ -26,16 +40,16 @@ function ItemsTableContent({ height, queryRef }: Props) {
           <thead
             className={cx(classes.header, { [classes.scrolled]: scrolled })}
           >
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>SKU</th>
-              <th>Cost</th>
-              <th>Markup</th>
-              <th>Sell Price</th>
-              <th>Is Service</th>
-              <th>Is Active</th>
-            </tr>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>Cost</th>
+            <th>Markup</th>
+            <th>Sell Price</th>
+            <th>Is Service</th>
+            <th>Is Active</th>
+          </tr>
           </thead>
           <TbodyItemsTable queryRef={queryRef} />
         </Table>

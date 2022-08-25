@@ -1,9 +1,13 @@
 import { atom } from 'recoil';
 
-export const drawerStateAtom = atom({
-  key: 'drawerState',
+export const itemDrawerStateAtom = atom<{
+  isOpened: boolean;
+  currentItem: string;
+}>({
+  key: 'itemDrawerState',
   default: {
-    isOpened: true,
+    isOpened: false,
+    currentItem: '',
   },
 });
 
