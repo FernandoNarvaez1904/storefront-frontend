@@ -52,10 +52,7 @@ function ItemDrawerLoader() {
   return (
     <>
       {itemDrawerQueryRef && (
-        <ItemDrawerDisplay
-          queryRef={itemDrawerQueryRef}
-          opened={itemDrawerState.isOpened}
-        />
+        <ItemDrawerDisplay queryRef={itemDrawerQueryRef} />
       )}
     </>
   );

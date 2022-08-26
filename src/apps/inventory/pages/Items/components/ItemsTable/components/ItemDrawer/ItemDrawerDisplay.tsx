@@ -1,5 +1,6 @@
 import { Box, Drawer, useMantineTheme } from '@mantine/core';
 import { itemDrawerStateAtom } from 'apps/inventory/pages/Items/state/atoms';
+import { useEffect, useState } from 'react';
 import { PreloadedQuery } from 'react-relay';
 import { useRecoilState } from 'recoil';
 import { ItemDrawerLoader_itemQuery } from './__generated__/ItemDrawerLoader_itemQuery.graphql';
@@ -8,15 +9,23 @@ import ItemDrawerInfoTabs from './components/ItemDrawerInfoTabs';
 import ItemDrawerTitle from './components/ItemDrawerTitle';
 
 type Props = {
-  opened: boolean;
   queryRef: PreloadedQuery<ItemDrawerLoader_itemQuery>;
 };
 
-function ItemDrawerDisplay({ opened, queryRef }: Props) {
+function ItemDrawerDisplay({ queryRef }: Props) {
   const [itemDrawerState, setItemDrawerState] =
     useRecoilState(itemDrawerStateAtom);
 
+  // Local State opened is the one that opens the drawer. isOpened global state
+  // is not used because it won't render the animation.
+  const { isOpened } = itemDrawerState;
+  const [opened, setOpened] = useState(false);
+
   const theme = useMantineTheme();
+
+  useEffect(() => {
+    setOpened(isOpened);
+  }, [isOpened, setOpened]);
 
   const closeDrawer = () => {
     setItemDrawerState({ isOpened: false, currentItem: '', isEditMode: false });
