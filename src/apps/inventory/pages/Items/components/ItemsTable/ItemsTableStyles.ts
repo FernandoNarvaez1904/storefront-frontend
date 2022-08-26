@@ -1,6 +1,6 @@
 import { createStyles } from '@mantine/core';
 
-const useMainContentStyles = createStyles({
+const useItemsTableStyles = createStyles({
   fullHeightFlex: {
     height: '100%',
   },
@@ -9,4 +9,4 @@ const useMainContentStyles = createStyles({
   },
 });
 
-export default useMainContentStyles;
+export default useItemsTableStyles;

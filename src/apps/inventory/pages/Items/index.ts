@@ -1,3 +1,5 @@
-import Items from './Items';
+import ItemsLoader from './ItemsLoader';
+
+const Items = ItemsLoader;
 
 export default Items;

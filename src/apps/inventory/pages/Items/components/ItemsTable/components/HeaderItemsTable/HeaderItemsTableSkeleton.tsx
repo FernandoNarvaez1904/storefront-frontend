@@ -1,5 +1,4 @@
 import { Box, Group, Skeleton } from '@mantine/core';
-import { TotalCountBadgeSkeleton } from './components/TotalCountBadge';
 
 function HeaderItemsTableSkeleton() {
   return (
@@ -8,7 +7,7 @@ function HeaderItemsTableSkeleton() {
         <Skeleton height={29} />
       </Box>
       <Box sx={{ width: '100px' }}>
-        <TotalCountBadgeSkeleton />
+        <Skeleton height={25} width={100} radius="xl" />
       </Box>
     </Group>
   );

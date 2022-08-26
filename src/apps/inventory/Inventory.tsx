@@ -1,10 +1,12 @@
-import { setItemDrawerStoreDefaultValues } from 'apps/inventory/pages/Items/components/ItemsTable/store/defaultValues';
 import { Outlet } from 'react-router-dom';
-import relayEnvironment from 'RelayEnviroment';
+import { RecoilRoot } from 'recoil';
 
 function Inventory() {
-  setItemDrawerStoreDefaultValues(relayEnvironment);
-  return <Outlet />;
+  return (
+    <RecoilRoot>
+      <Outlet />
+    </RecoilRoot>
+  );
 }
 
 export default Inventory;
