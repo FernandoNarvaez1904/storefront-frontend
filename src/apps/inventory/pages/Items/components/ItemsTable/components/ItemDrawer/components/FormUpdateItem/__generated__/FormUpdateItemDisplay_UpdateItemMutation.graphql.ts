@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2857ffc153d8ad10b4a99d0f4bf876cf>>
+ * @generated SignedSource<<60ced07c45f8ae76a2c814c67d41fc97>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,10 +19,10 @@ export type ItemUpdateDataInput = {
   markup?: number | null;
   name?: string | null;
 };
-export type FormUpdateItem_UpdateItemMutation$variables = {
+export type FormUpdateItemDisplay_UpdateItemMutation$variables = {
   input: ItemUpdateInput;
 };
-export type FormUpdateItem_UpdateItemMutation$data = {
+export type FormUpdateItemDisplay_UpdateItemMutation$data = {
   readonly itemUpdate: {
     readonly node: {
       readonly barcode: string | null;
@@ -38,9 +38,9 @@ export type FormUpdateItem_UpdateItemMutation$data = {
     }>;
   };
 };
-export type FormUpdateItem_UpdateItemMutation = {
-  response: FormUpdateItem_UpdateItemMutation$data;
-  variables: FormUpdateItem_UpdateItemMutation$variables;
+export type FormUpdateItemDisplay_UpdateItemMutation = {
+  response: FormUpdateItemDisplay_UpdateItemMutation$data;
+  variables: FormUpdateItemDisplay_UpdateItemMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -130,7 +130,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "FormUpdateItem_UpdateItemMutation",
+    "name": "FormUpdateItemDisplay_UpdateItemMutation",
     "selections": [
       {
         "alias": null,
@@ -165,7 +165,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "FormUpdateItem_UpdateItemMutation",
+    "name": "FormUpdateItemDisplay_UpdateItemMutation",
     "selections": [
       {
         "alias": null,
@@ -202,16 +202,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "62929246dc5b9a59edaaa1f3bc92afa7",
+    "cacheID": "0447dfc5680e18880b2c50f721bc2b66",
     "id": null,
     "metadata": {},
-    "name": "FormUpdateItem_UpdateItemMutation",
+    "name": "FormUpdateItemDisplay_UpdateItemMutation",
     "operationKind": "mutation",
-    "text": "mutation FormUpdateItem_UpdateItemMutation(\n  $input: ItemUpdateInput!\n) {\n  itemUpdate(input: $input) {\n    node {\n      id\n      name\n      barcode\n      cost\n      markup\n      price\n    }\n    userErrors {\n      __typename\n      field\n      message\n    }\n  }\n}\n"
+    "text": "mutation FormUpdateItemDisplay_UpdateItemMutation(\n  $input: ItemUpdateInput!\n) {\n  itemUpdate(input: $input) {\n    node {\n      id\n      name\n      barcode\n      cost\n      markup\n      price\n    }\n    userErrors {\n      __typename\n      field\n      message\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "494d3df843a05eb79bae2ce10483fb1b";
+(node as any).hash = "ad18134f1f38779c63f26be94314b49d";
 
 export default node;

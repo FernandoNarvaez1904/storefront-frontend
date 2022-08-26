@@ -29,8 +29,11 @@ function RowTbodyItems({ fragmentRef, idx, ...props }: Props) {
     fragmentRef
   );
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <tr key={item.id} {...props}>
+    <tr
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+      key={item.id}
+    >
       <td>{idx}</td>
       <td>{item.name}</td>
       <td>{item.sku}</td>

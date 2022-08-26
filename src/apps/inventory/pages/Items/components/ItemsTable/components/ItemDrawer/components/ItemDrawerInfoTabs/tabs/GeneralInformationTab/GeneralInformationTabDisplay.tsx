@@ -1,9 +1,17 @@
 import { Divider, Group, Stack, Text, Title } from '@mantine/core';
-import { graphql, useFragment } from 'react-relay';
-import { GeneralInformationTab_itemFragment$key } from './__generated__/GeneralInformationTab_itemFragment.graphql';
+import ItemDrawerLoader_itemQueryGraphql, {
+  ItemDrawerLoader_itemQuery,
+} from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/__generated__/ItemDrawerLoader_itemQuery.graphql';
+import { GeneralInformationTabDisplay_itemFragment$key } from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/components/ItemDrawerInfoTabs/tabs/GeneralInformationTab/__generated__/GeneralInformationTabDisplay_itemFragment.graphql';
+import {
+  graphql,
+  PreloadedQuery,
+  useFragment,
+  usePreloadedQuery,
+} from 'react-relay';
 
 const itemFragment = graphql`
-  fragment GeneralInformationTab_itemFragment on ItemType {
+  fragment GeneralInformationTabDisplay_itemFragment on ItemType {
     id
     sku
     name
@@ -19,12 +27,19 @@ const itemFragment = graphql`
   }
 `;
 
-type Props = {
-  itemFragmentRef: GeneralInformationTab_itemFragment$key;
+export type GeneralInformationTabDisplayProps = {
+  queryRef: PreloadedQuery<ItemDrawerLoader_itemQuery>;
 };
 
-function GeneralInformationTab({ itemFragmentRef }: Props) {
-  const item = useFragment(itemFragment, itemFragmentRef);
+function GeneralInformationTabDisplay({
+  queryRef,
+}: GeneralInformationTabDisplayProps) {
+  const data = usePreloadedQuery(ItemDrawerLoader_itemQueryGraphql, queryRef);
+  const item = useFragment<GeneralInformationTabDisplay_itemFragment$key>(
+    itemFragment,
+    data.item
+  );
+
   return (
     <Stack spacing="xl" sx={{ height: '100%' }} mt="xs">
       <Stack spacing="xs">
@@ -165,4 +180,4 @@ function GeneralInformationTab({ itemFragmentRef }: Props) {
   );
 }
 
-export default GeneralInformationTab;
+export default GeneralInformationTabDisplay;

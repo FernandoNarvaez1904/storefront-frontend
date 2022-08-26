@@ -13,8 +13,8 @@ const itemsPageQuery = graphql`
       # in its own component via useLazyLoadQuery
       edges {
         node {
-          ...ItemDrawerContent_SingleItemFragment
-          ...FormUpdateItem_ItemFragment
+          ...GeneralInformationTabDisplay_itemFragment
+          ...FormUpdateItemDisplay_ItemFragment
         }
       }
     }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<74d13f8535adc39897045451bdc08885>>
+ * @generated SignedSource<<33a77fca0ed093d5301c82ebc915d410>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type GeneralInformationTab_itemFragment$data = {
+export type GeneralInformationTabDisplay_itemFragment$data = {
   readonly barcode: string | null;
   readonly cost: number;
   readonly creationDate: any | null;
@@ -23,18 +23,18 @@ export type GeneralInformationTab_itemFragment$data = {
   readonly price: number | null;
   readonly sku: string;
   readonly versionId: any | null;
-  readonly " $fragmentType": "GeneralInformationTab_itemFragment";
+  readonly " $fragmentType": "GeneralInformationTabDisplay_itemFragment";
 };
-export type GeneralInformationTab_itemFragment$key = {
-  readonly " $data"?: GeneralInformationTab_itemFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"GeneralInformationTab_itemFragment">;
+export type GeneralInformationTabDisplay_itemFragment$key = {
+  readonly " $data"?: GeneralInformationTabDisplay_itemFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"GeneralInformationTabDisplay_itemFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "GeneralInformationTab_itemFragment",
+  "name": "GeneralInformationTabDisplay_itemFragment",
   "selections": [
     {
       "alias": null,
@@ -125,6 +125,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "aea8415448e39c3215d65b71c9b6e1ca";
+(node as any).hash = "eaf640b2cc19dda89c510f55cd545dd3";
 
 export default node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b20c37329fabfc6b89160963b84de5bb>>
+ * @generated SignedSource<<5f35641963b3188d9ffef2bfe36db9a8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,19 +10,18 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ItemDrawer_itemQuery$variables = {
+export type ItemDrawerLoader_itemQuery$variables = {
   id: any;
 };
-export type ItemDrawer_itemQuery$data = {
+export type ItemDrawerLoader_itemQuery$data = {
   readonly item: {
     readonly id: any;
-    readonly name: string | null;
-    readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItem_ItemFragment" | "ItemDrawerContent_SingleItemFragment">;
+    readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItemDisplay_ItemFragment" | "GeneralInformationTabDisplay_itemFragment" | "ItemDrawerTitleDisplay_ItemNameFragment">;
   };
 };
-export type ItemDrawer_itemQuery = {
-  response: ItemDrawer_itemQuery$data;
-  variables: ItemDrawer_itemQuery$variables;
+export type ItemDrawerLoader_itemQuery = {
+  response: ItemDrawerLoader_itemQuery$data;
+  variables: ItemDrawerLoader_itemQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -46,20 +45,13 @@ v2 = {
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-},
-v3 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
 };
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ItemDrawer_itemQuery",
+    "name": "ItemDrawerLoader_itemQuery",
     "selections": [
       {
         "alias": null,
@@ -70,16 +62,20 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v3/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "ItemDrawerContent_SingleItemFragment"
+            "name": "GeneralInformationTabDisplay_itemFragment"
           },
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "FormUpdateItem_ItemFragment"
+            "name": "FormUpdateItemDisplay_ItemFragment"
+          },
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "ItemDrawerTitleDisplay_ItemNameFragment"
           }
         ],
         "storageKey": null
@@ -92,7 +88,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ItemDrawer_itemQuery",
+    "name": "ItemDrawerLoader_itemQuery",
     "selections": [
       {
         "alias": null,
@@ -103,12 +99,18 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v3/*: any*/),
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
             "name": "sku",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "name",
             "storageKey": null
           },
           {
@@ -180,16 +182,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "77804b79635295d4148031a476f76dbd",
+    "cacheID": "4dcafbe0d8bc3014c9f3a96d91436829",
     "id": null,
     "metadata": {},
-    "name": "ItemDrawer_itemQuery",
+    "name": "ItemDrawerLoader_itemQuery",
     "operationKind": "query",
-    "text": "query ItemDrawer_itemQuery(\n  $id: GlobalID!\n) {\n  item(id: $id) {\n    id\n    name\n    ...ItemDrawerContent_SingleItemFragment\n    ...FormUpdateItem_ItemFragment\n  }\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment GeneralInformationTab_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  versionId\n  creationDate\n  currentStock\n}\n\nfragment ItemDrawerContent_SingleItemFragment on ItemType {\n  ...GeneralInformationTab_itemFragment\n}\n"
+    "text": "query ItemDrawerLoader_itemQuery(\n  $id: GlobalID!\n) {\n  item(id: $id) {\n    id\n    ...GeneralInformationTabDisplay_itemFragment\n    ...FormUpdateItemDisplay_ItemFragment\n    ...ItemDrawerTitleDisplay_ItemNameFragment\n  }\n}\n\nfragment FormUpdateItemDisplay_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment GeneralInformationTabDisplay_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  versionId\n  creationDate\n  currentStock\n}\n\nfragment ItemDrawerTitleDisplay_ItemNameFragment on ItemType {\n  name\n}\n"
   }
 };
 })();
 
-(node as any).hash = "cdefaad9fa269c3d633f6360074bf775";
+(node as any).hash = "4de43d76c03bccccdbebdc3499c0c07d";
 
 export default node;

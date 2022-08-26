@@ -5,23 +5,18 @@ import {
   IconInfoCircle,
   IconReceipt,
 } from '@tabler/icons';
-import GeneralInformationTab from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/TabsContent/GeneralInformationTab';
-import { graphql, useFragment } from 'react-relay';
-import { ItemDrawerContent_SingleItemFragment$key } from './__generated__/ItemDrawerContent_SingleItemFragment.graphql';
-import useItemDrawerStyles from './ItemDrawerStyles';
+import { ItemDrawerLoader_itemQuery } from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/__generated__/ItemDrawerLoader_itemQuery.graphql';
+import { PreloadedQuery } from 'react-relay';
+import useItemDrawerStyles from '../../ItemDrawerStyles';
+import GeneralInformationTab from './tabs/GeneralInformationTab';
 
-const itemFragment = graphql`
-  fragment ItemDrawerContent_SingleItemFragment on ItemType {
-    ...GeneralInformationTab_itemFragment
-  }
-`;
-
-type Props = {
-  itemFragmentRef: ItemDrawerContent_SingleItemFragment$key;
+export type ItemDrawerInfoTabsDisplayProps = {
+  queryRef: PreloadedQuery<ItemDrawerLoader_itemQuery>;
 };
 
-function ItemDrawerContent({ itemFragmentRef }: Props) {
-  const item = useFragment(itemFragment, itemFragmentRef);
+function ItemDrawerInfoTabsDisplay({
+  queryRef,
+}: ItemDrawerInfoTabsDisplayProps) {
   const { classes } = useItemDrawerStyles();
 
   return (
@@ -43,11 +38,11 @@ function ItemDrawerContent({ itemFragmentRef }: Props) {
         </Tabs.List>
 
         <Tabs.Panel value="info" pl={5} sx={{ flexGrow: 1 }}>
-          <GeneralInformationTab itemFragmentRef={item} />
+          <GeneralInformationTab queryRef={queryRef} />
         </Tabs.Panel>
       </Tabs>
     </Stack>
   );
 }
 
-export default ItemDrawerContent;
+export default ItemDrawerInfoTabsDisplay;

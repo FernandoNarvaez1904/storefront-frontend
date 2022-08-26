@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<be15adbc14a8e7a71b68ec8f030574da>>
+ * @generated SignedSource<<9c5c7431e68b80f8bdcd5e641c519f52>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,25 +10,25 @@
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type FormUpdateItem_ItemFragment$data = {
+export type FormUpdateItemDisplay_ItemFragment$data = {
   readonly barcode: string | null;
   readonly cost: number;
   readonly id: any;
   readonly markup: number;
   readonly name: string | null;
   readonly price: number | null;
-  readonly " $fragmentType": "FormUpdateItem_ItemFragment";
+  readonly " $fragmentType": "FormUpdateItemDisplay_ItemFragment";
 };
-export type FormUpdateItem_ItemFragment$key = {
-  readonly " $data"?: FormUpdateItem_ItemFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItem_ItemFragment">;
+export type FormUpdateItemDisplay_ItemFragment$key = {
+  readonly " $data"?: FormUpdateItemDisplay_ItemFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItemDisplay_ItemFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "FormUpdateItem_ItemFragment",
+  "name": "FormUpdateItemDisplay_ItemFragment",
   "selections": [
     {
       "alias": null,
@@ -77,6 +77,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "3579183f731ec05f3e6a025146032a46";
+(node as any).hash = "d7e0a62c0b81734d8f63d0d31be29a5f";
 
 export default node;

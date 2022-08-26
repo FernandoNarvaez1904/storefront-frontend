@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<422d2d7a847d3b1d6d402d55f5418852>>
+ * @generated SignedSource<<95a6c619d8bfb77fa991beb966a56204>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,7 +25,7 @@ export type FormCreateItem_CreateItemMutation$data = {
   readonly itemCreate: {
     readonly node: {
       readonly id: any;
-      readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItem_ItemFragment" | "RowTbodyItems_ItemsRowFragment">;
+      readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItemDisplay_ItemFragment" | "RowTbodyItems_ItemsRowFragment">;
     } | null;
     readonly userErrors: ReadonlyArray<{
       readonly field: string;
@@ -119,7 +119,7 @@ return {
               {
                 "args": null,
                 "kind": "FragmentSpread",
-                "name": "FormUpdateItem_ItemFragment"
+                "name": "FormUpdateItemDisplay_ItemFragment"
               }
             ],
             "storageKey": null
@@ -239,16 +239,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "076174f3693b9a4ef9f1e40dc1349765",
+    "cacheID": "455039448c06b97c655e6c004ace3eb7",
     "id": null,
     "metadata": {},
     "name": "FormCreateItem_CreateItemMutation",
     "operationKind": "mutation",
-    "text": "mutation FormCreateItem_CreateItemMutation(\n  $input: ItemCreateInput!\n) {\n  itemCreate(input: $input) {\n    userErrors {\n      __typename\n      field\n      message\n    }\n    node {\n      id\n      ...RowTbodyItems_ItemsRowFragment\n      ...FormUpdateItem_ItemFragment\n    }\n  }\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n"
+    "text": "mutation FormCreateItem_CreateItemMutation(\n  $input: ItemCreateInput!\n) {\n  itemCreate(input: $input) {\n    userErrors {\n      __typename\n      field\n      message\n    }\n    node {\n      id\n      ...RowTbodyItems_ItemsRowFragment\n      ...FormUpdateItemDisplay_ItemFragment\n    }\n  }\n}\n\nfragment FormUpdateItemDisplay_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n"
   }
 };
 })();
 
-(node as any).hash = "81a7007dc7a0985b6501ed5b885f6b3a";
+(node as any).hash = "897b5d08132a7dbf46c49d5f6a0881d6";
 
 export default node;

@@ -17,7 +17,7 @@ const createItemMutation = graphql`
       node {
         id
         ...RowTbodyItems_ItemsRowFragment
-        ...FormUpdateItem_ItemFragment
+        ...FormUpdateItemDisplay_ItemFragment
       }
     }
   }

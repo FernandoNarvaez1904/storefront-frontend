@@ -1,16 +1,25 @@
 import { Button, NumberInput, Stack, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { graphql, useFragment, useMutation } from 'react-relay';
-import { PayloadError } from 'relay-runtime';
-import { FormUpdateItem_ItemFragment$key } from './__generated__/FormUpdateItem_ItemFragment.graphql';
+import ItemDrawerLoader_itemQueryGraphql, {
+  ItemDrawerLoader_itemQuery,
+} from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/__generated__/ItemDrawerLoader_itemQuery.graphql';
+import { FormUpdateItem_ItemFragment$key } from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/components/FormUpdateItem/__generated__/FormUpdateItem_ItemFragment.graphql';
 import {
   FormUpdateItem_UpdateItemMutation,
   FormUpdateItem_UpdateItemMutation$data,
   ItemUpdateDataInput,
-} from './__generated__/FormUpdateItem_UpdateItemMutation.graphql';
+} from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/components/FormUpdateItem/__generated__/FormUpdateItem_UpdateItemMutation.graphql';
+import {
+  graphql,
+  PreloadedQuery,
+  useFragment,
+  useMutation,
+  usePreloadedQuery,
+} from 'react-relay';
+import { PayloadError } from 'relay-runtime';
 
 const itemFragment = graphql`
-  fragment FormUpdateItem_ItemFragment on ItemType {
+  fragment FormUpdateItemDisplay_ItemFragment on ItemType {
     id
     name
     barcode
@@ -21,7 +30,7 @@ const itemFragment = graphql`
 `;
 
 const updateItemMutation = graphql`
-  mutation FormUpdateItem_UpdateItemMutation($input: ItemUpdateInput!) {
+  mutation FormUpdateItemDisplay_UpdateItemMutation($input: ItemUpdateInput!) {
     itemUpdate(input: $input) {
       node {
         id
@@ -39,8 +48,8 @@ const updateItemMutation = graphql`
   }
 `;
 
-type Props = {
-  itemFragmentRef: FormUpdateItem_ItemFragment$key;
+export type FormUpdateItemDisplayProps = {
+  queryRef: PreloadedQuery<ItemDrawerLoader_itemQuery>;
   onItemUpdate:
     | ((
         response: FormUpdateItem_UpdateItemMutation$data,
@@ -49,10 +58,17 @@ type Props = {
     | undefined;
 };
 
-function FormUpdateItem({ itemFragmentRef, onItemUpdate }: Props) {
+function FormUpdateItemDisplay({
+  queryRef,
+  onItemUpdate,
+}: FormUpdateItemDisplayProps) {
+  const data = usePreloadedQuery<ItemDrawerLoader_itemQuery>(
+    ItemDrawerLoader_itemQueryGraphql,
+    queryRef
+  );
   const item = useFragment<FormUpdateItem_ItemFragment$key>(
     itemFragment,
-    itemFragmentRef
+    data.item
   );
   const [updateItemCommit, onFlight] =
     useMutation<FormUpdateItem_UpdateItemMutation>(updateItemMutation);
@@ -115,4 +131,4 @@ function FormUpdateItem({ itemFragmentRef, onItemUpdate }: Props) {
   );
 }
 
-export default FormUpdateItem;
+export default FormUpdateItemDisplay;
