@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<33a77fca0ed093d5301c82ebc915d410>>
+ * @generated SignedSource<<3f6524616bd22563b6a069c44fe877f8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type GeneralInformationTabDisplay_itemFragment$data = {
-  readonly barcode: string | null;
+  readonly barcode: string;
   readonly cost: number;
   readonly creationDate: any | null;
   readonly currentStock: number;
@@ -19,10 +19,9 @@ export type GeneralInformationTabDisplay_itemFragment$data = {
   readonly isActive: boolean;
   readonly isService: boolean;
   readonly markup: number;
-  readonly name: string | null;
+  readonly name: string;
   readonly price: number | null;
   readonly sku: string;
-  readonly versionId: any | null;
   readonly " $fragmentType": "GeneralInformationTabDisplay_itemFragment";
 };
 export type GeneralInformationTabDisplay_itemFragment$key = {
@@ -103,13 +102,6 @@ const node: ReaderFragment = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "versionId",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
       "name": "creationDate",
       "storageKey": null
     },
@@ -125,6 +117,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "eaf640b2cc19dda89c510f55cd545dd3";
+(node as any).hash = "90fd00c886da5d1a898718682bdbaaf5";
 
 export default node;

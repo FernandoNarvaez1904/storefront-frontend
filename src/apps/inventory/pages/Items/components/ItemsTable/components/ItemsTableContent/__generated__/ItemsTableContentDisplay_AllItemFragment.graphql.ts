@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3aa06ecd9132df318b478a23d158887a>>
+ * @generated SignedSource<<1dbe87a41c42735d35091da66b35d56a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,9 +13,9 @@ import { FragmentRefs } from "relay-runtime";
 export type ItemsTableContentDisplay_AllItemFragment$data = {
   readonly edges: ReadonlyArray<{
     readonly node: {
-      readonly barcode: string | null;
+      readonly barcode: string;
       readonly id: any;
-      readonly name: string | null;
+      readonly name: string;
       readonly sku: string;
       readonly " $fragmentSpreads": FragmentRefs<"RowTbodyItems_ItemsRowFragment">;
     };

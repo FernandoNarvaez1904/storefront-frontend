@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7c0f3415e6f4a205a5782d6b03e63c74>>
+ * @generated SignedSource<<bf10f76603b4ab4c86894333090ae17b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ItemDrawerTitleDisplay_ItemNameFragment$data = {
-  readonly name: string | null;
+  readonly name: string;
   readonly " $fragmentType": "ItemDrawerTitleDisplay_ItemNameFragment";
 };
 export type ItemDrawerTitleDisplay_ItemNameFragment$key = {

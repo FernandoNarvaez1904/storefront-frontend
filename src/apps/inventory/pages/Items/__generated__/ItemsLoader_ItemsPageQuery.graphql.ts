@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<29050cb2b819b2fdfd7db811471f637a>>
+ * @generated SignedSource<<15ff767ce1ebd41d262103f68ef7af9b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -187,13 +187,6 @@ const node: ConcreteRequest = {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "versionId",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
                     "name": "creationDate",
                     "storageKey": null
                   },
@@ -223,12 +216,12 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "62f1a7cbc5617f467b4d62336840d448",
+    "cacheID": "3d4c12b1f44620093ef0ddd1e60bc735",
     "id": null,
     "metadata": {},
     "name": "ItemsLoader_ItemsPageQuery",
     "operationKind": "query",
-    "text": "query ItemsLoader_ItemsPageQuery {\n  itemConnection {\n    ...ItemsTableContentDisplay_AllItemFragment\n    ...HeaderItemsTableDisplay_ItemCountFragment\n    edges {\n      node {\n        ...GeneralInformationTabDisplay_itemFragment\n        ...FormUpdateItemDisplay_ItemFragment\n      }\n    }\n  }\n}\n\nfragment FormUpdateItemDisplay_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment GeneralInformationTabDisplay_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  versionId\n  creationDate\n  currentStock\n}\n\nfragment HeaderItemsTableDisplay_ItemCountFragment on ItemTypeConnection {\n  totalCount\n}\n\nfragment ItemsTableContentDisplay_AllItemFragment on ItemTypeConnection {\n  edges {\n    node {\n      id\n      name\n      barcode\n      sku\n      ...RowTbodyItems_ItemsRowFragment\n    }\n  }\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n"
+    "text": "query ItemsLoader_ItemsPageQuery {\n  itemConnection {\n    ...ItemsTableContentDisplay_AllItemFragment\n    ...HeaderItemsTableDisplay_ItemCountFragment\n    edges {\n      node {\n        ...GeneralInformationTabDisplay_itemFragment\n        ...FormUpdateItemDisplay_ItemFragment\n      }\n    }\n  }\n}\n\nfragment FormUpdateItemDisplay_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment GeneralInformationTabDisplay_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  creationDate\n  currentStock\n}\n\nfragment HeaderItemsTableDisplay_ItemCountFragment on ItemTypeConnection {\n  totalCount\n}\n\nfragment ItemsTableContentDisplay_AllItemFragment on ItemTypeConnection {\n  edges {\n    node {\n      id\n      name\n      barcode\n      sku\n      ...RowTbodyItems_ItemsRowFragment\n    }\n  }\n}\n\nfragment RowTbodyItems_ItemsRowFragment on ItemType {\n  id\n  name\n  sku\n  cost\n  markup\n  price\n  isService\n  isActive\n}\n"
   }
 };
 

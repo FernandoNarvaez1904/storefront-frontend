@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<60ced07c45f8ae76a2c814c67d41fc97>>
+ * @generated SignedSource<<522c9a5b9da0128b1dcaa7c789a474f6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,11 +25,11 @@ export type FormUpdateItemDisplay_UpdateItemMutation$variables = {
 export type FormUpdateItemDisplay_UpdateItemMutation$data = {
   readonly itemUpdate: {
     readonly node: {
-      readonly barcode: string | null;
+      readonly barcode: string;
       readonly cost: number;
       readonly id: any;
       readonly markup: number;
-      readonly name: string | null;
+      readonly name: string;
       readonly price: number | null;
     } | null;
     readonly userErrors: ReadonlyArray<{

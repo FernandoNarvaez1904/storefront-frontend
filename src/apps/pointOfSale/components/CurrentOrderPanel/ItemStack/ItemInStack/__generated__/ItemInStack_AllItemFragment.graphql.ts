@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0ba6e62af92bd1e0ae02096f1a85cef1>>
+ * @generated SignedSource<<a3796404ef8a04e8708418f38da4694d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,7 @@ import { FragmentRefs } from "relay-runtime";
 export type ItemInStack_AllItemFragment$data = {
   readonly id: string;
   readonly item: {
-    readonly name: string | null;
+    readonly name: string;
     readonly price: number | null;
   };
   readonly quantity: number;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d2ec4b43418bf6c12d4e5cea1ac6f199>>
+ * @generated SignedSource<<7a4a894e67eff7bc4c02985be20792c0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,7 +16,7 @@ export type RowTbodyItems_ItemsRowFragment$data = {
   readonly isActive: boolean;
   readonly isService: boolean;
   readonly markup: number;
-  readonly name: string | null;
+  readonly name: string;
   readonly price: number | null;
   readonly sku: string;
   readonly " $fragmentType": "RowTbodyItems_ItemsRowFragment";

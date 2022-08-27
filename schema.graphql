@@ -68,28 +68,17 @@ type ItemNotExistError implements UserError {
 }
 
 type ItemType implements Node {
-    barcode: String
+    barcode: String!
     cost: Float!
     creationDate: DateTime
     currentStock: Float!
     id: GlobalID!
     isActive: Boolean!
     isService: Boolean!
-    itemVersions(
-        "Returns the items in the list that come after the specified cursor."
-        after: String,
-        "Returns the items in the list that come before the specified cursor."
-        before: String,
-        "Returns the first n items from the list."
-        first: Int,
-        "Returns the items in the list that come after the specified cursor."
-        last: Int
-    ): ItemVersionTypeConnection!
     markup: Float!
-    name: String
+    name: String!
     price: Float
     sku: String!
-    versionId: GlobalID
 }
 
 "A connection to a list of items."
@@ -99,7 +88,7 @@ type ItemTypeConnection {
     "Pagination data for this connection"
     pageInfo: PageInfo!
     "Total quantity of existing nodes"
-    totalCount: Int!
+    totalCount: Int
 }
 
 "An edge in a connection."
@@ -113,32 +102,6 @@ type ItemTypeEdge {
 type ItemUpdatePayload implements PayloadTypeInterface {
     node: ItemType
     userErrors: [UserError!]!
-}
-
-type ItemVersionType implements Node {
-    barcode: String!
-    cost: Float!
-    id: GlobalID!
-    markup: Float!
-    name: String!
-}
-
-"A connection to a list of items."
-type ItemVersionTypeConnection {
-    "Contains the nodes in this connection"
-    edges: [ItemVersionTypeEdge!]!
-    "Pagination data for this connection"
-    pageInfo: PageInfo!
-    "Total quantity of existing nodes"
-    totalCount: Int!
-}
-
-"An edge in a connection."
-type ItemVersionTypeEdge {
-    "A cursor for use in pagination"
-    cursor: String!
-    "The item at the end of the edge"
-    node: ItemVersionType!
 }
 
 type Mutation {
@@ -260,20 +223,14 @@ input ItemDeleteInput {
     id: GlobalID!
 }
 
-input ItemDetailFilter {
-    barcode: StrFilterLookup
-    cost: FloatFilterLookup
-    id: IDFilterLookup
-    markup: FloatFilterLookup
-    name: StrFilterLookup
-}
-
 input ItemFilter {
-    currentDetail: ItemDetailFilter
+    cost: FloatFilterLookup
     currentStock: Float
     id: IDFilterLookup
     isActive: Boolean
     isService: Boolean
+    markup: FloatFilterLookup
+    name: StrFilterLookup
     sku: StrFilterLookup
 }
 

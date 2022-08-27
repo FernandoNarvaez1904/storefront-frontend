@@ -21,7 +21,6 @@ const itemFragment = graphql`
     barcode
     isActive
     isService
-    versionId
     creationDate
     currentStock
   }

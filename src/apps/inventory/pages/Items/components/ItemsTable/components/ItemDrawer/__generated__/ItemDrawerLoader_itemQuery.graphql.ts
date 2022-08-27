@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5f35641963b3188d9ffef2bfe36db9a8>>
+ * @generated SignedSource<<3728b44d32253bcdd691401b5772b906>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -159,13 +159,6 @@ return {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "versionId",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
             "name": "creationDate",
             "storageKey": null
           },
@@ -182,12 +175,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "4dcafbe0d8bc3014c9f3a96d91436829",
+    "cacheID": "09972df938b00e1d26a2834dd3e33fe1",
     "id": null,
     "metadata": {},
     "name": "ItemDrawerLoader_itemQuery",
     "operationKind": "query",
-    "text": "query ItemDrawerLoader_itemQuery(\n  $id: GlobalID!\n) {\n  item(id: $id) {\n    id\n    ...GeneralInformationTabDisplay_itemFragment\n    ...FormUpdateItemDisplay_ItemFragment\n    ...ItemDrawerTitleDisplay_ItemNameFragment\n  }\n}\n\nfragment FormUpdateItemDisplay_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment GeneralInformationTabDisplay_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  versionId\n  creationDate\n  currentStock\n}\n\nfragment ItemDrawerTitleDisplay_ItemNameFragment on ItemType {\n  name\n}\n"
+    "text": "query ItemDrawerLoader_itemQuery(\n  $id: GlobalID!\n) {\n  item(id: $id) {\n    id\n    ...GeneralInformationTabDisplay_itemFragment\n    ...FormUpdateItemDisplay_ItemFragment\n    ...ItemDrawerTitleDisplay_ItemNameFragment\n  }\n}\n\nfragment FormUpdateItemDisplay_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment GeneralInformationTabDisplay_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  creationDate\n  currentStock\n}\n\nfragment ItemDrawerTitleDisplay_ItemNameFragment on ItemType {\n  name\n}\n"
   }
 };
 })();
