@@ -8,6 +8,7 @@ import {
 import { itemsTableFilterAtom } from 'apps/inventory/pages/Items/state/atoms';
 import { forwardRef } from 'react';
 import { useRecoilState } from 'recoil';
+import useSelectSearchFilterStyles from './SelectSearchFilterTypeStyles';
 
 interface SelectItemProps extends React.ComponentPropsWithoutRef<'div'> {
   Icon: TablerIcon;
@@ -30,6 +31,8 @@ function SelectSearchFilterTypeDisplay() {
   const [itemsTableFilter, setItemsTableFilter] =
     useRecoilState(itemsTableFilterAtom);
 
+  const { classes } = useSelectSearchFilterStyles();
+
   const data = [
     { label: 'Name', value: 'name', Icon: IconLetterCase },
     { label: 'Barcode', value: 'barcode', Icon: IconBarcode },
@@ -38,13 +41,13 @@ function SelectSearchFilterTypeDisplay() {
 
   const getIcon = (value: 'name' | 'barcode' | 'sku') => {
     if (value === 'name') {
-      return <IconLetterCase size={18} />;
+      return <IconLetterCase size={18} className={classes.icon} />;
     }
     if (value === 'barcode') {
-      return <IconBarcode size={18} />;
+      return <IconBarcode size={18} className={classes.icon} />;
     }
     if (value === 'sku') {
-      return <IconNumbers size={18} />;
+      return <IconNumbers size={18} className={classes.icon} />;
     }
     return null;
   };
