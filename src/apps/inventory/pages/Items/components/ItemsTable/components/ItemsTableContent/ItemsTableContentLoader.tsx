@@ -1,10 +1,10 @@
 import { ItemsLoader_ItemsPageQuery } from 'apps/inventory/pages/Items/__generated__/ItemsLoader_ItemsPageQuery.graphql';
-import ItemsTableContentSkeleton from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemsTableContent/ItemsTableContentSkeleton';
 import { Suspense } from 'react';
 import { PreloadedQuery } from 'react-relay';
 import ItemsTableContentDisplay, {
   ItemsTableContentDisplayProps,
 } from './ItemsTableContentDisplay';
+import ItemsTableContentSkeleton from './ItemsTableContentSkeleton';
 
 type Props = {
   queryRef: PreloadedQuery<ItemsLoader_ItemsPageQuery>;
