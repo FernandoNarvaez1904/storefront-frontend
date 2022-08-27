@@ -73,10 +73,10 @@ function ItemsTableContentDisplay({
         key={item.node.id}
         onClick={() => {
           setItemDrawerState((prev) => ({
-              ...prev,
-              isOpened: true,
-              currentItem: item.node.id,
-            }));
+            ...prev,
+            isOpened: true,
+            currentItem: item.node.id,
+          }));
         }}
       />
     ));

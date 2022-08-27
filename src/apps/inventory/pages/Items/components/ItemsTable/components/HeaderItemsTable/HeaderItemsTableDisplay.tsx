@@ -13,6 +13,7 @@ import {
 } from 'react-relay';
 import { useSetRecoilState } from 'recoil';
 import { HeaderItemsTableDisplay_ItemCountFragment$key } from './__generated__/HeaderItemsTableDisplay_ItemCountFragment.graphql';
+import SelectSearchFilterType from './components/SelectSearchFilterType';
 import useItemsTableHeaderStyles from './ItemsTableHeaderStyles';
 
 const itemCountFragment = graphql`
@@ -48,18 +49,20 @@ function HeaderItemsTableDisplay({ queryRef }: Props) {
     // The timeout is done to delay filtering. If the delay is not present, the
     // rendering of the table will slow down the responsiveness of the TextInput
     setTimeout(() => {
-      setItemsTableFilter({ type: 'name', value });
+      setItemsTableFilter((prev) => ({ ...prev, value }));
     }, 50);
   };
 
   return (
     <Group className={classes.header}>
       <TextInput
-        value={localSearch}
         size="xs"
+        value={localSearch}
         placeholder="Search Items"
         icon={<IconSearch size={16} />}
         className={classes.searchInput}
+        rightSectionWidth={110.5}
+        rightSection={<SelectSearchFilterType />}
         onChange={(e) => {
           onChangeInput(e.target.value);
         }}

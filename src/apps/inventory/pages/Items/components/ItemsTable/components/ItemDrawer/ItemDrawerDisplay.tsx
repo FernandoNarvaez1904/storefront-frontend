@@ -28,7 +28,12 @@ function ItemDrawerDisplay({ queryRef }: Props) {
   }, [isOpened, setOpened]);
 
   const closeDrawer = () => {
-    setItemDrawerState({ isOpened: false, currentItem: '', isEditMode: false });
+    setItemDrawerState((prev) => ({
+      ...prev,
+      isOpened: false,
+      currentItem: '',
+      isEditMode: false,
+    }));
   };
 
   return (
