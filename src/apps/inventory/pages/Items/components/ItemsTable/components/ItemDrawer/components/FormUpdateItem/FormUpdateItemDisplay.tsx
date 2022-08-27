@@ -3,12 +3,6 @@ import { useForm } from '@mantine/form';
 import ItemDrawerLoader_itemQueryGraphql, {
   ItemDrawerLoader_itemQuery,
 } from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/__generated__/ItemDrawerLoader_itemQuery.graphql';
-import { FormUpdateItem_ItemFragment$key } from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/components/FormUpdateItem/__generated__/FormUpdateItem_ItemFragment.graphql';
-import {
-  FormUpdateItem_UpdateItemMutation,
-  FormUpdateItem_UpdateItemMutation$data,
-  ItemUpdateDataInput,
-} from 'apps/inventory/pages/Items/components/ItemsTable/components/ItemDrawer/components/FormUpdateItem/__generated__/FormUpdateItem_UpdateItemMutation.graphql';
 import {
   graphql,
   PreloadedQuery,
@@ -17,6 +11,12 @@ import {
   usePreloadedQuery,
 } from 'react-relay';
 import { PayloadError } from 'relay-runtime';
+import { FormUpdateItemDisplay_ItemFragment$key } from './__generated__/FormUpdateItemDisplay_ItemFragment.graphql';
+import {
+  FormUpdateItemDisplay_UpdateItemMutation,
+  FormUpdateItemDisplay_UpdateItemMutation$data,
+  ItemUpdateDataInput,
+} from './__generated__/FormUpdateItemDisplay_UpdateItemMutation.graphql';
 
 const itemFragment = graphql`
   fragment FormUpdateItemDisplay_ItemFragment on ItemType {
@@ -52,7 +52,7 @@ export type FormUpdateItemDisplayProps = {
   queryRef: PreloadedQuery<ItemDrawerLoader_itemQuery>;
   onItemUpdate:
     | ((
-        response: FormUpdateItem_UpdateItemMutation$data,
+        response: FormUpdateItemDisplay_UpdateItemMutation$data,
         errors: PayloadError[] | null
       ) => void | null)
     | undefined;
@@ -66,12 +66,12 @@ function FormUpdateItemDisplay({
     ItemDrawerLoader_itemQueryGraphql,
     queryRef
   );
-  const item = useFragment<FormUpdateItem_ItemFragment$key>(
+  const item = useFragment<FormUpdateItemDisplay_ItemFragment$key>(
     itemFragment,
     data.item
   );
   const [updateItemCommit, onFlight] =
-    useMutation<FormUpdateItem_UpdateItemMutation>(updateItemMutation);
+    useMutation<FormUpdateItemDisplay_UpdateItemMutation>(updateItemMutation);
 
   const form = useForm({
     initialValues: {
