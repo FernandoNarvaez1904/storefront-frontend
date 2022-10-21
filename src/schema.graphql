@@ -1,0 +1,253 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+interface Node {
+    id: ID!
+}
+
+interface PayloadTypeInterface {
+    node: Node
+    userErrors: [UserError!]!
+}
+
+" It gives the API user a hint on the not allowed inputs or errors in the mutation."
+interface UserError {
+    field: String!
+    message: String!
+}
+
+type BarcodeNotUniqueError implements UserError {
+    field: String!
+    message: String!
+}
+
+type ItemActivatePayload implements PayloadTypeInterface {
+    node: ItemType
+    userErrors: [UserError!]!
+}
+
+type ItemAlreadyHasDocument implements UserError {
+    field: String!
+    message: String!
+}
+
+type ItemCreatePayload implements PayloadTypeInterface {
+    node: ItemType
+    userErrors: [UserError!]!
+}
+
+type ItemDeactivatePayload implements PayloadTypeInterface {
+    node: ItemType
+    userErrors: [UserError!]!
+}
+
+type ItemDeletePayload implements PayloadTypeInterface {
+    node: Node
+    userErrors: [UserError!]!
+}
+
+type ItemIsActiveError implements UserError {
+    field: String!
+    message: String!
+}
+
+type ItemIsNotActiveError implements UserError {
+    field: String!
+    message: String!
+}
+
+type ItemNotExistError implements UserError {
+    field: String!
+    message: String!
+}
+
+type ItemType implements Node {
+    barcode: String!
+    cost: Float!
+    creationDate: DateTime!
+    currentStock: Int!
+    id: ID!
+    isActive: Boolean!
+    isService: Boolean!
+    markup: Float!
+    name: String!
+    price: Float
+    sku: String!
+}
+
+"""
+
+Represents a paginated relationship between two entities
+
+This pattern is used when the relationship itself has attributes.
+In a Facebook-based domain example, a friendship between two people
+would be a connection that might have a `friendshipStartTime`
+"""
+type ItemTypeConnection {
+    edges: [ItemTypeEdge!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+"An edge may contain additional information of the relationship. This is the trivial case"
+type ItemTypeEdge {
+    cursor: String!
+    node: ItemType!
+}
+
+type ItemUpdatePayload implements PayloadTypeInterface {
+    node: ItemType
+    userErrors: [UserError!]!
+}
+
+type Mutation {
+    itemActivate(input: ItemActivateInput!): ItemActivatePayload!
+    itemCreate(input: ItemCreateInput!): ItemCreatePayload!
+    itemDeactivate(input: ItemDeactivateInput!): ItemDeactivatePayload!
+    itemDelete(input: ItemDeleteInput!): ItemDeletePayload!
+    itemUpdate(input: ItemUpdateInput!): ItemUpdatePayload!
+}
+
+"""
+
+Pagination context to navigate objects with cursor-based pagination
+
+Instead of classic offset pagination via `page` and `limit` parameters,
+here we have a cursor of the last object and we fetch items starting from that one
+"""
+type PageInfo {
+    edgesCount: Int
+    endCursor: String
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: String
+    totalCount: Int
+}
+
+type Query {
+    item(id: ID!): ItemType @deprecated(reason: "Migration to only node")
+    itemConnection(after: ID, before: ID, filter: ItemFilter, first: Int, last: Int): ItemTypeConnection!
+    node(id: ID!): Node
+}
+
+type SKUNotUniqueError implements UserError {
+    field: String!
+    message: String!
+}
+
+"Date with time (isoformat)"
+scalar DateTime
+
+input FloatFilterLookup {
+    contains: Float
+    endsWith: Float
+    exact: Float
+    gt: Float
+    gte: Float
+    iContains: Float
+    iEndsWith: Float
+    iExact: Float
+    iRegex: String
+    iStartsWith: Float
+    inList: [Float!]
+    isNull: Boolean
+    lt: Float
+    lte: Float
+    range: [Float!]
+    regex: String
+    startsWith: Float
+}
+
+input IDFilterLookup {
+    contains: ID
+    endsWith: ID
+    exact: ID
+    gt: ID
+    gte: ID
+    iContains: ID
+    iEndsWith: ID
+    iExact: ID
+    iRegex: String
+    iStartsWith: ID
+    inList: [ID!]
+    isNull: Boolean
+    lt: ID
+    lte: ID
+    range: [ID!]
+    regex: String
+    startsWith: ID
+}
+
+input ItemActivateInput {
+    "The id given must be of an existing and inactive Item."
+    id: ID!
+}
+
+input ItemCreateInput {
+    "It must be unique"
+    barcode: String!
+    cost: Float!
+    isService: Boolean!
+    markup: Float!
+    name: String!
+    "It must be unique"
+    sku: String!
+}
+
+input ItemDeactivateInput {
+    "The id given must be of an existing and active Item."
+    id: ID!
+}
+
+input ItemDeleteInput {
+    "The id given must be of an existing Item."
+    id: ID!
+}
+
+input ItemFilter {
+    cost: FloatFilterLookup
+    currentStock: Float
+    id: IDFilterLookup
+    isActive: Boolean
+    isService: Boolean
+    markup: FloatFilterLookup
+    name: StrFilterLookup
+    sku: StrFilterLookup
+}
+
+input ItemUpdateDataInput {
+    barcode: String
+    cost: Float
+    markup: Float
+    name: String
+}
+
+input ItemUpdateInput {
+    data: ItemUpdateDataInput!
+    "The id given must be of an existing and active Item."
+    id: ID!
+}
+
+input StrFilterLookup {
+    contains: String
+    endsWith: String
+    exact: String
+    gt: String
+    gte: String
+    iContains: String
+    iEndsWith: String
+    iExact: String
+    iRegex: String
+    iStartsWith: String
+    inList: [String!]
+    isNull: Boolean
+    lt: String
+    lte: String
+    range: [String!]
+    regex: String
+    startsWith: String
+}
