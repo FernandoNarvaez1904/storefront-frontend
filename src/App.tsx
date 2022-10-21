@@ -2,4 +2,7 @@ function App() {
   return <div>Hello world</div>;
 }
 
-export default App;
+function WrappedApp() {
+  return <App />;
+}
+export default WrappedApp;
