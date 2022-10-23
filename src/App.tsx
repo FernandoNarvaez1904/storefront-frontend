@@ -14,13 +14,14 @@ import {
 } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import Layout from './layout';
+import Items from './pages/items';
 import relayEnvironment from './RelayEnvironment';
 
 function App() {
   const routes = createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<h1>Dashboard</h1>} />
-      <Route path="items" element={<h1>Items</h1>} />
+      <Route path="items" element={<Items />} />
     </Route>
   );
   const router = createBrowserRouter(routes);
