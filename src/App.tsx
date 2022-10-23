@@ -1,5 +1,4 @@
 import {
-  Button,
   ColorScheme,
   ColorSchemeProvider,
   MantineProvider,
@@ -7,38 +6,54 @@ import {
 import { useLocalStorage } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
 import { RelayEnvironmentProvider } from 'react-relay';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import Layout from './layout';
 import relayEnvironment from './RelayEnvironment';
 
 function App() {
-  return <Button>Hello</Button>;
+  const routes = createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<h1>Dashboard</h1>} />
+      <Route path="items" element={<h1>Items</h1>} />
+    </Route>
+  );
+  const router = createBrowserRouter(routes);
+  return <RouterProvider router={router} />;
 }
 
 function WrappedApp() {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'colorScheme',
-    defaultValue: 'light',
   });
 
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
   return (
-    <ColorSchemeProvider
-      colorScheme={colorScheme}
-      toggleColorScheme={toggleColorScheme}
-    >
-      <MantineProvider
-        theme={{ colorScheme }}
-        withGlobalStyles
-        withNormalizeCSS
-      >
-        <NotificationsProvider position="top-right">
-          <RelayEnvironmentProvider environment={relayEnvironment}>
-            <App />
-          </RelayEnvironmentProvider>
-        </NotificationsProvider>
-      </MantineProvider>
-    </ColorSchemeProvider>
+    <RelayEnvironmentProvider environment={relayEnvironment}>
+      <RecoilRoot>
+        <ColorSchemeProvider
+          colorScheme={colorScheme}
+          toggleColorScheme={toggleColorScheme}
+        >
+          <MantineProvider
+            theme={{ colorScheme }}
+            withGlobalStyles
+            withNormalizeCSS
+          >
+            <NotificationsProvider position="top-right">
+              <App />
+            </NotificationsProvider>
+          </MantineProvider>
+        </ColorSchemeProvider>
+      </RecoilRoot>
+    </RelayEnvironmentProvider>
   );
 }
 
