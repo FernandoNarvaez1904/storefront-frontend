@@ -1,5 +1,12 @@
+import { Stack } from '@mantine/core';
+import ActionHeader from './components/ActionHeader';
+
 function Items() {
-  return <div>Items</div>;
+  return (
+    <Stack pt="md">
+      <ActionHeader />
+    </Stack>
+  );
 }
 
 export default Items;
