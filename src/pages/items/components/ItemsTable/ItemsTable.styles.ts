@@ -46,6 +46,9 @@ const useItemTableStyles = createStyles({
   scrollArea: {
     flexGrow: 1,
   },
+  globalFilter: {
+    display: 'none',
+  },
 });
 
 export default useItemTableStyles;

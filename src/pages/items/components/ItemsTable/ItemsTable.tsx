@@ -5,7 +5,9 @@ import {
   stringFilterFn,
 } from 'mantine-data-grid';
 import { useLazyLoadQuery } from 'react-relay';
+import { useRecoilValue } from 'recoil';
 import { graphql } from 'relay-runtime';
+import { tableGlobalFilter } from '../../state/atoms';
 import { ItemsTableQuery } from './__generated__/ItemsTableQuery.graphql';
 import useItemTableStyles from './ItemsTable.styles';
 
@@ -35,6 +37,7 @@ function ItemsTable({ height }: ItemsTableProps) {
   const query = useLazyLoadQuery<ItemsTableQuery>(allItems, {});
   const { classes } = useItemTableStyles();
   const data = query.itemConnection.edges.map((el) => el.node);
+  const globalFilterValue = useRecoilValue(tableGlobalFilter);
 
   const columns = [
     {
@@ -81,7 +84,11 @@ function ItemsTable({ height }: ItemsTableProps) {
           pageSize: 100,
         },
       }}
+      withGlobalFilter
       classNames={classes}
+      state={{
+        globalFilter: globalFilterValue,
+      }}
     />
   );
 }
