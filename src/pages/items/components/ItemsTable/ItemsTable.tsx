@@ -4,9 +4,11 @@ import {
   numberFilterFn,
   stringFilterFn,
 } from 'mantine-data-grid';
+import { useState } from 'react';
 import { useFragment, useLazyLoadQuery } from 'react-relay';
 import { useRecoilValue } from 'recoil';
 import { graphql } from 'relay-runtime';
+import DefaultDrawer from '../../../../components/DefaultDrawer';
 import { tableGlobalFilter } from '../../state/atoms';
 import { ItemsTableItemConnectionFragment$key } from './__generated__/ItemsTableItemConnectionFragment.graphql';
 import { ItemsTableQuery } from './__generated__/ItemsTableQuery.graphql';
@@ -51,11 +53,21 @@ function ItemsTable({ height }: ItemsTableProps) {
   const dataParsed = data.itemConnection.edges.map((el) => el.node);
   const globalFilterValue = useRecoilValue(tableGlobalFilter);
 
+  const [drawerState, setDrawerState] = useState({
+    isOpen: false,
+    title: '',
+    id: '',
+  });
+
   const columns = [
+    {
+      accessorKey: 'id',
+      header: 'ID',
+      filterFn: stringFilterFn,
+    },
     {
       accessorKey: 'name',
       header: 'Name',
-      enablePinning: true,
       filterFn: stringFilterFn,
     },
     {
@@ -81,27 +93,46 @@ function ItemsTable({ height }: ItemsTableProps) {
   ];
 
   return (
-    <DataGrid
-      data={dataParsed}
-      columns={columns}
-      height={height}
-      withPagination
-      withSorting
-      withFixedHeader
-      highlightOnHover
-      withColumnFilters
-      initialState={{
-        pagination: {
-          pageIndex: 0,
-          pageSize: 100,
-        },
-      }}
-      withGlobalFilter
-      classNames={classes}
-      state={{
-        globalFilter: globalFilterValue,
-      }}
-    />
+    <>
+      <DataGrid
+        data={dataParsed}
+        columns={columns}
+        height={height}
+        classNames={classes}
+        withPagination
+        withSorting
+        withFixedHeader
+        highlightOnHover
+        withColumnFilters
+        withGlobalFilter
+        initialState={{
+          pagination: {
+            pageIndex: 0,
+            pageSize: 100,
+          },
+        }}
+        state={{
+          globalFilter: globalFilterValue,
+        }}
+        onRow={(row) => ({
+          onClick: () => {
+            setDrawerState({
+              isOpen: true,
+              title: row.getValue('name'),
+              id: row.getValue('id'),
+            });
+          },
+        })}
+      />
+
+      <DefaultDrawer
+        isOpen={drawerState.isOpen}
+        onClose={() => setDrawerState((prev) => ({ ...prev, isOpen: false }))}
+        title={drawerState.title}
+      >
+        {drawerState.id}
+      </DefaultDrawer>
+    </>
   );
 }
 
