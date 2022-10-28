@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<23b58a7cc324d031df9f0906cdc5f12c>>
+ * @generated SignedSource<<cba31110d239925ec9d5fd37c4fb2b27>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,21 +10,49 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ItemsTableQuery$variables = {};
-export type ItemsTableQuery$data = {
+export type ItemTableItemConnectionFragmentQuery$variables = {
+  count?: number | null;
+  cursor?: string | null;
+};
+export type ItemTableItemConnectionFragmentQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"ItemsTableItemConnectionFragment">;
 };
-export type ItemsTableQuery = {
-  response: ItemsTableQuery$data;
-  variables: ItemsTableQuery$variables;
+export type ItemTableItemConnectionFragmentQuery = {
+  response: ItemTableItemConnectionFragmentQuery$data;
+  variables: ItemTableItemConnectionFragmentQuery$variables;
 };
 
-const node: ConcreteRequest = {
+const node: ConcreteRequest = (function(){
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "count"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "cursor"
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count"
+  }
+];
+return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ItemsTableQuery",
+    "name": "ItemTableItemConnectionFragmentQuery",
     "selections": [
       {
         "args": null,
@@ -37,13 +65,13 @@ const node: ConcreteRequest = {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ItemsTableQuery",
+    "name": "ItemTableItemConnectionFragmentQuery",
     "selections": [
       {
         "alias": null,
-        "args": null,
+        "args": (v1/*: any*/),
         "concreteType": "ItemTypeConnection",
         "kind": "LinkedField",
         "name": "itemConnection",
@@ -164,7 +192,7 @@ const node: ConcreteRequest = {
       },
       {
         "alias": null,
-        "args": null,
+        "args": (v1/*: any*/),
         "filters": null,
         "handle": "connection",
         "key": "ItemsTableItemConnectionFragment_itemConnection",
@@ -174,15 +202,16 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "bf77884563928b9da46ebdaf75c35169",
+    "cacheID": "0e0ecc986742f1f18104320f179e29e7",
     "id": null,
     "metadata": {},
-    "name": "ItemsTableQuery",
+    "name": "ItemTableItemConnectionFragmentQuery",
     "operationKind": "query",
-    "text": "query ItemsTableQuery {\n  ...ItemsTableItemConnectionFragment\n}\n\nfragment ItemsTableItemConnectionFragment on Query {\n  itemConnection {\n    totalCount\n    edges {\n      node {\n        id\n        name\n        barcode\n        cost\n        isActive\n        sku\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query ItemTableItemConnectionFragmentQuery(\n  $count: Int\n  $cursor: ID\n) {\n  ...ItemsTableItemConnectionFragment\n}\n\nfragment ItemsTableItemConnectionFragment on Query {\n  itemConnection(after: $cursor, first: $count) {\n    totalCount\n    edges {\n      node {\n        id\n        name\n        barcode\n        cost\n        isActive\n        sku\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
+})();
 
-(node as any).hash = "513a44538665fe5a922cce93f5ad55c5";
+(node as any).hash = "6918bce2465074f3a1d33530e4eb9918";
 
 export default node;

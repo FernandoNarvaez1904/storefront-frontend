@@ -4,16 +4,24 @@ import {
   numberFilterFn,
   stringFilterFn,
 } from 'mantine-data-grid';
-import { useLazyLoadQuery } from 'react-relay';
+import { useFragment, useLazyLoadQuery } from 'react-relay';
 import { useRecoilValue } from 'recoil';
 import { graphql } from 'relay-runtime';
 import { tableGlobalFilter } from '../../state/atoms';
+import { ItemsTableItemConnectionFragment$key } from './__generated__/ItemsTableItemConnectionFragment.graphql';
 import { ItemsTableQuery } from './__generated__/ItemsTableQuery.graphql';
 import useItemTableStyles from './ItemsTable.styles';
 
 const allItems = graphql`
   query ItemsTableQuery {
-    itemConnection {
+    ...ItemsTableItemConnectionFragment
+  }
+`;
+
+const itemConnectionFragment = graphql`
+  fragment ItemsTableItemConnectionFragment on Query {
+    itemConnection(first: null)
+      @connection(key: "ItemsTableItemConnectionFragment_itemConnection") {
       totalCount
       edges {
         node {
@@ -35,8 +43,12 @@ interface ItemsTableProps {
 
 function ItemsTable({ height }: ItemsTableProps) {
   const query = useLazyLoadQuery<ItemsTableQuery>(allItems, {});
+  const data = useFragment<ItemsTableItemConnectionFragment$key>(
+    itemConnectionFragment,
+    query
+  );
   const { classes } = useItemTableStyles();
-  const data = query.itemConnection.edges.map((el) => el.node);
+  const dataParsed = data.itemConnection.edges.map((el) => el.node);
   const globalFilterValue = useRecoilValue(tableGlobalFilter);
 
   const columns = [
@@ -70,7 +82,7 @@ function ItemsTable({ height }: ItemsTableProps) {
 
   return (
     <DataGrid
-      data={data}
+      data={dataParsed}
       columns={columns}
       height={height}
       withPagination
