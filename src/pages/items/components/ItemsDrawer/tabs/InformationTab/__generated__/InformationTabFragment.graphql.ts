@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4958df563fdcea179eb5d7b723aff1e7>>
+ * @generated SignedSource<<1b1d3887af5dd451e59563be56d842e3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -22,6 +22,7 @@ export type InformationTabFragment$data = {
   readonly name: string;
   readonly price: number | null;
   readonly sku: string;
+  readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItem_ItemFragment">;
   readonly " $fragmentType": "InformationTabFragment";
 };
 export type InformationTabFragment$key = {
@@ -111,12 +112,17 @@ const node: ReaderFragment = {
       "kind": "ScalarField",
       "name": "isService",
       "storageKey": null
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "FormUpdateItem_ItemFragment"
     }
   ],
   "type": "ItemType",
   "abstractKey": null
 };
 
-(node as any).hash = "2f74a265bc05990a6f789351ce7f9ed4";
+(node as any).hash = "45040c8a3748e3fb16c852b8773ad3d9";
 
 export default node;

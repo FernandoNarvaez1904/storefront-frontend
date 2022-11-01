@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d45649e3b0bde8b631108d5196ca3278>>
+ * @generated SignedSource<<246aa9504a9cff7b7129d73137ff3975>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -209,12 +209,12 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "1b35b288db45d76d2f0e98dd56a3444b",
+    "cacheID": "03edb2c1b07ce9c35626494c7f6721ee",
     "id": null,
     "metadata": {},
     "name": "ItemsTableQuery",
     "operationKind": "query",
-    "text": "query ItemsTableQuery {\n  ...ItemsTableItemConnectionFragment\n}\n\nfragment InformationTabFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  isActive\n  sku\n  price\n  markup\n  currentStock\n  creationDate\n  isService\n}\n\nfragment ItemsTableItemConnectionFragment on Query {\n  itemConnection {\n    totalCount\n    edges {\n      node {\n        id\n        name\n        barcode\n        cost\n        isActive\n        sku\n        ...InformationTabFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query ItemsTableQuery {\n  ...ItemsTableItemConnectionFragment\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment InformationTabFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  isActive\n  sku\n  price\n  markup\n  currentStock\n  creationDate\n  isService\n  ...FormUpdateItem_ItemFragment\n}\n\nfragment ItemsTableItemConnectionFragment on Query {\n  itemConnection {\n    totalCount\n    edges {\n      node {\n        id\n        name\n        barcode\n        cost\n        isActive\n        sku\n        ...InformationTabFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 
