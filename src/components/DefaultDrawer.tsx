@@ -1,5 +1,4 @@
-import { useTheme } from '@emotion/react';
-import { Drawer, Title } from '@mantine/core';
+import { Drawer, Title, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { ReactNode } from 'react';
 
@@ -16,7 +15,7 @@ function DefaultDrawer({
   title,
   children,
 }: DefaultDrawerProps) {
-  const theme = useTheme();
+  const theme = useMantineTheme();
   const isScreenSM = useMediaQuery(`(max-width: ${theme.breakpoints.xs}px)`);
 
   return (
@@ -24,7 +23,7 @@ function DefaultDrawer({
       opened={isOpen}
       title={<Title order={2}>{title}</Title>}
       size={isScreenSM ? 'md' : 'xl'}
-      padding="xl"
+      padding="md"
       position="right"
       overlayColor={
         theme.colorScheme === 'dark'

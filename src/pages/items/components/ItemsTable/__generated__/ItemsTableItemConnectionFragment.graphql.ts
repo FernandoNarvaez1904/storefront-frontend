@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<022364eb66704c2f216a399dc892e6f8>>
+ * @generated SignedSource<<da5d21c7567de96ec44b245e066227d5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,6 +20,7 @@ export type ItemsTableItemConnectionFragment$data = {
         readonly isActive: boolean;
         readonly name: string;
         readonly sku: string;
+        readonly " $fragmentSpreads": FragmentRefs<"InformationTabFragment">;
       };
     }>;
     readonly totalCount: number;
@@ -122,6 +123,11 @@ const node: ReaderFragment = {
                   "storageKey": null
                 },
                 {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "InformationTabFragment"
+                },
+                {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
@@ -174,6 +180,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "f7b6e61778d019747c1137c9dd0bb724";
+(node as any).hash = "55829abbbc64610f3a4127f79972a034";
 
 export default node;

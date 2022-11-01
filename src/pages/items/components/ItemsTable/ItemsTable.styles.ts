@@ -49,6 +49,9 @@ const useItemTableStyles = createStyles({
   globalFilter: {
     display: 'none',
   },
+  table: {
+    userSelect: 'none',
+  },
 });
 
 export default useItemTableStyles;
