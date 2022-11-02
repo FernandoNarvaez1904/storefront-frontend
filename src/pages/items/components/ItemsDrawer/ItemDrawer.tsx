@@ -1,7 +1,11 @@
+import React from 'react';
 import { useRecoilState } from 'recoil';
 import DefaultDrawer from '../../../../components/DefaultDrawer';
 import { itemDrawerState } from '../../state/atoms';
-import ItemsTableDrawerContent from './ItemsTableDrawerContent';
+
+const ItemsTableDrawerContent = React.lazy(
+  () => import('./ItemsTableDrawerContent')
+);
 
 function ItemDrawer() {
   const [drawerState, setDrawerState] = useRecoilState(itemDrawerState);

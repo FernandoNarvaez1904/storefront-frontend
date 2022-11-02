@@ -5,6 +5,7 @@ import {
 } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
+import React, { Suspense } from 'react';
 import { RelayEnvironmentProvider } from 'react-relay';
 import {
   createBrowserRouter,
@@ -13,15 +14,24 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import LoaderInCenter from './components/LoaderInCenter';
 import Layout from './layout';
-import Items from './pages/items';
 import relayEnvironment from './RelayEnvironment';
+
+const Items = React.lazy(() => import('./pages/items'));
 
 function App() {
   const routes = createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<h1>Dashboard</h1>} />
-      <Route path="items" element={<Items />} />
+      <Route
+        path="items"
+        element={
+          <Suspense fallback={<LoaderInCenter />}>
+            <Items />
+          </Suspense>
+        }
+      />
     </Route>
   );
   const router = createBrowserRouter(routes);

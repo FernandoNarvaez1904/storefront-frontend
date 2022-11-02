@@ -1,17 +1,19 @@
 import { Box, Skeleton, Stack } from '@mantine/core';
 import { useElementSize } from '@mantine/hooks';
-import { Suspense } from 'react';
-
+import React, { Suspense } from 'react';
 import ActionHeader from './components/ActionHeader';
-import ItemDrawer from './components/ItemsDrawer/ItemDrawer';
+
 import ItemsTable from './components/ItemsTable';
 import SearchItemsBar from './components/SearchItemsBar';
+
+const ItemDrawer = React.lazy(() => import('./components/ItemsDrawer'));
 
 function Items() {
   const { ref, height } = useElementSize();
 
   return (
     <Stack pt="xs" sx={{ height: '100%' }}>
+      <ItemDrawer />
       <ActionHeader />
 
       <Stack mb={0} pb={0} spacing={0} sx={{ flexGrow: 1 }}>
@@ -22,8 +24,6 @@ function Items() {
           </Suspense>
         </Box>
       </Stack>
-
-      <ItemDrawer />
     </Stack>
   );
 }
