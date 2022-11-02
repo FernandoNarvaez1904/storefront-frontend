@@ -35,6 +35,7 @@ function InformationTab({ itemRef }: InformationTabProps) {
   const item = useFragment<InformationTabFragment$key>(itemFragment, itemRef);
   const [isEditMode, setIsEditMode] = useState(false);
   const setItemDrawer = useSetRecoilState(itemDrawerState);
+
   return (
     <Stack spacing="xs" mt="xs" pb="md">
       <Button
@@ -45,6 +46,7 @@ function InformationTab({ itemRef }: InformationTabProps) {
       >
         {isEditMode ? 'Go Back' : 'Edit Item'}
       </Button>
+
       <Stack spacing="xl">
         {isEditMode ? (
           <FormUpdateItem
