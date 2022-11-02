@@ -57,17 +57,17 @@ function ActionIconsButtonBar() {
         </DefaultActionIconButton>
       </MediaQuery>
 
-      <Tooltip
-        label={fullscreen ? 'Minimize' : 'Maximize'}
-        withArrow
-        openDelay={500}
-      >
-        <MediaQuery styles={{ display: 'none' }} smallerThan="xs">
+      <MediaQuery styles={{ display: 'none' }} smallerThan="xs">
+        <Tooltip
+          label={fullscreen ? 'Minimize' : 'Maximize'}
+          withArrow
+          openDelay={500}
+        >
           <DefaultActionIconButton size="lg" onClick={() => toggleFullscreen()}>
             {fullscreen ? <IconArrowsMinimize /> : <IconArrowsMaximize />}
           </DefaultActionIconButton>
-        </MediaQuery>
-      </Tooltip>
+        </Tooltip>
+      </MediaQuery>
 
       <Tooltip
         label={isDarkMode ? 'Light Mode' : 'Dark Mode'}
