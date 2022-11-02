@@ -70,10 +70,10 @@ function FormUpdateItem({ queryRef, onItemUpdate }: FormUpdateItemProps) {
   const onSubmit = () =>
     form.onSubmit((values) => {
       const updateItemInput: ItemUpdateDataInput = {
-        barcode: values.barcode,
-        cost: values.cost,
-        markup: values.markup,
-        name: values.name,
+        barcode: values.barcode === item.barcode ? null : values.barcode,
+        cost: values.cost === item.cost ? null : values.cost,
+        markup: values.markup === item.markup ? null : values.markup,
+        name: values.name === item.name ? null : values.name,
       };
       updateItemCommit({
         variables: {
