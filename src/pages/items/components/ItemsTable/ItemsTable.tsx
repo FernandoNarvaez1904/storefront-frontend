@@ -110,7 +110,7 @@ function ItemsTable({ height }: ItemsTableProps) {
       initialState={{
         pagination: {
           pageIndex: 0,
-          pageSize: 100,
+          pageSize: 25,
         },
       }}
       state={{

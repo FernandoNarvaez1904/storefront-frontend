@@ -13,4 +13,7 @@ export default defineConfig({
     }),
     relay,
   ],
+  build: {
+    sourcemap: true,
+  },
 });
