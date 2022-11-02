@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useRecoilState } from 'recoil';
 import DefaultDrawer from '../../../../components/DefaultDrawer';
+import LoaderInCenter from '../../../../components/LoaderInCenter';
 import { itemDrawerState } from '../../state/atoms';
 
 const ItemsTableDrawerContent = React.lazy(
@@ -15,9 +16,11 @@ function ItemDrawer() {
       isOpen={drawerState.isOpen}
       onClose={() => setDrawerState((prev) => ({ ...prev, isOpen: false }))}
     >
-      {drawerState.node && (
-        <ItemsTableDrawerContent itemRef={drawerState.node} />
-      )}
+      <Suspense fallback={<LoaderInCenter />}>
+        {drawerState.node && (
+          <ItemsTableDrawerContent itemRef={drawerState.node} />
+        )}
+      </Suspense>
     </DefaultDrawer>
   );
 }
