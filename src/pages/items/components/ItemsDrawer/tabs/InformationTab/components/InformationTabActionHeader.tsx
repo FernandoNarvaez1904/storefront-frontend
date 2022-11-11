@@ -1,4 +1,4 @@
-import { Button, Group } from '@mantine/core';
+import { Group } from '@mantine/core';
 import { graphql } from 'relay-runtime';
 import { ConnectionHandler, useFragment, useMutation } from 'react-relay';
 import { useSetRecoilState } from 'recoil';
@@ -6,6 +6,11 @@ import { IconArrowLeft, IconEdit, IconTrash } from '@tabler/icons';
 import { InformationTabActionHeaderDeleteItemMutation } from './__generated__/InformationTabActionHeaderDeleteItemMutation.graphql';
 import { InformationTabActionHeaderItemFragment$key } from './__generated__/InformationTabActionHeaderItemFragment.graphql';
 import { itemDrawerState } from '../../../../../state/atoms';
+import {
+  DeleteItemButton,
+  EditItemButton,
+  GoBackItemButton,
+} from '../InformationTab.Styles';
 
 const deleteItemMutation = graphql`
   mutation InformationTabActionHeaderDeleteItemMutation(
@@ -69,28 +74,33 @@ function InformationTabActionHeader({
 
   return (
     <Group spacing="xs">
-      <Button
-        size="xs"
-        color={isEditMode ? 'gray.7' : 'blue.9'}
-        leftIcon={
-          isEditMode ? <IconArrowLeft size={18} /> : <IconEdit size={18} />
-        }
-        onClick={() => setIsEditMode((prev) => !prev)}
-        sx={{ flexGrow: 1 }}
-      >
-        {isEditMode ? 'Go Back' : 'Edit Item'}
-      </Button>
+      {isEditMode ? (
+        <>
+          <GoBackItemButton
+            size="xs"
+            onClick={() => setIsEditMode((prev) => !prev)}
+            leftIcon={<IconArrowLeft size={18} />}
+          >
+            Go Back
+          </GoBackItemButton>
 
-      {!isEditMode && (
-        <Button
+          <DeleteItemButton
+            size="xs"
+            loading={isInFlight}
+            onClick={deleteItem}
+            leftIcon={<IconTrash size={18} />}
+          >
+            Delete
+          </DeleteItemButton>
+        </>
+      ) : (
+        <EditItemButton
           size="xs"
-          color="red.9"
-          loading={isInFlight}
-          onClick={deleteItem}
-          leftIcon={<IconTrash size={18} />}
+          onClick={() => setIsEditMode((prev) => !prev)}
+          leftIcon={<IconEdit size={18} />}
         >
-          Delete
-        </Button>
+          Edit Item
+        </EditItemButton>
       )}
     </Group>
   );
