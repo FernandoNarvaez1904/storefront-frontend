@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5eb2274824a7caf2e373e2590f3206f4>>
+ * @generated SignedSource<<159b0186e3ec551c83c0f2bab7147978>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -18,6 +18,7 @@ export type ItemCreateInput = {
   sku: string;
 };
 export type FormCreateItem_CreateItemMutation$variables = {
+  connections: ReadonlyArray<string>;
   input: ItemCreateInput;
 };
 export type FormCreateItem_CreateItemMutation$data = {
@@ -42,35 +43,38 @@ export type FormCreateItem_CreateItemMutation = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "input"
-  }
-],
-v1 = [
+var v0 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "connections"
+},
+v1 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "input"
+},
+v2 = [
   {
     "kind": "Variable",
     "name": "input",
     "variableName": "input"
   }
 ],
-v2 = {
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "field",
   "storageKey": null
 },
-v3 = {
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "message",
   "storageKey": null
 },
-v4 = {
+v5 = {
   "alias": null,
   "args": null,
   "concreteType": "ItemType",
@@ -125,14 +129,17 @@ v4 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v1/*: any*/)
+    ],
     "kind": "Fragment",
     "metadata": null,
     "name": "FormCreateItem_CreateItemMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v2/*: any*/),
         "concreteType": "ItemCreatePayload",
         "kind": "LinkedField",
         "name": "itemCreate",
@@ -146,12 +153,12 @@ return {
             "name": "userErrors",
             "plural": true,
             "selections": [
-              (v2/*: any*/),
-              (v3/*: any*/)
+              (v3/*: any*/),
+              (v4/*: any*/)
             ],
             "storageKey": null
           },
-          (v4/*: any*/)
+          (v5/*: any*/)
         ],
         "storageKey": null
       }
@@ -161,13 +168,16 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v1/*: any*/),
+      (v0/*: any*/)
+    ],
     "kind": "Operation",
     "name": "FormCreateItem_CreateItemMutation",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v2/*: any*/),
         "concreteType": "ItemCreatePayload",
         "kind": "LinkedField",
         "name": "itemCreate",
@@ -188,12 +198,33 @@ return {
                 "name": "__typename",
                 "storageKey": null
               },
-              (v2/*: any*/),
-              (v3/*: any*/)
+              (v3/*: any*/),
+              (v4/*: any*/)
             ],
             "storageKey": null
           },
-          (v4/*: any*/)
+          (v5/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "filters": null,
+            "handle": "prependNode",
+            "key": "",
+            "kind": "LinkedHandle",
+            "name": "node",
+            "handleArgs": [
+              {
+                "kind": "Variable",
+                "name": "connections",
+                "variableName": "connections"
+              },
+              {
+                "kind": "Literal",
+                "name": "edgeTypeName",
+                "value": "CommentsEdge"
+              }
+            ]
+          }
         ],
         "storageKey": null
       }
@@ -210,6 +241,6 @@ return {
 };
 })();
 
-(node as any).hash = "757c8e179b18c53e401b2132a90c2d13";
+(node as any).hash = "bc5684fd2315b4cfd7eaf46583b861df";
 
 export default node;

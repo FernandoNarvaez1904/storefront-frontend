@@ -1,21 +1,25 @@
 /* eslint-disable */
-import { Button, NumberInput, Stack, Switch, TextInput } from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { graphql, useMutation } from "react-relay";
-import { PayloadError, SelectorStoreUpdater } from "relay-runtime";
+import { Button, NumberInput, Stack, Switch, TextInput } from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { ConnectionHandler, graphql, useMutation } from 'react-relay';
+import { PayloadError } from 'relay-runtime';
 import {
   FormCreateItem_CreateItemMutation,
-  FormCreateItem_CreateItemMutation$data
-} from "./__generated__/FormCreateItem_CreateItemMutation.graphql";
+  FormCreateItem_CreateItemMutation$data,
+} from './__generated__/FormCreateItem_CreateItemMutation.graphql';
 
 const createItemMutation = graphql`
-  mutation FormCreateItem_CreateItemMutation($input: ItemCreateInput!) {
+  mutation FormCreateItem_CreateItemMutation(
+    $input: ItemCreateInput!
+    $connections: [ID!]!
+  ) {
     itemCreate(input: $input) {
       userErrors {
         field
         message
       }
-      node {
+      node
+        @prependNode(connections: $connections, edgeTypeName: "CommentsEdge") {
         id
         name
         barcode
@@ -66,38 +70,10 @@ function FormCreateItem({ onItemCreated }: FormItemCreateProps) {
     (form.values.cost as number) +
     (form.values.cost as number) * ((form.values.markup as number) / 100);
 
-  const addingNewElementToItemConnectionStore: SelectorStoreUpdater<
-    FormCreateItem_CreateItemMutation$data
-  > = (store, data) => {
-    // getting itemConnection
-    const itemCon = store.get('client:root:itemConnection');
-    if (itemCon == null) return;
-
-    // Getting new item's record in the store
-    if (data.itemCreate.node === null) return;
-    const record = store.get(data.itemCreate.node.id);
-    // If record does not Exist AKA the mutation was not successful return
-    if (record === null || record === undefined) return;
-
-    // Adding 1 to the totalCount
-    const totalCount = itemCon.getValue('totalCount') as number;
-    if (totalCount == null) return;
-    itemCon.setValue(totalCount + 1, 'totalCount');
-
-    // Getting all the existing edges
-    const items = itemCon.getLinkedRecords('edges');
-    if (items === null || items === undefined) return;
-
-    // Creating a new edge, that links to the new item's record
-    const newEdge = store.create(
-      `client:root:itemConnection:edges:${items.length}`,
-      'ItemTypeEdge'
-    );
-    newEdge.setLinkedRecord(record, 'node');
-
-    // Adding the new edge to  itemsConnection Record
-    itemCon.setLinkedRecords([newEdge, ...items], 'edges');
-  };
+  const connectionId = ConnectionHandler.getConnectionID(
+    'root',
+    'ItemsTableItemConnectionFragment_itemConnection'
+  );
 
   const onSubmit = form.onSubmit((values) => {
     if (values.cost === null) return;
@@ -113,6 +89,7 @@ function FormCreateItem({ onItemCreated }: FormItemCreateProps) {
           name: values.name,
           isService: values.isService,
         },
+        connections: [connectionId],
       },
       onCompleted: (response, errors) => {
         const hasErrors = response.itemCreate.userErrors.length;
@@ -126,8 +103,15 @@ function FormCreateItem({ onItemCreated }: FormItemCreateProps) {
         // Only runs if hasErrors is false
         onItemCreated(response, errors);
       },
-
-      updater: addingNewElementToItemConnectionStore,
+      updater: (store) => {
+        // Getting Connection
+        const itemCon = store.get(connectionId);
+        if (itemCon == null) return;
+        // Adding 1 to the totalCount
+        const totalCount = itemCon.getValue('totalCount') as number;
+        if (totalCount == null) return;
+        itemCon.setValue(totalCount + 1, 'totalCount');
+      },
     });
   });
 
