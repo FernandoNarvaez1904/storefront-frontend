@@ -75,14 +75,22 @@ function InformationTabActionHeader({
   return (
     <Group spacing="xs">
       {isEditMode ? (
+        <GoBackItemButton
+          size="xs"
+          onClick={() => setIsEditMode((prev) => !prev)}
+          leftIcon={<IconArrowLeft size={18} />}
+        >
+          Go Back
+        </GoBackItemButton>
+      ) : (
         <>
-          <GoBackItemButton
+          <EditItemButton
             size="xs"
             onClick={() => setIsEditMode((prev) => !prev)}
-            leftIcon={<IconArrowLeft size={18} />}
+            leftIcon={<IconEdit size={18} />}
           >
-            Go Back
-          </GoBackItemButton>
+            Edit Item
+          </EditItemButton>
 
           <DeleteItemButton
             size="xs"
@@ -93,14 +101,6 @@ function InformationTabActionHeader({
             Delete
           </DeleteItemButton>
         </>
-      ) : (
-        <EditItemButton
-          size="xs"
-          onClick={() => setIsEditMode((prev) => !prev)}
-          leftIcon={<IconEdit size={18} />}
-        >
-          Edit Item
-        </EditItemButton>
       )}
     </Group>
   );
