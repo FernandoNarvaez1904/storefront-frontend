@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e955ea9ddc6051110726df9e5934fce6>>
+ * @generated SignedSource<<393029c0e68c3a3a066ab00b0fde8138>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,13 +10,13 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ItemsTableQuery$variables = {};
-export type ItemsTableQuery$data = {
+export type ItemsQuery$variables = {};
+export type ItemsQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"ItemsTableItemConnectionFragment">;
 };
-export type ItemsTableQuery = {
-  response: ItemsTableQuery$data;
-  variables: ItemsTableQuery$variables;
+export type ItemsQuery = {
+  response: ItemsQuery$data;
+  variables: ItemsQuery$variables;
 };
 
 const node: ConcreteRequest = {
@@ -24,7 +24,7 @@ const node: ConcreteRequest = {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "ItemsTableQuery",
+    "name": "ItemsQuery",
     "selections": [
       {
         "args": null,
@@ -39,7 +39,7 @@ const node: ConcreteRequest = {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "ItemsTableQuery",
+    "name": "ItemsQuery",
     "selections": [
       {
         "alias": null,
@@ -209,15 +209,15 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "9b9867433b711ad7dc9bcb637a9e4e22",
+    "cacheID": "1833e673d4c53367be5b5e31eaa7830c",
     "id": null,
     "metadata": {},
-    "name": "ItemsTableQuery",
+    "name": "ItemsQuery",
     "operationKind": "query",
-    "text": "query ItemsTableQuery {\n  ...ItemsTableItemConnectionFragment\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment InformationTabActionHeaderItemFragment on ItemType {\n  id\n}\n\nfragment InformationTabFragment on ItemType {\n  id\n  ...InformationTabInfoSectionFragment\n  ...FormUpdateItem_ItemFragment\n  ...InformationTabActionHeaderItemFragment\n}\n\nfragment InformationTabInfoSectionFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  isActive\n  sku\n  price\n  markup\n  currentStock\n  creationDate\n  isService\n}\n\nfragment ItemsTableItemConnectionFragment on Query {\n  itemConnection {\n    totalCount\n    edges {\n      node {\n        id\n        name\n        barcode\n        cost\n        isActive\n        sku\n        ...InformationTabFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query ItemsQuery {\n  ...ItemsTableItemConnectionFragment\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment InformationTabActionHeaderItemFragment on ItemType {\n  id\n}\n\nfragment InformationTabFragment on ItemType {\n  id\n  ...InformationTabInfoSectionFragment\n  ...FormUpdateItem_ItemFragment\n  ...InformationTabActionHeaderItemFragment\n}\n\nfragment InformationTabInfoSectionFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  isActive\n  sku\n  price\n  markup\n  currentStock\n  creationDate\n  isService\n}\n\nfragment ItemsTableItemConnectionFragment on Query {\n  itemConnection {\n    totalCount\n    edges {\n      node {\n        id\n        name\n        barcode\n        cost\n        isActive\n        sku\n        ...InformationTabFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 
-(node as any).hash = "513a44538665fe5a922cce93f5ad55c5";
+(node as any).hash = "a8a7c5486e49a2b6368a860fb9a14912";
 
 export default node;

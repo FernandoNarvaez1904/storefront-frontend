@@ -6,36 +6,41 @@ import {
 import { useLocalStorage } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
 import React, { Suspense } from 'react';
-import { RelayEnvironmentProvider } from 'react-relay';
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from 'react-router-dom';
+import { loadQuery, RelayEnvironmentProvider } from 'react-relay';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import LoaderInCenter from './components/LoaderInCenter';
 import Layout from './layout';
 import relayEnvironment from './RelayEnvironment';
+import ItemsQueryGraphql from './pages/items/__generated__/ItemsQuery.graphql';
 
 const Items = React.lazy(() => import('./pages/items'));
 
 function App() {
-  const routes = createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route index element={<h1>Dashboard</h1>} />
-      <Route
-        path="items"
-        element={
-          <Suspense fallback={<LoaderInCenter />}>
-            <Items />
-          </Suspense>
-        }
-      />
-    </Route>
-  );
-  const router = createBrowserRouter(routes);
-  return <RouterProvider router={router} />;
+  const routes = createBrowserRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <h1>Dashboard</h1>,
+        },
+        {
+          path: 'items',
+          element: (
+            <Suspense fallback={<LoaderInCenter />}>
+              <Items />
+            </Suspense>
+          ),
+          loader: async () => {
+            return loadQuery(relayEnvironment, ItemsQueryGraphql, {});
+          },
+        },
+      ],
+    },
+  ]);
+  return <RouterProvider router={routes} />;
 }
 
 function WrappedApp() {

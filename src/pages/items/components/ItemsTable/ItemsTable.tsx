@@ -5,19 +5,12 @@ import {
   stringFilterFn,
 } from 'mantine-data-grid';
 import React, { useMemo } from 'react';
-import { useFragment, useLazyLoadQuery } from 'react-relay';
+import { useFragment } from 'react-relay';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { graphql } from 'relay-runtime';
 import { itemDrawerState, tableGlobalFilter } from '../../state/atoms';
 import { ItemsTableItemConnectionFragment$key } from './__generated__/ItemsTableItemConnectionFragment.graphql';
-import { ItemsTableQuery } from './__generated__/ItemsTableQuery.graphql';
 import useItemTableStyles from './ItemsTable.styles';
-
-const allItems = graphql`
-  query ItemsTableQuery {
-    ...ItemsTableItemConnectionFragment
-  }
-`;
 
 const itemConnectionFragment = graphql`
   fragment ItemsTableItemConnectionFragment on Query {
@@ -41,13 +34,13 @@ const itemConnectionFragment = graphql`
 
 interface ItemsTableProps {
   height: number;
+  dataRef: ItemsTableItemConnectionFragment$key;
 }
 
-function ItemsTable({ height }: ItemsTableProps) {
-  const query = useLazyLoadQuery<ItemsTableQuery>(allItems, {});
+function ItemsTable({ height, dataRef }: ItemsTableProps) {
   const data = useFragment<ItemsTableItemConnectionFragment$key>(
     itemConnectionFragment,
-    query
+    dataRef
   );
   const dataParsed = useMemo(
     () => data.itemConnection.edges.map((el) => el.node),
