@@ -7,6 +7,16 @@ const useItemTableStyles = createStyles({
     },
   },
   pagination: {
+    '@media (min-width: 755px)': {
+      justifyContent: 'space-between',
+    },
+
+    '@media (max-width: 1020px)': {
+      display: 'flex',
+      flexWrap: 'wrap-reverse',
+      justifyContent: 'center',
+    },
+
     '@media (max-width: 755px)': {
       display: 'flex',
       flexWrap: 'wrap-reverse',
@@ -14,6 +24,7 @@ const useItemTableStyles = createStyles({
     },
   },
   pagination_info: {
+    display: 'inline-block',
     '@media (max-width: 755px)': {
       display: 'block',
       paddingTop: 10,
@@ -21,8 +32,8 @@ const useItemTableStyles = createStyles({
   },
 
   pagination_size: {
+    display: 'flex',
     '@media (max-width: 755px)': {
-      display: 'flex',
       justifySelf: 'flex-end',
       gap: 5,
     },
