@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1b1d3887af5dd451e59563be56d842e3>>
+ * @generated SignedSource<<b55a5d04ff695985f9e987168f982160>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,18 +11,8 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type InformationTabFragment$data = {
-  readonly barcode: string;
-  readonly cost: number;
-  readonly creationDate: any;
-  readonly currentStock: number;
   readonly id: string;
-  readonly isActive: boolean;
-  readonly isService: boolean;
-  readonly markup: number;
-  readonly name: string;
-  readonly price: number | null;
-  readonly sku: string;
-  readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItem_ItemFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItem_ItemFragment" | "InformationTabActionHeaderItemFragment" | "InformationTabInfoSectionFragment">;
   readonly " $fragmentType": "InformationTabFragment";
 };
 export type InformationTabFragment$key = {
@@ -44,85 +34,25 @@ const node: ReaderFragment = {
       "storageKey": null
     },
     {
-      "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "name",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "barcode",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "cost",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "isActive",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "sku",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "price",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "markup",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "currentStock",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "creationDate",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "isService",
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "InformationTabInfoSectionFragment"
     },
     {
       "args": null,
       "kind": "FragmentSpread",
       "name": "FormUpdateItem_ItemFragment"
+    },
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "InformationTabActionHeaderItemFragment"
     }
   ],
   "type": "ItemType",
   "abstractKey": null
 };
 
-(node as any).hash = "45040c8a3748e3fb16c852b8773ad3d9";
+(node as any).hash = "b854de3ab28f656069176b9c9ad8ad8a";
 
 export default node;

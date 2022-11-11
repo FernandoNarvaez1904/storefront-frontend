@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3b826a838396bcc2cbd0864d31c19a25>>
+ * @generated SignedSource<<646988fe31bb971ad181acb0d51661b8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -258,12 +258,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2d4d8a44ba86131e736793255eb3f82a",
+    "cacheID": "f390144b867a13db562d2a542c23d796",
     "id": null,
     "metadata": {},
     "name": "FormUpdateItem_UpdateItemMutation",
     "operationKind": "mutation",
-    "text": "mutation FormUpdateItem_UpdateItemMutation(\n  $input: ItemUpdateInput!\n) {\n  itemUpdate(input: $input) {\n    node {\n      id\n      name\n      ...InformationTabFragment\n      ...FormUpdateItem_ItemFragment\n    }\n    userErrors {\n      __typename\n      field\n      message\n    }\n  }\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment InformationTabFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  isActive\n  sku\n  price\n  markup\n  currentStock\n  creationDate\n  isService\n  ...FormUpdateItem_ItemFragment\n}\n"
+    "text": "mutation FormUpdateItem_UpdateItemMutation(\n  $input: ItemUpdateInput!\n) {\n  itemUpdate(input: $input) {\n    node {\n      id\n      name\n      ...InformationTabFragment\n      ...FormUpdateItem_ItemFragment\n    }\n    userErrors {\n      __typename\n      field\n      message\n    }\n  }\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment InformationTabActionHeaderItemFragment on ItemType {\n  id\n}\n\nfragment InformationTabFragment on ItemType {\n  id\n  ...InformationTabInfoSectionFragment\n  ...FormUpdateItem_ItemFragment\n  ...InformationTabActionHeaderItemFragment\n}\n\nfragment InformationTabInfoSectionFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  isActive\n  sku\n  price\n  markup\n  currentStock\n  creationDate\n  isService\n}\n"
   }
 };
 })();

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<246aa9504a9cff7b7129d73137ff3975>>
+ * @generated SignedSource<<e955ea9ddc6051110726df9e5934fce6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -209,12 +209,12 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "03edb2c1b07ce9c35626494c7f6721ee",
+    "cacheID": "9b9867433b711ad7dc9bcb637a9e4e22",
     "id": null,
     "metadata": {},
     "name": "ItemsTableQuery",
     "operationKind": "query",
-    "text": "query ItemsTableQuery {\n  ...ItemsTableItemConnectionFragment\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment InformationTabFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  isActive\n  sku\n  price\n  markup\n  currentStock\n  creationDate\n  isService\n  ...FormUpdateItem_ItemFragment\n}\n\nfragment ItemsTableItemConnectionFragment on Query {\n  itemConnection {\n    totalCount\n    edges {\n      node {\n        id\n        name\n        barcode\n        cost\n        isActive\n        sku\n        ...InformationTabFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query ItemsTableQuery {\n  ...ItemsTableItemConnectionFragment\n}\n\nfragment FormUpdateItem_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment InformationTabActionHeaderItemFragment on ItemType {\n  id\n}\n\nfragment InformationTabFragment on ItemType {\n  id\n  ...InformationTabInfoSectionFragment\n  ...FormUpdateItem_ItemFragment\n  ...InformationTabActionHeaderItemFragment\n}\n\nfragment InformationTabInfoSectionFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  isActive\n  sku\n  price\n  markup\n  currentStock\n  creationDate\n  isService\n}\n\nfragment ItemsTableItemConnectionFragment on Query {\n  itemConnection {\n    totalCount\n    edges {\n      node {\n        id\n        name\n        barcode\n        cost\n        isActive\n        sku\n        ...InformationTabFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 
