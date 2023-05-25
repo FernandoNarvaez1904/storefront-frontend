@@ -19,9 +19,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src"
+    "jsxImportSource": "@emotion/react"
   },
   "include": [
+    ".eslintrc.cjs",
     "src"
   ],
   "references": [

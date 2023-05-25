@@ -1,0 +1,13 @@
+runtime: nodejs16
+service: frontend
+handlers:
+  # Serve all static files with url ending with a file extension
+  - url: /(.*\..+)$
+    static_files: dist/\1
+    upload: dist/(.*\..+)$
+  # Catch all handler to index.htmlx
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html
+env_variables:
+  VITE_GRAPHQL_URL: "https://storefront-365900.uc.r.appspot.com/graphql"
