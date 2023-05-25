@@ -1,0 +1,14 @@
+.gutter {
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+    background-image: url('dots-vertical.svg');
+    cursor: col-resize;
+}
+
+.gutter.gutter-vertical {
+    background-image: url('dots-vertical.svg');
+    cursor: row-resize;
+}

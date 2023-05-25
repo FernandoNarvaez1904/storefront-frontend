@@ -1,0 +1,34 @@
+enum GridType{
+    ImageGrid,
+    TextGrid
+}
+enum GridFilterType{
+    name,
+    barcode,
+    sku
+}
+
+type GridFilterItemValue{
+    gridFilterType: GridFilterType!
+    value: String!
+}
+
+type PointOfSaleConfType{
+    gridType: GridType!
+    gridFilterValue: GridFilterItemValue!
+}
+
+type ItemInOrder{
+    id: ID!
+    item: ItemType!
+    quantity: Float!
+}
+
+type ActiveOrder{
+    items: [ItemInOrder]!
+}
+
+extend type Query {
+    pointOfSaleConf: PointOfSaleConfType!
+    activeOrder: ActiveOrder!
+}
