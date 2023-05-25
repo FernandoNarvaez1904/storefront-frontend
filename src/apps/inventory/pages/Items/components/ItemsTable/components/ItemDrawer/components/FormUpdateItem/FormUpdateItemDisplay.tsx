@@ -98,9 +98,6 @@ function FormUpdateItemDisplay({
             data: updateItemInput,
           },
         },
-        onError: (error) => {
-          console.error(error);
-        },
         onCompleted: onItemUpdate,
       });
     });

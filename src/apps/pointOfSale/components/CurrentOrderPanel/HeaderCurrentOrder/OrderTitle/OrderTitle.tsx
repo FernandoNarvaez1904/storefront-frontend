@@ -11,7 +11,7 @@ function OrderTitle() {
         #1904
       </Text>
       <Text weight="bold" size="sm">
-        Client Name
+        Unknown Client
       </Text>
       <Text weight="bold" size="sm">
         56

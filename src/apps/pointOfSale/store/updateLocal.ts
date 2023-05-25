@@ -10,6 +10,7 @@ export const updateGridTypeConf = (
     confRecord?.setValue(val, 'gridType');
   });
 };
+
 export const updateGridFilterItem = (
   environment: RelayModernEnvironment,
   val: {
@@ -75,5 +76,19 @@ export const deleteItemOrder = (
     if (item) {
       store.delete(itemOrderId);
     }
+  });
+};
+
+export const clearOrder = (environment: RelayModernEnvironment) => {
+  commitLocalUpdate(environment, (store) => {
+    const activeOrder = store.get('client:root:activeOrder');
+    const items = activeOrder?.getLinkedRecords('items');
+    // eslint-disable-next-line guard-for-in,no-restricted-syntax
+    // @ts-ignore
+    // eslint-disable-next-line no-restricted-syntax
+    for (const item of items) {
+      store.delete(item.getDataID());
+    }
+    activeOrder?.setLinkedRecords([], 'items');
   });
 };
