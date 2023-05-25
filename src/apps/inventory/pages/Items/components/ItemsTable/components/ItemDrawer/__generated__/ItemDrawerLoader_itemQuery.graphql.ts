@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3728b44d32253bcdd691401b5772b906>>
+ * @generated SignedSource<<7b4e0a79bcc0d987d92da8c5c87e2df9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,11 +11,11 @@
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ItemDrawerLoader_itemQuery$variables = {
-  id: any;
+  id: string;
 };
 export type ItemDrawerLoader_itemQuery$data = {
   readonly item: {
-    readonly id: any;
+    readonly id: string;
     readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItemDisplay_ItemFragment" | "GeneralInformationTabDisplay_itemFragment" | "ItemDrawerTitleDisplay_ItemNameFragment">;
   };
 };
@@ -175,16 +175,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "09972df938b00e1d26a2834dd3e33fe1",
+    "cacheID": "64f65e29553e1defe284680f2b2c0466",
     "id": null,
     "metadata": {},
     "name": "ItemDrawerLoader_itemQuery",
     "operationKind": "query",
-    "text": "query ItemDrawerLoader_itemQuery(\n  $id: GlobalID!\n) {\n  item(id: $id) {\n    id\n    ...GeneralInformationTabDisplay_itemFragment\n    ...FormUpdateItemDisplay_ItemFragment\n    ...ItemDrawerTitleDisplay_ItemNameFragment\n  }\n}\n\nfragment FormUpdateItemDisplay_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment GeneralInformationTabDisplay_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  creationDate\n  currentStock\n}\n\nfragment ItemDrawerTitleDisplay_ItemNameFragment on ItemType {\n  name\n}\n"
+    "text": "query ItemDrawerLoader_itemQuery(\n  $id: ID!\n) {\n  item(id: $id) {\n    id\n    ...GeneralInformationTabDisplay_itemFragment\n    ...FormUpdateItemDisplay_ItemFragment\n    ...ItemDrawerTitleDisplay_ItemNameFragment\n  }\n}\n\nfragment FormUpdateItemDisplay_ItemFragment on ItemType {\n  id\n  name\n  barcode\n  cost\n  markup\n  price\n}\n\nfragment GeneralInformationTabDisplay_itemFragment on ItemType {\n  id\n  sku\n  name\n  cost\n  price\n  markup\n  barcode\n  isActive\n  isService\n  creationDate\n  currentStock\n}\n\nfragment ItemDrawerTitleDisplay_ItemNameFragment on ItemType {\n  name\n}\n"
   }
 };
 })();
 
-(node as any).hash = "4de43d76c03bccccdbebdc3499c0c07d";
+(node as any).hash = "007406c8251f07b8480bb0c5117453e6";
 
 export default node;

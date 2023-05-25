@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8b3bb47d99668028d3d1120497a9897e>>
+ * @generated SignedSource<<b48f97b6822a444b31bcb43fd6b82abc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,7 @@ import { FragmentRefs } from "relay-runtime";
 export type FormUpdateItemDisplay_ItemFragment$data = {
   readonly barcode: string;
   readonly cost: number;
-  readonly id: any;
+  readonly id: string;
   readonly markup: number;
   readonly name: string;
   readonly price: number | null;

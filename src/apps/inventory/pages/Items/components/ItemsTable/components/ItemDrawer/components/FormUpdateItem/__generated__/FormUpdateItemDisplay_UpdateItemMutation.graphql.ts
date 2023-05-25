@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<522c9a5b9da0128b1dcaa7c789a474f6>>
+ * @generated SignedSource<<9cb428346c62ee9ca31df305bc8e3b67>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,13 +11,14 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type ItemUpdateInput = {
   data: ItemUpdateDataInput;
-  id: any;
+  id: string;
 };
 export type ItemUpdateDataInput = {
   barcode?: string | null;
   cost?: number | null;
   markup?: number | null;
   name?: string | null;
+  sku?: string | null;
 };
 export type FormUpdateItemDisplay_UpdateItemMutation$variables = {
   input: ItemUpdateInput;
@@ -27,7 +28,7 @@ export type FormUpdateItemDisplay_UpdateItemMutation$data = {
     readonly node: {
       readonly barcode: string;
       readonly cost: number;
-      readonly id: any;
+      readonly id: string;
       readonly markup: number;
       readonly name: string;
       readonly price: number | null;

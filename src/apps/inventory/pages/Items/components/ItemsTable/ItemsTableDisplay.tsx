@@ -18,7 +18,6 @@ function ItemsTableDisplay({ queryRef }: Props) {
   return (
     <>
       <ItemDrawer />
-
       <Stack className={classes.fullHeightFlex} spacing={0}>
         <HeaderItemsTable queryRef={queryRef} />
         <Box className={classes.growingFlexItem} ref={ref}>

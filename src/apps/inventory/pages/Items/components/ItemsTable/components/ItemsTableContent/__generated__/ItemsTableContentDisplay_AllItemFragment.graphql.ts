@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1dbe87a41c42735d35091da66b35d56a>>
+ * @generated SignedSource<<4518dfc6fb0e8f7e2c7f4b84f3c23ea1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,7 +14,7 @@ export type ItemsTableContentDisplay_AllItemFragment$data = {
   readonly edges: ReadonlyArray<{
     readonly node: {
       readonly barcode: string;
-      readonly id: any;
+      readonly id: string;
       readonly name: string;
       readonly sku: string;
       readonly " $fragmentSpreads": FragmentRefs<"RowTbodyItems_ItemsRowFragment">;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8299a7335e1256f2c4dd06d73853b91a>>
+ * @generated SignedSource<<fbf36e2940c714e685fff369eb150b6c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,7 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ItemCard_ItemCardDataFragment$data = {
   readonly currentStock: number;
-  readonly id: any;
+  readonly id: string;
   readonly name: string;
   readonly price: number | null;
   readonly " $fragmentType": "ItemCard_ItemCardDataFragment";

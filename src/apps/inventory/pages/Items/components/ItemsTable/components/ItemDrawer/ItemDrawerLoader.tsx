@@ -8,7 +8,7 @@ import relayEnviroment from 'RelayEnviroment';
 import ItemDrawerDisplay from './ItemDrawerDisplay';
 
 const itemDrawerQuery = graphql`
-  query ItemDrawerLoader_itemQuery($id: GlobalID!) {
+  query ItemDrawerLoader_itemQuery($id: ID!) {
     item(id: $id) {
       id
       ...GeneralInformationTabDisplay_itemFragment

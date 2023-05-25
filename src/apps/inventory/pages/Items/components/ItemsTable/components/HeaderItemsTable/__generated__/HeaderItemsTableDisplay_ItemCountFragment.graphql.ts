@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f67a7bc0703ffe685885ac8284c1ddb1>>
+ * @generated SignedSource<<a7d21a5db122565a38977c6d3a0b6c2f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type HeaderItemsTableDisplay_ItemCountFragment$data = {
-  readonly totalCount: number | null;
+  readonly totalCount: number;
   readonly " $fragmentType": "HeaderItemsTableDisplay_ItemCountFragment";
 };
 export type HeaderItemsTableDisplay_ItemCountFragment$key = {

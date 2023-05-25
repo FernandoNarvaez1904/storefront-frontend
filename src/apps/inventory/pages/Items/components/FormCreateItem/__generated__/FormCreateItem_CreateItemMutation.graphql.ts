@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<95a6c619d8bfb77fa991beb966a56204>>
+ * @generated SignedSource<<f13b52a6dcc26da00f0c26a9a292459a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -24,7 +24,7 @@ export type FormCreateItem_CreateItemMutation$variables = {
 export type FormCreateItem_CreateItemMutation$data = {
   readonly itemCreate: {
     readonly node: {
-      readonly id: any;
+      readonly id: string;
       readonly " $fragmentSpreads": FragmentRefs<"FormUpdateItemDisplay_ItemFragment" | "RowTbodyItems_ItemsRowFragment">;
     } | null;
     readonly userErrors: ReadonlyArray<{

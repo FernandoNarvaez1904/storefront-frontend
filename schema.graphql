@@ -1,14 +1,12 @@
-# This file was generated based on ".graphqlconfig". Do not edit manually.
+# This file was generated. Do not edit manually.
 
 schema {
     query: Query
     mutation: Mutation
 }
 
-"An object with a Globally Unique ID"
 interface Node {
-    "The Globally Unique ID of this object"
-    id: GlobalID!
+    id: ID!
 }
 
 interface PayloadTypeInterface {
@@ -22,7 +20,102 @@ interface UserError {
     message: String!
 }
 
-type BarcodeNotUniqueError implements UserError {
+type CannotActivateAlreadyActiveItem implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotActivateNonExistentItem implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotCreateItemBarcodeIsNotUnique implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotCreateItemNameIsNotUnique implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotCreateItemSkuIsNotUnique implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotCreateRoleNameIsNotUnique implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotCreateRolePermissionDoesNotExist implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotCreateUserEmailIsNotUnique implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotCreateUserUsernameIsNotUnique implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotDeactivateInactiveItem implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotDeactivateNonExistentItem implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotDeleteItemHasDocuments implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotDeleteNonExistentItem implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotLoginPasswordIsNotCorrect implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotLoginUsernameDoesNotExist implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotUpdateInactiveItem implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotUpdateItemBarcodeIsNotUnique implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotUpdateItemNameIsNotUnique implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotUpdateItemSkuIsNotUnique implements UserError {
+    field: String!
+    message: String!
+}
+
+type CannotUpdateNonExistentItem implements UserError {
     field: String!
     message: String!
 }
@@ -30,11 +123,6 @@ type BarcodeNotUniqueError implements UserError {
 type ItemActivatePayload implements PayloadTypeInterface {
     node: ItemType
     userErrors: [UserError!]!
-}
-
-type ItemAlreadyHasDocument implements UserError {
-    field: String!
-    message: String!
 }
 
 type ItemCreatePayload implements PayloadTypeInterface {
@@ -52,27 +140,12 @@ type ItemDeletePayload implements PayloadTypeInterface {
     userErrors: [UserError!]!
 }
 
-type ItemIsActiveError implements UserError {
-    field: String!
-    message: String!
-}
-
-type ItemIsNotActiveError implements UserError {
-    field: String!
-    message: String!
-}
-
-type ItemNotExistError implements UserError {
-    field: String!
-    message: String!
-}
-
 type ItemType implements Node {
     barcode: String!
     cost: Float!
-    creationDate: DateTime
+    creationDate: DateTime!
     currentStock: Float!
-    id: GlobalID!
+    id: ID!
     isActive: Boolean!
     isService: Boolean!
     markup: Float!
@@ -81,21 +154,23 @@ type ItemType implements Node {
     sku: String!
 }
 
-"A connection to a list of items."
+"""
+
+Represents a paginated relationship between two entities
+
+This pattern is used when the relationship itself has attributes.
+In a Facebook-based domain example, a friendship between two people
+would be a connection that might have a `friendshipStartTime`
+"""
 type ItemTypeConnection {
-    "Contains the nodes in this connection"
     edges: [ItemTypeEdge!]!
-    "Pagination data for this connection"
     pageInfo: PageInfo!
-    "Total quantity of existing nodes"
-    totalCount: Int
+    totalCount: Int!
 }
 
-"An edge in a connection."
+"An edge may contain additional information of the relationship. This is the trivial case"
 type ItemTypeEdge {
-    "A cursor for use in pagination"
     cursor: String!
-    "The item at the end of the edge"
     node: ItemType!
 }
 
@@ -110,52 +185,146 @@ type Mutation {
     itemDeactivate(input: ItemDeactivateInput!): ItemDeactivatePayload!
     itemDelete(input: ItemDeleteInput!): ItemDeletePayload!
     itemUpdate(input: ItemUpdateInput!): ItemUpdatePayload!
+    roleAddPermission(input: RoleAddPermissionInput!): RoleAddPermissionPayload!
+    roleAddUsers(input: RoleAddUsersInput!): RoleAddUsersPayload!
+    roleCreate(input: RoleCreateInput!): RoleCreatePayload!
+    roleRemovePermission(input: RoleRemovePermissionInput!): RoleRemovePermissionPayload!
+    roleRemoveUsers(input: RoleRemoveUsersInput!): RoleRemoveUsersPayload!
+    userCreate(input: UserCreateInput!): UserCreatePayload!
+    userLogin(input: UserLoginInput!): UserLoginPayload!
 }
 
-"Information to aid in pagination."
+"""
+
+Pagination context to navigate objects with cursor-based pagination
+
+Instead of classic offset pagination via `page` and `limit` parameters,
+here we have a cursor of the last object and we fetch items starting from that one
+"""
 type PageInfo {
-    "When paginating forwards, the cursor to continue."
+    edgesCount: Int
     endCursor: String
-    "When paginating forwards, are there more items?"
     hasNextPage: Boolean!
-    "When paginating backwards, are there more items?"
     hasPreviousPage: Boolean!
-    "When paginating backwards, the cursor to continue."
     startCursor: String
+    totalCount: Int
+}
+
+type PermissionType implements Node {
+    codename: String!
+    id: ID!
+    name: String!
+}
+
+"""
+
+Represents a paginated relationship between two entities
+
+This pattern is used when the relationship itself has attributes.
+In a Facebook-based domain example, a friendship between two people
+would be a connection that might have a `friendshipStartTime`
+"""
+type PermissionTypeConnection {
+    edges: [PermissionTypeEdge!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+"An edge may contain additional information of the relationship. This is the trivial case"
+type PermissionTypeEdge {
+    cursor: String!
+    node: PermissionType!
 }
 
 type Query {
-    item(
-        "The ID of the object."
-        id: GlobalID!
-    ): ItemType!
-    itemConnection(
-        "Returns the items in the list that come after the specified cursor."
-        after: String,
-        "Returns the items in the list that come before the specified cursor."
-        before: String,
-        filter: ItemFilter,
-        "Returns the first n items from the list."
-        first: Int,
-        "Returns the items in the list that come after the specified cursor."
-        last: Int
-    ): ItemTypeConnection!
-    node(
-        "The ID of the object."
-        id: GlobalID!
-    ): Node
+    item(id: ID!): ItemType!
+    itemConnection(after: ID, before: ID, filter: ItemFilter, first: Int, last: Int): ItemTypeConnection!
+    node(id: ID!): Node!
+    userConnection(after: ID, before: ID, filter: UserFilter, first: Int, last: Int): UserTypeConnection!
 }
 
-type SKUNotUniqueError implements UserError {
+type RoleAddPermissionPayload implements PayloadTypeInterface {
+    node: RoleType
+    userErrors: [UserError!]!
+}
+
+type RoleAddUsersPayload implements PayloadTypeInterface {
+    node: RoleType
+    userErrors: [UserError!]!
+}
+
+type RoleCreatePayload implements PayloadTypeInterface {
+    node: RoleType
+    userErrors: [UserError!]!
+}
+
+type RoleRemovePermissionPayload implements PayloadTypeInterface {
+    node: RoleType
+    userErrors: [UserError!]!
+}
+
+type RoleRemoveUsersPayload implements PayloadTypeInterface {
+    node: RoleType
+    userErrors: [UserError!]!
+}
+
+type RoleType implements Node {
+    id: ID!
+    name: String!
+    permissions(after: ID, before: ID, first: Int, last: Int): PermissionTypeConnection!
+    users(after: ID, before: ID, first: Int, last: Int): UserTypeConnection!
+}
+
+type UserCreatePayload implements PayloadTypeInterface {
+    node: UserType
+    userErrors: [UserError!]!
+}
+
+type UserHasNoPermission implements UserError {
     field: String!
     message: String!
 }
 
+type UserLoginPayload implements PayloadTypeInterface {
+    node: UserType
+    userErrors: [UserError!]!
+}
+
+type UserType implements Node {
+    dateJoined: DateTime!
+    email: String!
+    firstName: String!
+    id: ID!
+    isActive: Boolean!
+    isStaff: Boolean!
+    isSuperuser: Boolean!
+    lastLogin: DateTime
+    lastName: String!
+    username: String!
+}
+
+"""
+
+Represents a paginated relationship between two entities
+
+This pattern is used when the relationship itself has attributes.
+In a Facebook-based domain example, a friendship between two people
+would be a connection that might have a `friendshipStartTime`
+"""
+type UserTypeConnection {
+    edges: [UserTypeEdge!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+"An edge may contain additional information of the relationship. This is the trivial case"
+type UserTypeEdge {
+    cursor: String!
+    node: UserType!
+}
+
 "Date with time (isoformat)"
 scalar DateTime
-
-"The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID."
-scalar GlobalID
 
 input FloatFilterLookup {
     contains: Float
@@ -199,7 +368,7 @@ input IDFilterLookup {
 
 input ItemActivateInput {
     "The id given must be of an existing and inactive Item."
-    id: GlobalID!
+    id: ID!
 }
 
 input ItemCreateInput {
@@ -215,12 +384,12 @@ input ItemCreateInput {
 
 input ItemDeactivateInput {
     "The id given must be of an existing and active Item."
-    id: GlobalID!
+    id: ID!
 }
 
 input ItemDeleteInput {
     "The id given must be of an existing Item."
-    id: GlobalID!
+    id: ID!
 }
 
 input ItemFilter {
@@ -239,12 +408,38 @@ input ItemUpdateDataInput {
     cost: Float
     markup: Float
     name: String
+    sku: String
 }
 
 input ItemUpdateInput {
     data: ItemUpdateDataInput!
     "The id given must be of an existing and active Item."
-    id: GlobalID!
+    id: ID!
+}
+
+input RoleAddPermissionInput {
+    permissionsIds: [ID!]!
+    roleId: ID!
+}
+
+input RoleAddUsersInput {
+    roleId: ID!
+    usersIds: [ID!]!
+}
+
+input RoleCreateInput {
+    name: String!
+    permissionsIds: [ID!]!
+}
+
+input RoleRemovePermissionInput {
+    permissionsIds: [ID!]!
+    roleId: ID!
+}
+
+input RoleRemoveUsersInput {
+    roleId: ID!
+    usersIds: [ID!]!
 }
 
 input StrFilterLookup {
@@ -265,4 +460,28 @@ input StrFilterLookup {
     range: [String!]
     regex: String
     startsWith: String
+}
+
+input UserCreateInput {
+    email: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+    username: String!
+}
+
+input UserFilter {
+    email: StrFilterLookup
+    firstName: StrFilterLookup
+    id: IDFilterLookup
+    isActive: Boolean
+    isStaff: Boolean
+    isSuperuser: Boolean
+    lastName: StrFilterLookup
+    username: StrFilterLookup
+}
+
+input UserLoginInput {
+    password: String!
+    username: String!
 }

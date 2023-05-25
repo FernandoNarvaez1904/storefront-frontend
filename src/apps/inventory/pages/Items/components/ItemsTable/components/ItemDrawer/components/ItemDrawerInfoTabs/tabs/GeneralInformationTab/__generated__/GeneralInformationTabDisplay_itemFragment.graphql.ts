@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3f6524616bd22563b6a069c44fe877f8>>
+ * @generated SignedSource<<8988b8c802db37e3ab966d74721976ee>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,9 +13,9 @@ import { FragmentRefs } from "relay-runtime";
 export type GeneralInformationTabDisplay_itemFragment$data = {
   readonly barcode: string;
   readonly cost: number;
-  readonly creationDate: any | null;
+  readonly creationDate: any;
   readonly currentStock: number;
-  readonly id: any;
+  readonly id: string;
   readonly isActive: boolean;
   readonly isService: boolean;
   readonly markup: number;

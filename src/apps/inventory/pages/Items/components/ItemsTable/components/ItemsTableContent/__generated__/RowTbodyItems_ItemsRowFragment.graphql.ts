@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7a4a894e67eff7bc4c02985be20792c0>>
+ * @generated SignedSource<<5f6de0b1da4c29f67d3b65b76e766d17>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,7 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type RowTbodyItems_ItemsRowFragment$data = {
   readonly cost: number;
-  readonly id: any;
+  readonly id: string;
   readonly isActive: boolean;
   readonly isService: boolean;
   readonly markup: number;

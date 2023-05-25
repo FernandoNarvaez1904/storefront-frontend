@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fff9339aa0af348b98ac21bdbb7e1d28>>
+ * @generated SignedSource<<e007305006beeb17c091ed90e4988f7a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -29,19 +29,8 @@ const node: ClientRequest = (function(){
 var v0 = {
   "alias": null,
   "args": null,
-  "concreteType": "ItemType",
-  "kind": "LinkedField",
-  "name": "item",
-  "plural": false,
-  "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "price",
-      "storageKey": null
-    }
-  ],
+  "kind": "ScalarField",
+  "name": "price",
   "storageKey": null
 },
 v1 = {
@@ -49,6 +38,13 @@ v1 = {
   "args": null,
   "kind": "ScalarField",
   "name": "quantity",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
   "storageKey": null
 };
 return {
@@ -77,7 +73,18 @@ return {
                 "name": "items",
                 "plural": true,
                 "selections": [
-                  (v0/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "ItemType",
+                    "kind": "LinkedField",
+                    "name": "item",
+                    "plural": false,
+                    "selections": [
+                      (v0/*: any*/)
+                    ],
+                    "storageKey": null
+                  },
                   (v1/*: any*/)
                 ],
                 "storageKey": null
@@ -116,15 +123,21 @@ return {
                 "name": "items",
                 "plural": true,
                 "selections": [
-                  (v0/*: any*/),
-                  (v1/*: any*/),
                   {
                     "alias": null,
                     "args": null,
-                    "kind": "ScalarField",
-                    "name": "id",
+                    "concreteType": "ItemType",
+                    "kind": "LinkedField",
+                    "name": "item",
+                    "plural": false,
+                    "selections": [
+                      (v0/*: any*/),
+                      (v2/*: any*/)
+                    ],
                     "storageKey": null
-                  }
+                  },
+                  (v1/*: any*/),
+                  (v2/*: any*/)
                 ],
                 "storageKey": null
               }

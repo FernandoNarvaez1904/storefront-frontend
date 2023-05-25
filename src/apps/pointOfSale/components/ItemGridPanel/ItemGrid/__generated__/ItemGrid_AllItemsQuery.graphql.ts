@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9daf945a81fb8b3e97998d9a67b04449>>
+ * @generated SignedSource<<fed8754c5dc9040782f8f7f4f54f52b1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,13 @@ export type ItemGrid_AllItemsQuery$data = {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly barcode: string;
-        readonly id: any;
+        readonly id: string;
         readonly name: string;
         readonly sku: string;
         readonly " $fragmentSpreads": FragmentRefs<"ItemCard_ItemCardDataFragment">;
       };
     }>;
-    readonly totalCount: number | null;
+    readonly totalCount: number;
   };
 };
 export type ItemGrid_AllItemsQuery = {
